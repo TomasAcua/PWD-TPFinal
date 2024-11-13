@@ -13,7 +13,7 @@
 </head>
 <body>
     <h2>Iniciar Sesión</h2>
-    <form action="../accion/verificarLogin.php" method="POST">
+    <form action="accion/verificarLogin.php" method="POST">
         <label>Usuario:</label>
         <input type="text" name="nombre" required>
         <label>Contraseña:</label>

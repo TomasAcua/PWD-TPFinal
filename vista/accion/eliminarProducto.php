@@ -1,5 +1,5 @@
 <?php
-require_once '../control/ProductoController.php';
+include_once '../../config/config.php';
 
 $idproducto = $_POST['idproducto'];
 $productoController = new ProductoController();

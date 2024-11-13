@@ -23,8 +23,19 @@ $DB_ENGINE = $_ENV['DB_ENGINE'];
 $ROOT = $_SERVER['DOCUMENT_ROOT'] . "/$PROYECTO/";
 $_SESSION['ROOT'] = $ROOT;
 
-// Incluir funciones comunes
-include_once($ROOT . 'util/funciones.php');
+
+
+// Autoloader personalizado para cargar las clases del proyecto (modelo, control, vista)
+spl_autoload_register(function ($class_name) use ($ROOT) {
+    $directories = ["modelo/", "control/", "vista/"];
+    foreach ($directories as $directory) {
+        $file = $ROOT . $directory . $class_name . '.php';
+        if (file_exists($file)) {
+            require_once $file;
+            return;
+        }
+    }
+});
 
 // Configuración de conexión a la base de datos
 function conectarBaseDatos() {
@@ -39,3 +50,7 @@ function conectarBaseDatos() {
         exit();
     }
 }
+
+// Guardar la conexión en una variable global para uso en todo el proyecto
+$db = conectarBaseDatos();
+

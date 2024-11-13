@@ -1,6 +1,5 @@
 <?php
-require_once '../modelo/BaseDatos.php';
-require_once '../modelo/CompraEstado.php';
+include_once '../config/config.php';
 
 class CompraEstadoController {
     private $db;

@@ -1,7 +1,5 @@
 <?php
-require_once '../control/UsuarioController.php';
-require_once '../control/CompraController.php';
-require_once '../control/CompraEstadoController.php';
+include_once '../config/config.php';
 
 $usuarioController = new UsuarioController();
 session_start();

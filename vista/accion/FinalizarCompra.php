@@ -1,6 +1,5 @@
 <?php
-require_once '../control/CompraController.php';
-require_once '../control/CompraEstadoController.php';
+include_once '../../config/config.php';
 
 session_start();
 $idCompra = $_SESSION['idcompra']; // ID de la compra actual

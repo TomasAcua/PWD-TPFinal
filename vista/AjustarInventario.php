@@ -1,5 +1,5 @@
 <?php
-require_once '../control/UsuarioController.php';
+include_once '../config/config.php';
 $usuarioController = new UsuarioController();
 session_start();
 

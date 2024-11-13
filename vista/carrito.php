@@ -1,5 +1,5 @@
 <?php
-require_once '../control/CompraController.php';
+include_once '../config/config.php';
 $compraController = new CompraController();
 session_start();
 
