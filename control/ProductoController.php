@@ -26,5 +26,8 @@ class ProductoController {
     public function actualizarStock($idProducto, $cantidad) {
         return $this->producto->actualizarStock($idProducto, $cantidad);
     }
+    public function obtenerProductos() {
+        return $this->producto->obtenerTodos();
+    }
     
 }

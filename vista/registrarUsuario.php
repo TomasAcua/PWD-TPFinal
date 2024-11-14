@@ -1,31 +1,23 @@
 <?php
-include_once '../config/config.php'; // Cargar configuración y conexión a la base de datos
+include_once '../config/config.php';
+include_once '../control/UsuarioController.php';
+
+$usuarioController = new UsuarioController();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = $_POST['nombre'];
     $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $password = $_POST['password'];
     $rol = $_POST['rol'];
     $claveSecreta = $_POST['claveSecreta'] ?? null;
 
-    $error = null;
+    $resultado = $usuarioController->registrar($nombre, $password, $email, $rol, $claveSecreta);
 
-    // Validar la clave secreta para roles Admin y Deposito
-    if (($rol == 2 && $claveSecreta != '444') || ($rol == 3 && $claveSecreta != '333')) {
-        $error = "Clave secreta incorrecta para el rol seleccionado.";
+    if (isset($resultado['error'])) {
+        $error = $resultado['error'];
     } else {
-        $stmt = $db->prepare("INSERT INTO usuario (nombre, email, password, idrol) VALUES (:nombre, :email, :password, :idrol)");
-        $stmt->bindParam(':nombre', $nombre);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':password', $password);
-        $stmt->bindParam(':idrol', $rol);  // Usar el ID del rol
-
-        if ($stmt->execute()) {
-            header("Location: login.php");
-            exit;
-        } else {
-            $error = "Error al registrar el usuario.";
-        }
+        header("Location: login.php");
+        exit;
     }
 }
 ?>
@@ -76,11 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 function mostrarClaveSecreta() {
     const rol = document.getElementById("rol").value;
     const claveSecretaDiv = document.getElementById("claveSecretaDiv");
-    if (rol == "2" || rol == "3") {
-        claveSecretaDiv.style.display = "block";
-    } else {
-        claveSecretaDiv.style.display = "none";
-    }
+    claveSecretaDiv.style.display = (rol == "2" || rol == "3") ? "block" : "none";
 }
 </script>
 </body>

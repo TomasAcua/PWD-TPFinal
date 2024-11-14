@@ -27,16 +27,18 @@ class Usuario {
     public function registrarUsuario($nombre, $password, $mail) {
         $query = "INSERT INTO " . $this->table_name . " (usnombre, uspass, usmail) VALUES (:nombre, :password, :mail)";
         $stmt = $this->conn->prepare($query);
-
+    
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $stmt->bindParam(":nombre", $nombre);
-        $stmt->bindParam(":password", password_hash($password, PASSWORD_DEFAULT));
+        $stmt->bindParam(":password", $hashedPassword);
         $stmt->bindParam(":mail", $mail);
-
+    
         if ($stmt->execute()) {
             return true;
         }
         return false;
     }
+    
     public function asignarRol($idUsuario, $idRol) {
         $query = "INSERT INTO usuariorol (idusuario, idrol) VALUES (:idusuario, :idrol)";
         $stmt = $this->conn->prepare($query);

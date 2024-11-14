@@ -1,6 +1,13 @@
 <?php
+session_start(); // Esto debe estar al inicio, antes de cualquier salida de HTML o espacios en blanco
 header('Content-Type: text/html; charset=utf-8');
 header("Cache-Control: no-cache, must-revalidate");
+
+
+// Función para encapsular el envío por POST o GET
+function darDatosSubmitted() {
+    return $_SERVER["REQUEST_METHOD"] === "POST" ? $_POST : $_GET;
+}
 
 // Autoload de Composer 
 require_once __DIR__ . '/../vendor/autoload.php';

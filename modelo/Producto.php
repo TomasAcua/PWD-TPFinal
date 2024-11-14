@@ -38,5 +38,13 @@ class Producto {
         $stmt->bindParam(":id", $id);
         return $stmt->execute();
     }
+    public function obtenerProductoPorId($id) {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE idproducto = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    
     
 }
