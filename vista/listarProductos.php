@@ -3,7 +3,6 @@ include_once '../config/config.php';
 $usuarioController = new UsuarioController();
 session_start();
 
-// Verificar acceso para 'admin' y 'deposito'
 if (!$usuarioController->tieneAcceso(['admin', 'deposito'])) {
     header("Location: acceso_denegado.php");
     exit();
@@ -18,12 +17,9 @@ if (!$usuarioController->tieneAcceso(['admin', 'deposito'])) {
 </head>
 <body>
     <h2>Productos Disponibles</h2>
-    
-    <!-- Tabla de productos -->
     <table id="dg" title="Listado de Productos" class="easyui-datagrid" style="width:700px;height:400px"
-           url="../accion/obtenerProductos.php"  <!-- Archivo de datos -->
-           toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
-        <thead>
+           url="../accion/obtenerProductos.php" toolbar="#toolbar" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true">
+           <thead>
             <tr>
                 <th field="idproducto" width="50">ID</th>
                 <th field="pronombre" width="100">Nombre</th>
@@ -33,29 +29,18 @@ if (!$usuarioController->tieneAcceso(['admin', 'deposito'])) {
             </tr>
         </thead>
     </table>
-    
-    <div id="toolbar">
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="nuevoProducto()">Nuevo Producto</a>
-    </div>
 
     <script>
-        function nuevoProducto() {
-            $('#dlg').dialog('open').dialog('setTitle', 'Nuevo Producto');
-            $('#fm').form('clear');
-        }
-
-        function formatoAcciones(value, row, index) {
-            return `<a href="javascript:void(0)" onclick="editarProducto(${row.idproducto})">Editar</a> | 
-                    <a href="javascript:void(0)" onclick="eliminarProducto(${row.idproducto})">Eliminar</a>`;
-        }
-
-        function editarProducto(id) {
-            // Lógica para abrir un diálogo de edición
-        }
-
         function eliminarProducto(id) {
-            $.post('../accion/eliminarProducto.php', { idproducto: id }, function(result) {
-                $('#dg').datagrid('reload'); // Recargar la tabla
+            fetch('../accion/eliminarProducto.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ idproducto: id })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) $('#dg').datagrid('reload');
+                else alert('Error al eliminar el producto.');
             });
         }
     </script>

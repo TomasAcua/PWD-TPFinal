@@ -1,23 +1,10 @@
-<?php
-include_once '../config/config.php';
-$usuarioController = new UsuarioController();
-session_start();
-
-// Verificar acceso solo para admin
-if (!$usuarioController->tieneAcceso(['admin'])) {
-    header("Location: acceso_denegado.php");
-    exit();
-}
-
-$usuarios = $usuarioController->obtenerUsuarios(); // Función para obtener todos los usuarios
-
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Usuarios</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <h2>Gestión de Usuarios</h2>
@@ -34,18 +21,24 @@ $usuarios = $usuarioController->obtenerUsuarios(); // Función para obtener todo
                 <td><?php echo $usuario['usnombre']; ?></td>
                 <td><?php echo $usuario['rol']; ?></td>
                 <td>
-                    <form action="../accion/asignarRol.php" method="POST">
-                        <input type="hidden" name="idusuario" value="<?php echo $usuario['idusuario']; ?>">
-                        <select name="idrol">
-                            <option value="1">Usuario</option>
-                            <option value="2">Admin</option>
-                            <option value="3">Deposito</option>
-                        </select>
-                        <button type="submit">Asignar Rol</button>
-                    </form>
+                    <select onchange="asignarRol(<?php echo $usuario['idusuario']; ?>, this.value)">
+                        <option value="1">Usuario</option>
+                        <option value="2">Admin</option>
+                        <option value="3">Deposito</option>
+                    </select>
                 </td>
             </tr>
         <?php endforeach; ?>
     </table>
+
+    <script>
+        function asignarRol(idUsuario, idRol) {
+            $.post('../accion/asignarRol.php', { idusuario: idUsuario, idrol: idRol }, function(response) {
+                alert('Rol actualizado correctamente');
+            }).fail(function() {
+                alert('Error al actualizar el rol');
+            });
+        }
+    </script>
 </body>
 </html>

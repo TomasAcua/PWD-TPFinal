@@ -1,12 +1,10 @@
 <?php
 include_once '../../config/config.php';
-session_start();
 
 $idCompra = $_POST['idcompra'];
 $nuevoEstado = $_POST['nuevoEstado'];
 
 $compraEstadoController = new CompraEstadoController();
-$compraEstadoController->cambiarEstadoCompra($idCompra, $nuevoEstado);
+$resultado = $compraEstadoController->cambiarEstadoCompra($idCompra, $nuevoEstado);
 
-header("Location: ../vista/adminPanelCompras.php?mensaje=Estado actualizado");
-exit();
+echo json_encode(['success' => $resultado, 'message' => $resultado ? 'Estado actualizado' : 'Error al actualizar estado']);

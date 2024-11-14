@@ -46,5 +46,12 @@ class CompraController {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function finalizarCompra($idCompra) {
+        $query = "UPDATE compraestado SET idcompraestadotipo = 2 WHERE idcompra = :idcompra";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(":idcompra", $idCompra);
+        return $stmt->execute();
+    }
+
     
 }

@@ -1,15 +1,15 @@
 <?php
-include_once '../../config/config.php';
+include_once '../config/config.php';
 
 session_start();
-$idCompra = $_SESSION['idcompra']; // ID de la compra actual
-$compraEstadoController = new CompraEstadoController();
+$idCompra = $_SESSION['idcompra'] ?? null;
 
-// Cambiar el estado de la compra a 'Iniciada'
-$compraEstadoController->cambiarEstadoCompra($idCompra, 1);
+if ($idCompra) {
+    $compraController = new CompraController();
+    $resultado = $compraController->finalizarCompra($idCompra);
 
-// Limpiar el carrito
-unset($_SESSION['idcompra']); // O cualquier otro proceso de limpieza
-
-header("Location: ../vista/compraConfirmada.php");
-exit();
+    echo json_encode(['success' => $resultado ? true : false]);
+} else {
+    echo json_encode(['success' => false, 'message' => 'ID de compra no encontrado']);
+}
+?>

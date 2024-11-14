@@ -2,4 +2,6 @@
 include_once '../../config/config.php';
 
 $productoController = new ProductoController();
-echo json_encode($productoController->listarProductos());
+$productos = $productoController->obtenerProductos();
+echo json_encode($productos);
+?>

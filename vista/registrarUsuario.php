@@ -1,24 +1,12 @@
 <?php
 include_once '../config/config.php';
-include_once '../control/UsuarioController.php';
-
 $usuarioController = new UsuarioController();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombre = $_POST['nombre'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $rol = $_POST['rol'];
-    $claveSecreta = $_POST['claveSecreta'] ?? null;
-
-    $resultado = $usuarioController->registrar($nombre, $password, $email, $rol, $claveSecreta);
-
-    if (isset($resultado['error'])) {
-        $error = $resultado['error'];
-    } else {
-        header("Location: login.php");
-        exit;
-    }
+    $data = darDatosSubmitted();
+    $resultado = $usuarioController->registrar($data['nombre'], $data['password'], $data['email'], $data['rol'], $data['claveSecreta']);
+    echo json_encode(['success' => empty($resultado['error']), 'error' => $resultado['error'] ?? null]);
+    exit;
 }
 ?>
 
@@ -32,11 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 <div class="container mt-5">
     <h1>Registro de Usuario</h1>
-    <?php if (isset($error)): ?>
-        <div class="alert alert-danger"><?= $error ?></div>
-    <?php endif; ?>
-    <form action="registrarUsuario.php" method="POST">
-        <div class="mb-3">
+    <form id="registroForm">
+    <div class="mb-3">
             <label for="nombre" class="form-label">Nombre</label>
             <input type="text" class="form-control" id="nombre" name="nombre" required>
         </div>
@@ -60,16 +45,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="claveSecreta" class="form-label">Clave Secreta de la Empresa</label>
             <input type="password" class="form-control" id="claveSecreta" name="claveSecreta">
         </div>
-        <button type="submit" class="btn btn-primary">Registrarse</button>
+        <button type="button" id="registerButton" class="btn btn-primary">Registrarse</button>
     </form>
 </div>
 
 <script>
-function mostrarClaveSecreta() {
-    const rol = document.getElementById("rol").value;
-    const claveSecretaDiv = document.getElementById("claveSecretaDiv");
-    claveSecretaDiv.style.display = (rol == "2" || rol == "3") ? "block" : "none";
-}
+    document.getElementById('registerButton').addEventListener('click', function() {
+        const formData = new FormData(document.querySelector('#registroForm'));
+        fetch('registrarUsuario.php', { method: 'POST', body: formData })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) window.location.href = 'login.php';
+                else alert(data.error);
+            });
+    });
 </script>
 </body>
 </html>

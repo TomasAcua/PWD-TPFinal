@@ -1,25 +1,10 @@
-<?php
-include_once '../config/config.php';
-
-$usuarioController = new UsuarioController();
-session_start();
-
-// Verificar que solo el rol admin tenga acceso
-if (!$usuarioController->tieneAcceso(['admin'])) {
-    header("Location: acceso_denegado.php");
-    exit();
-}
-
-$compraController = new CompraController();
-$compras = $compraController->obtenerTodasLasCompras();
-
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Panel de Administración de Compras</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <h2>Panel de Administración de Compras</h2>
@@ -38,19 +23,25 @@ $compras = $compraController->obtenerTodasLasCompras();
                 <td><?php echo $compra['cofecha']; ?></td>
                 <td><?php echo $compra['estado']; ?></td>
                 <td>
-                    <form action="../accion/cambiarEstadoCompra.php" method="POST">
-                        <input type="hidden" name="idcompra" value="<?php echo $compra['idcompra']; ?>">
-                        <select name="nuevoEstado">
-                            <option value="1">Iniciada</option>
-                            <option value="2">Aceptada</option>
-                            <option value="3">Enviada</option>
-                            <option value="4">Cancelada</option>
-                        </select>
-                        <button type="submit">Actualizar</button>
-                    </form>
+                    <select onchange="cambiarEstadoCompra(<?php echo $compra['idcompra']; ?>, this.value)">
+                        <option value="1">Iniciada</option>
+                        <option value="2">Aceptada</option>
+                        <option value="3">Enviada</option>
+                        <option value="4">Cancelada</option>
+                    </select>
                 </td>
             </tr>
         <?php endforeach; ?>
     </table>
+
+    <script>
+        function cambiarEstadoCompra(idCompra, nuevoEstado) {
+            $.post('../accion/cambiarEstadoCompra.php', { idcompra: idCompra, nuevoEstado: nuevoEstado }, function(response) {
+                alert('Estado de compra actualizado correctamente');
+            }).fail(function() {
+                alert('Error al actualizar el estado de compra');
+            });
+        }
+    </script>
 </body>
 </html>

@@ -1,8 +1,7 @@
-<?php
-include_once '../config/config.php';
+<?php include_once '../config/config.php';
 
 $productosController = new ProductoController();
-$productos = $productosController->obtenerProductos(); // Cambiado el nombre aquí
+$productos = $productoController->obtenerTodos();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -16,28 +15,36 @@ $productos = $productosController->obtenerProductos(); // Cambiado el nombre aqu
     <?php include '../config/navbar.php'; ?>
     <div class="container mt-5">
         <h2 class="text-center">Tienda de Productos</h2>
-        
-        <!-- Productos disponibles -->
         <div class="row">
-            <?php
-            foreach ($productos as $producto) {
-                echo '
+            <?php foreach ($productos as $producto): ?>
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h5 class="card-title">' . $producto['pronombre'] . '</h5>
-                            <p class="card-text">' . $producto['prodetalle'] . '</p>
-                            <p class="card-text"><strong>Precio: </strong>' . $producto['precio'] . ' USD</p>
-                            <form action="accion/agregarCarrito.php" method="POST">
-                                <input type="hidden" name="producto_id" value="' . $producto['idproducto'] . '">
-                                <button type="submit" class="btn btn-primary">Agregar al Carrito</button>
-                            </form>
+                            <h5 class="card-title"><?= $producto['pronombre'] ?></h5>
+                            <p class="card-text"><?= $producto['prodetalle'] ?></p>
+                            <button class="btn btn-primary add-to-cart" data-product-id="<?= $producto['idproducto'] ?>">Agregar al Carrito</button>
                         </div>
                     </div>
-                </div>';
-            }
-            ?>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
+
+    <script>
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const productId = this.dataset.productId;
+                fetch('../accion/agregarCarrito.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ producto_id: productId })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.success ? 'Producto agregado!' : 'Error al agregar.');
+                });
+            });
+        });
+    </script>
 </body>
 </html>

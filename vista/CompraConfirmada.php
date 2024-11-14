@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Compra Confirmada</title>
+    <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
     <h2>Compra Confirmada</h2>

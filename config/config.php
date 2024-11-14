@@ -61,3 +61,35 @@ function conectarBaseDatos() {
 // Guardar la conexión en una variable global para uso en todo el proyecto
 $db = conectarBaseDatos();
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+function enviarCorreo($destinatario, $asunto, $mensaje) {
+    $mail = new PHPMailer(true);
+
+    try {
+        // Configuración del servidor SMTP
+        $mail->isSMTP();
+        $mail->Host = $_ENV['SMTP_HOST'];
+        $mail->SMTPAuth = true;
+        $mail->Username = $_ENV['SMTP_USER'];
+        $mail->Password = $_ENV['SMTP_PASSWORD'];
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = $_ENV['SMTP_PORT'];
+
+        // Configuración del remitente
+        $mail->setFrom($_ENV['SMTP_FROM'], $_ENV['SMTP_FROM_NAME']);
+        $mail->addAddress($destinatario);
+
+        // Contenido del correo
+        $mail->isHTML(true);
+        $mail->Subject = $asunto;
+        $mail->Body    = $mensaje;
+
+        $mail->send();
+        return true;
+    } catch (Exception $e) {
+        echo "Error al enviar el mensaje: {$mail->ErrorInfo}";
+        return false;
+    }
+}
