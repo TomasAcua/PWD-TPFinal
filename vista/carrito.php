@@ -1,65 +1,32 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Carrito de Compras</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
-    <h2>Carrito de Compras</h2>
-    <table border="1" id="tablaCarrito">
-        <tr>
-            <th>Producto</th>
-            <th>Detalle</th>
-            <th>Cantidad</th>
-        </tr>
-        <!-- Los productos se cargarán dinámicamente aquí -->
-    </table>
-    <button onclick="finalizarCompra()">Finalizar Compra</button>
-    <div id="mensajeCompra"></div>
+<?php
+$Titulo = "Carrito";
+include_once './Estructura/cabecera.php';
+if (!$sesion->verificarPermiso('./carrito.php')) {
+    $mensaje = "No tiene permiso para acceder a este sitio.";
+    echo "<script> window.location.href='../Home/index.php?mensaje=" . urlencode($mensaje) . "'</script>";
+} else {
+?>
+    <div class="container py-5 text-center">
 
-    <script>
-        $(document).ready(function() {
-            cargarCarrito();
-        });
+        <div class="row align-items-start">
 
-        function cargarCarrito() {
-            $.ajax({
-                url: '../accion/obtenerCarrito.php',
-                type: 'GET',
-                success: function(response) {
-                    const productos = JSON.parse(response);
-                    let html = '';
+            <div class="table-responsive col-9" id="estructuraCarrito">
 
-                    productos.forEach(producto => {
-                        html += `<tr>
-                                    <td>${producto.pronombre}</td>
-                                    <td>${producto.prodetalle}</td>
-                                    <td>${producto.cicantidad}</td>
-                                </tr>`;
-                    });
+                <table class="table table-hover caption-top align-middle text-center" id="tablaCarrito">
 
-                    $('#tablaCarrito').append(html);
-                },
-                error: function() {
-                    $('#mensajeCompra').html('<p>Error al cargar el carrito.</p>');
-                }
-            });
-        }
+                </table>
+                <!--FIN TABLE-->
 
-        function finalizarCompra() {
-            $.ajax({
-                url: '../accion/finalizarCompra.php',
-                type: 'POST',
-                success: function() {
-                    $('#mensajeCompra').html('<p>Compra finalizada con éxito.</p>');
-                },
-                error: function() {
-                    $('#mensajeCompra').html('<p>Error al finalizar la compra.</p>');
-                }
-            });
-        }
-    </script>
-</body>
-</html>
+            </div><!--FIN ESTRUCTURA CARRITO-->
+            <div class="col-3 align-self-start" id="totalPagar">
+
+            </div><!--FIN TOTAL A PAGAR-->
+
+        </div><!--FIN FILA DE ITEMS-->
+
+    </div><!--FIN CONTAINER-->
+
+
+<?php } ?>
+<script src="..\Utiles\js\funcionesCarrito.js"></script>
+<?php include_once '.\Estructura\pie.php'; ?>

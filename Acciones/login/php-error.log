@@ -1,0 +1,254 @@
+[16-Nov-2024 01:38:28 Europe/Berlin] Datos recibidos en ingresar.php: Array
+(
+    [usnombre] => admin
+    [uspass] => 0192023a7bbd73250516f069df18b500
+)
+
+[16-Nov-2024 01:38:28 Europe/Berlin] Estado de sesión activa: NO
+[16-Nov-2024 01:38:28 Europe/Berlin] === Inicio validación de usuario ===
+[16-Nov-2024 01:38:28 Europe/Berlin] Usuario a validar: admin
+[16-Nov-2024 01:38:28 Europe/Berlin] Hash recibido: 0192023a7bbd73250516f069df18b500
+[16-Nov-2024 01:38:28 Europe/Berlin] === Inicio búsqueda de usuario ===
+[16-Nov-2024 01:38:28 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => admin
+)
+
+[16-Nov-2024 01:38:28 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'admin'
+[16-Nov-2024 01:38:28 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'admin'
+[16-Nov-2024 01:38:28 Europe/Berlin] Resultado de la ejecución: 1
+[16-Nov-2024 01:38:28 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 2
+    [0] => 2
+    [usnombre] => admin
+    [1] => admin
+    [uspass] => 0192023a7bbd73250516f069df18b500
+    [2] => 0192023a7bbd73250516f069df18b500
+    [usmail] => admin@gmail.com
+    [3] => admin@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[16-Nov-2024 01:38:28 Europe/Berlin] Resultados encontrados: 1
+[16-Nov-2024 01:38:28 Europe/Berlin] Usuario encontrado - ID: 2, Nombre: admin
+[16-Nov-2024 01:38:28 Europe/Berlin] Usuario existe en BD: SI
+[16-Nov-2024 01:38:28 Europe/Berlin] Password en BD: 0192023a7bbd73250516f069df18b500
+[16-Nov-2024 01:38:28 Europe/Berlin] Password recibido: 0192023a7bbd73250516f069df18b500
+[16-Nov-2024 01:38:28 Europe/Berlin] === Inicio búsqueda de usuario ===
+[16-Nov-2024 01:38:28 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => admin
+    [uspass] => 0192023a7bbd73250516f069df18b500
+)
+
+[16-Nov-2024 01:38:28 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'admin' AND uspass = '0192023a7bbd73250516f069df18b500'
+[16-Nov-2024 01:38:28 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'admin' AND uspass = '0192023a7bbd73250516f069df18b500'
+[16-Nov-2024 01:38:28 Europe/Berlin] Resultado de la ejecución: 1
+[16-Nov-2024 01:38:28 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 2
+    [0] => 2
+    [usnombre] => admin
+    [1] => admin
+    [uspass] => 0192023a7bbd73250516f069df18b500
+    [2] => 0192023a7bbd73250516f069df18b500
+    [usmail] => admin@gmail.com
+    [3] => admin@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[16-Nov-2024 01:38:28 Europe/Berlin] Resultados encontrados: 1
+[16-Nov-2024 01:38:28 Europe/Berlin] Usuario encontrado - ID: 2, Nombre: admin
+[16-Nov-2024 01:38:28 Europe/Berlin] Usuario y contraseña coinciden: SI
+[16-Nov-2024 01:38:28 Europe/Berlin] Validación exitosa
+[16-Nov-2024 01:38:28 Europe/Berlin] Resultado de validación: EXITOSA
+[16-Nov-2024 01:38:28 Europe/Berlin] Intentando iniciar sesión para: admin
+[16-Nov-2024 01:38:28 Europe/Berlin] === Inicio validación de usuario ===
+[16-Nov-2024 01:38:28 Europe/Berlin] Usuario a validar: admin
+[16-Nov-2024 01:38:28 Europe/Berlin] Hash recibido: 0192023a7bbd73250516f069df18b500
+[16-Nov-2024 01:38:28 Europe/Berlin] === Inicio búsqueda de usuario ===
+[16-Nov-2024 01:38:28 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => admin
+)
+
+[16-Nov-2024 01:38:28 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'admin'
+[16-Nov-2024 01:38:28 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'admin'
+[16-Nov-2024 01:38:28 Europe/Berlin] Resultado de la ejecución: 1
+[16-Nov-2024 01:38:28 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 2
+    [0] => 2
+    [usnombre] => admin
+    [1] => admin
+    [uspass] => 0192023a7bbd73250516f069df18b500
+    [2] => 0192023a7bbd73250516f069df18b500
+    [usmail] => admin@gmail.com
+    [3] => admin@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[16-Nov-2024 01:38:28 Europe/Berlin] Resultados encontrados: 1
+[16-Nov-2024 01:38:28 Europe/Berlin] Usuario encontrado - ID: 2, Nombre: admin
+[16-Nov-2024 01:38:28 Europe/Berlin] Usuario existe en BD: SI
+[16-Nov-2024 01:38:28 Europe/Berlin] Password en BD: 0192023a7bbd73250516f069df18b500
+[16-Nov-2024 01:38:28 Europe/Berlin] Password recibido: 0192023a7bbd73250516f069df18b500
+[16-Nov-2024 01:38:28 Europe/Berlin] === Inicio búsqueda de usuario ===
+[16-Nov-2024 01:38:28 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => admin
+    [uspass] => 0192023a7bbd73250516f069df18b500
+)
+
+[16-Nov-2024 01:38:28 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'admin' AND uspass = '0192023a7bbd73250516f069df18b500'
+[16-Nov-2024 01:38:28 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'admin' AND uspass = '0192023a7bbd73250516f069df18b500'
+[16-Nov-2024 01:38:28 Europe/Berlin] Resultado de la ejecución: 1
+[16-Nov-2024 01:38:28 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 2
+    [0] => 2
+    [usnombre] => admin
+    [1] => admin
+    [uspass] => 0192023a7bbd73250516f069df18b500
+    [2] => 0192023a7bbd73250516f069df18b500
+    [usmail] => admin@gmail.com
+    [3] => admin@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[16-Nov-2024 01:38:28 Europe/Berlin] Resultados encontrados: 1
+[16-Nov-2024 01:38:28 Europe/Berlin] Usuario encontrado - ID: 2, Nombre: admin
+[16-Nov-2024 01:38:28 Europe/Berlin] Usuario y contraseña coinciden: SI
+[16-Nov-2024 01:38:28 Europe/Berlin] Validación exitosa
+[16-Nov-2024 23:05:06 Europe/Berlin] Datos recibidos en ingresar.php: Array
+(
+    [usnombre] => admin
+    [uspass] => 0192023a7bbd73250516f069df18b500
+)
+
+[16-Nov-2024 23:05:06 Europe/Berlin] Estado de sesión activa: NO
+[16-Nov-2024 23:05:06 Europe/Berlin] === Inicio validación de usuario ===
+[16-Nov-2024 23:05:06 Europe/Berlin] Usuario a validar: admin
+[16-Nov-2024 23:05:06 Europe/Berlin] Hash recibido: 0192023a7bbd73250516f069df18b500
+[16-Nov-2024 23:05:06 Europe/Berlin] === Inicio búsqueda de usuario ===
+[16-Nov-2024 23:05:06 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => admin
+)
+
+[16-Nov-2024 23:05:06 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'admin'
+[16-Nov-2024 23:05:06 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'admin'
+[16-Nov-2024 23:05:06 Europe/Berlin] Resultado de la ejecución: 1
+[16-Nov-2024 23:05:06 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 2
+    [0] => 2
+    [usnombre] => admin
+    [1] => admin
+    [uspass] => 0192023a7bbd73250516f069df18b500
+    [2] => 0192023a7bbd73250516f069df18b500
+    [usmail] => admin@gmail.com
+    [3] => admin@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[16-Nov-2024 23:05:06 Europe/Berlin] Resultados encontrados: 1
+[16-Nov-2024 23:05:06 Europe/Berlin] Usuario encontrado - ID: 2, Nombre: admin
+[16-Nov-2024 23:05:06 Europe/Berlin] Usuario existe en BD: SI
+[16-Nov-2024 23:05:06 Europe/Berlin] Password en BD: 0192023a7bbd73250516f069df18b500
+[16-Nov-2024 23:05:06 Europe/Berlin] Password recibido: 0192023a7bbd73250516f069df18b500
+[16-Nov-2024 23:05:06 Europe/Berlin] === Inicio búsqueda de usuario ===
+[16-Nov-2024 23:05:06 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => admin
+    [uspass] => 0192023a7bbd73250516f069df18b500
+)
+
+[16-Nov-2024 23:05:06 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'admin' AND uspass = '0192023a7bbd73250516f069df18b500'
+[16-Nov-2024 23:05:06 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'admin' AND uspass = '0192023a7bbd73250516f069df18b500'
+[16-Nov-2024 23:05:06 Europe/Berlin] Resultado de la ejecución: 1
+[16-Nov-2024 23:05:06 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 2
+    [0] => 2
+    [usnombre] => admin
+    [1] => admin
+    [uspass] => 0192023a7bbd73250516f069df18b500
+    [2] => 0192023a7bbd73250516f069df18b500
+    [usmail] => admin@gmail.com
+    [3] => admin@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[16-Nov-2024 23:05:06 Europe/Berlin] Resultados encontrados: 1
+[16-Nov-2024 23:05:06 Europe/Berlin] Usuario encontrado - ID: 2, Nombre: admin
+[16-Nov-2024 23:05:06 Europe/Berlin] Usuario y contraseña coinciden: SI
+[16-Nov-2024 23:05:06 Europe/Berlin] Validación exitosa
+[16-Nov-2024 23:05:06 Europe/Berlin] Resultado de validación: EXITOSA
+[16-Nov-2024 23:05:06 Europe/Berlin] Intentando iniciar sesión para: admin
+[16-Nov-2024 23:05:06 Europe/Berlin] === Inicio validación de usuario ===
+[16-Nov-2024 23:05:06 Europe/Berlin] Usuario a validar: admin
+[16-Nov-2024 23:05:06 Europe/Berlin] Hash recibido: 0192023a7bbd73250516f069df18b500
+[16-Nov-2024 23:05:06 Europe/Berlin] === Inicio búsqueda de usuario ===
+[16-Nov-2024 23:05:06 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => admin
+)
+
+[16-Nov-2024 23:05:06 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'admin'
+[16-Nov-2024 23:05:06 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'admin'
+[16-Nov-2024 23:05:06 Europe/Berlin] Resultado de la ejecución: 1
+[16-Nov-2024 23:05:06 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 2
+    [0] => 2
+    [usnombre] => admin
+    [1] => admin
+    [uspass] => 0192023a7bbd73250516f069df18b500
+    [2] => 0192023a7bbd73250516f069df18b500
+    [usmail] => admin@gmail.com
+    [3] => admin@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[16-Nov-2024 23:05:06 Europe/Berlin] Resultados encontrados: 1
+[16-Nov-2024 23:05:06 Europe/Berlin] Usuario encontrado - ID: 2, Nombre: admin
+[16-Nov-2024 23:05:06 Europe/Berlin] Usuario existe en BD: SI
+[16-Nov-2024 23:05:06 Europe/Berlin] Password en BD: 0192023a7bbd73250516f069df18b500
+[16-Nov-2024 23:05:06 Europe/Berlin] Password recibido: 0192023a7bbd73250516f069df18b500
+[16-Nov-2024 23:05:06 Europe/Berlin] === Inicio búsqueda de usuario ===
+[16-Nov-2024 23:05:06 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => admin
+    [uspass] => 0192023a7bbd73250516f069df18b500
+)
+
+[16-Nov-2024 23:05:06 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'admin' AND uspass = '0192023a7bbd73250516f069df18b500'
+[16-Nov-2024 23:05:06 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'admin' AND uspass = '0192023a7bbd73250516f069df18b500'
+[16-Nov-2024 23:05:06 Europe/Berlin] Resultado de la ejecución: 1
+[16-Nov-2024 23:05:06 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 2
+    [0] => 2
+    [usnombre] => admin
+    [1] => admin
+    [uspass] => 0192023a7bbd73250516f069df18b500
+    [2] => 0192023a7bbd73250516f069df18b500
+    [usmail] => admin@gmail.com
+    [3] => admin@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[16-Nov-2024 23:05:06 Europe/Berlin] Resultados encontrados: 1
+[16-Nov-2024 23:05:06 Europe/Berlin] Usuario encontrado - ID: 2, Nombre: admin
+[16-Nov-2024 23:05:06 Europe/Berlin] Usuario y contraseña coinciden: SI
+[16-Nov-2024 23:05:06 Europe/Berlin] Validación exitosa
