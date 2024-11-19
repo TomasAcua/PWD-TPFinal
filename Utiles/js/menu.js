@@ -1,111 +1,102 @@
 $(document).ready(function() {
-    cargarMenu();
+    console.log("Iniciando carga del menú...");
     
-    // Manejador para cambio de rol
-    $('#cambiar-rol').on('change', function() {
-        cambiarRol($(this).val());
-    });
-    
-    // Manejador para cerrar sesión
-    $('#cerrar-sesion').on('click', function() {
-        cerrarSesion();
-    });
-});
-
-function cargarMenu() {
     $.ajax({
-        url: '../Acciones/login/accionMenu.php',
+        url: '/TPFinal/Vista/Estructura/obtenerPermisos.php',
         type: 'POST',
         dataType: 'json',
         success: function(response) {
+            console.log("Respuesta del servidor:", response);
             if (response.usuario) {
-                // Actualizar nombre de usuario
-                $('#username-display').text(response.usuario.nombre);
-                
-                // Cargar roles si hay más de uno
-                if (response.roles && response.roles.length > 1) {
-                    var select = $('#cambiar-rol');
-                    select.empty();
-                    response.roles.forEach(function(rol) {
-                        var selected = (rol.rol === response.usuario.rol) ? 'selected' : '';
-                        select.append(`<option value="${rol.rol}" ${selected}>${rol.rol}</option>`);
-                    });
-                }
-                
-                // Cargar menú
-                var menuHtml = '';
-                response.permisos.forEach(function(menu) {
-                    if (menu.hijos && menu.hijos.length > 0) {
-                        // Menú desplegable
-                        menuHtml += `
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                    ${menu.menombre}
-                                </a>
-                                <ul class="dropdown-menu">
-                                    ${generarSubMenu(menu.hijos)}
-                                </ul>
-                            </li>`;
-                    } else {
-                        // Enlace simple
-                        menuHtml += `
-                            <li class="nav-item">
-                                <a class="nav-link" href="${menu.medescripcion}">${menu.menombre}</a>
-                            </li>`;
-                    }
-                });
-                
-                $('#menu-principal').html(menuHtml);
+                console.log("Usuario encontrado:", response.usuario);
+                console.log("Permisos:", response.permisos);
+                armarMenu(response.permisos);
             }
         },
         error: function(xhr, status, error) {
-            console.error('Error al cargar el menú:', error);
+            console.error("Error al cargar el menú:", error);
+            console.error("Status:", xhr.status);
+            console.error("Respuesta:", xhr.responseText);
         }
     });
+});
+
+function armarMenu(permisos) {
+    console.log("Armando menú con permisos:", permisos);
+    var menuHtml = '';
+    
+    // Buscar los menús principales por su nombre
+    var menuAdmin = permisos.find(p => p.menombre === 'Administrador Permisos');
+    var menuDeposito = permisos.find(p => p.menombre === 'Deposito Permisos');
+    var menuCliente = permisos.find(p => p.menombre === 'Tus Compras');
+    
+    // Menú Administrador
+    if (menuAdmin) {
+        menuHtml += crearMenuDropdown(menuAdmin);
+    }
+    
+    // Menú Depósito
+    if (menuDeposito) {
+        menuHtml += crearMenuDropdown(menuDeposito);
+    }
+    
+    // Menú Cliente
+    if (menuCliente) {
+        menuHtml += crearMenuDropdown(menuCliente);
+    }
+    
+    $('#menu-principal').html(menuHtml);
+
+    // Reinicializar los dropdowns
+    setTimeout(function() {
+        var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'));
+        dropdownElementList.map(function (dropdownToggleEl) {
+            return new bootstrap.Dropdown(dropdownToggleEl);
+        });
+    }, 100);
 }
 
-function generarSubMenu(hijos) {
-    var html = '';
-    hijos.forEach(function(hijo) {
-        if (hijo.hijos && hijo.hijos.length > 0) {
-            html += `
-                <li class="dropdown-submenu">
-                    <a class="dropdown-item dropdown-toggle" href="#">${hijo.menombre}</a>
-                    <ul class="dropdown-menu">
-                        ${generarSubMenu(hijo.hijos)}
-                    </ul>
-                </li>`;
-        } else {
-            html += `<li><a class="dropdown-item" href="${hijo.medescripcion}">${hijo.menombre}</a></li>`;
+function crearMenuDropdown(menu) {
+    return `
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                ${menu.menombre}
+            </a>
+            <ul class="dropdown-menu">
+                ${menu.hijos.map(hijo => {
+                    var ruta = hijo.medescripcion;
+                    return `
+                        <li>
+                            <a class="dropdown-item" href="/TPFinal/Vista/${ruta}">
+                                ${hijo.menombre}
+                            </a>
+                        </li>`;
+                }).join('')}
+            </ul>
+        </li>`;
+}
+
+function cerrarSesion() {
+    $.ajax({
+        url: '/TPFinal/Acciones/login/cerrarSesion.php',
+        type: 'POST',
+        success: function() {
+            window.location.href = '/TPFinal/Vista/index.php';
         }
     });
-    return html;
 }
 
 function cambiarRol(nuevoRol) {
     $.ajax({
-        url: '../Acciones/login/cambiarRol.php',
+        url: '/TPFinal/Acciones/login/cambiarRol.php',
         type: 'POST',
         data: { nuevorol: nuevoRol },
         success: function(response) {
             if (response.success) {
                 location.reload();
             } else {
-                bootbox.alert({
-                    message: "Error al cambiar de rol",
-                    size: 'small'
-                });
+                alert("Error al cambiar de rol");
             }
-        }
-    });
-}
-
-function cerrarSesion() {
-    $.ajax({
-        url: '../Acciones/login/cerrarSesion.php',
-        type: 'POST',
-        success: function() {
-            window.location.href = 'index.php';
         }
     });
 }

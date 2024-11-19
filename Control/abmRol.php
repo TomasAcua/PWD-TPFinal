@@ -104,16 +104,15 @@ public function alta($param)
     return $resp;
 }
 
-public function altaSinId($param)
-{
+public function altaSinId($datos){
     $resp = false;
-    // $param['idrol'] =null;
-    $Objrol = $this->cargarObjetoSinId($param);
-
-    // verEstructura($Objrol);
-    if ($Objrol!=null and $Objrol->insertar()) {
+    $objRol = new rol();
+    $objRol->setearSinId($datos['rodescripcion']);
+    error_log("Intentando crear rol: " . print_r($datos, true));
+    if($objRol->insertar()){
         $resp = true;
     }
+    error_log("Resultado inserción: " . ($resp ? "true" : "false"));
     return $resp;
 }
 
@@ -141,17 +140,17 @@ public function baja($param)
  * @param array $param
  * @return boolean
  */
-public function modificacion($param)
-{
-    // echo "<i>**Realizando la modificación**</i>";
-
+public function modificacion($datos){
     $resp = false;
-    if ($this->seteadosCamposClaves($param)) {
-        $Objrol = $this->cargarObjeto($param);
-        if ($Objrol!=null and $Objrol->modificar()) {
+    error_log("Intentando modificar rol: " . print_r($datos, true));
+    if($this->seteadosCamposClaves($datos)){
+        $objRol = new rol();
+        $objRol->setear($datos['idrol'], $datos['rodescripcion']);
+        if($objRol->modificar()){
             $resp = true;
         }
     }
+    error_log("Resultado modificación: " . ($resp ? "true" : "false"));
     return $resp;
 }
 

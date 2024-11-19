@@ -4,6 +4,8 @@ class menuRol extends BaseDatos {
 private $objmenu;
 private $objrol;
 private $mensajeoperacion;
+private $idmenu;
+private $idrol;
 
 
 public function __construct(){

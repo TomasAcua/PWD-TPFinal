@@ -1,9 +1,5 @@
 <a name="readme-top"></a>
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-
 <br />
 <div align="center">
     <img src="./Vista/img/logo.png" alt="Logo" width="80" height="80">
@@ -18,13 +14,8 @@
 
 # Participantes
 
-Laureano Luna - lunalaureanoluna@gmail.com
-
-Braian Centurión - braiankrayan@hotmail.com
-
-Jeremías Sappia - jeremiassappia@gmail.com
-
-Roni Broilo - ronniebroilo@gmail.com
+Acuña Tomas FAI-2510
+Garcia Facundo FAI-2911
 
 ## Objetivos:
 El objetivo del trabajo es integrar los conceptos vistos en la materia. Se espera que el alumno implemente una tienda On-Line que tendrá 2 vistas: una vista “pública” y otra “privada”.
@@ -66,30 +57,15 @@ roles: cliente, depósito y administrador.
 
 ### Lista Usuarios:
 
-1. Nombre de Usuario: mondongo
-  * Contraseña: mondongo
-  * Roles: Admin - Depósito - Cliente
-2. Nombre de Usuario: admin
+
+1. Nombre de Usuario: admin
   * Contraseña: admin123
   * Roles: Admin
-3. Nombre de Usuario: deposito
+2. Nombre de Usuario: deposito
   * Contraseña: deposito
   * Roles: Depósito
-4. Nombre de Usuario: cliente
+3. Nombre de Usuario: cliente
   * Contraseña: cliente123
   * Roles: Cliente
 
 <p align="right">(<a href="#readme-top">ir al inicio</a>)</p>
-
-
-
-[contributors-shield]: https://img.shields.io/github/contributors/sappiajeremias/TP-Final-PWD.svg?style=for-the-badge
-[contributors-url]: https://github.com/sappiajeremias/TP-Final-PWD/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/sappiajeremias/TP-Final-PWD.svg?style=for-the-badge
-[forks-url]: https://github.com/sappiajeremias/TP-Final-PWD/network/members
-[stars-shield]: https://img.shields.io/github/stars/sappiajeremias/TP-Final-PWD.svg?style=for-the-badge
-[stars-url]: https://github.com/sappiajeremias/TP-Final-PWD/stargazers
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 

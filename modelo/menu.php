@@ -173,31 +173,40 @@ public function eliminar(){
     return $resp;
 }
 
-public function listar($parametro=""){
+public function listar($parametro = ""){
     $arreglo = array();
-    $sql="SELECT * FROM menu ";
-    if ($parametro!="") {
-        $sql.= "WHERE ".$parametro;
-    }
-    $res = $this->Ejecutar($sql);
-    if($res>-1){
-        if($res>0){
-            while ($row = $this->Registro()){
-                $obj= new menu();
-                $padre= new menu();
-                
-                $padre->setID($row['idpadre']);
-                $padre->cargar();
-
-                $obj->setear($row['idmenu'], $row['menombre'], $row['medescripcion'], $padre, $row['medeshabilitado']);
-                array_push($arreglo, $obj);
-            }
-        }
+    $base = new BaseDatos();
+    
+    // Si el parámetro es una consulta SQL completa, úsala directamente
+    if (stripos($parametro, 'SELECT') === 0) {
+        $sql = $parametro;
     } else {
-        $this->setMensajeOperacion("menu->listar: ".$this->getError());
+        $sql = "SELECT * FROM menu";
+        if ($parametro != "") {
+            $sql .= " WHERE $parametro";
+        }
+        $sql .= " ORDER BY idpadre, idmenu";
     }
     
-
+    if ($base->Iniciar()) {
+        if ($base->Ejecutar($sql)) {
+            while ($row2 = $base->Registro()) {
+                $obj = new menu();
+                $objPadre = null;
+                if (!empty($row2['idpadre'])) {
+                    $objPadre = new menu();
+                    $objPadre->setID($row2['idpadre']);
+                    $objPadre->cargar();
+                }
+                $obj->setear($row2['idmenu'], $row2['menombre'], $row2['medescripcion'], $objPadre, $row2['medeshabilitado']);
+                array_push($arreglo, $obj);
+            }
+        } else {
+            $this->setmensajeoperacion("menu->listar: ".$base->getError());
+        }
+    } else {
+        $this->setmensajeoperacion("menu->listar: ".$base->getError());
+    }
     return $arreglo;
 }
 

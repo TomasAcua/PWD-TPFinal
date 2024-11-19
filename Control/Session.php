@@ -173,7 +173,7 @@ class Session
                     error_log("Contraseña correcta");
                     $resp = true;
                 } else {
-                    error_log("Contraseña incorrecta");
+                    error_log("Contrasea incorrecta");
                 }
             } else {
                 error_log("Usuario no encontrado en la base de datos");
@@ -266,6 +266,9 @@ class Session
                 'rol' => $_SESSION['rolactivodescripcion'],
                 'id' => $_SESSION['rolactivoid']
             ];
+            
+            // Debug
+            error_log("Rol activo: " . print_r($resp, true));
         }
         return $resp;
     }
@@ -292,56 +295,82 @@ class Session
 
     public function verificarPermiso($param)
     {
-        $user = $this->getUsuario();
         $permiso = false;
-        if($user!=null){
-        if ($this->obtenerDeshabilitado($user->getUsDeshabilitado())) {
-            $permiso = $this->recorrerPermisosPorRoles($this->getRoles(), $param); //LE MANDAMOS TODOS LOS ROLES DEL USUARIO
+        
+        if ($this->activa()) {
+            $rolActivo = $this->getRolActivo();
+            if ($rolActivo) {
+                // Normalizar la ruta para la comparación
+                $param = $this->normalizarRuta($param);
+                
+                $user = $this->getUsuario();
+                if ($user != null && $this->obtenerDeshabilitado($user->getUsDeshabilitado())) {
+                    $roles = [$this->getRoles()[$rolActivo['id']]];
+                    $permiso = $this->recorrerPermisosPorRoles($roles, $param);
+                }
+            }
         }
+        
+        return $permiso;
     }
 
-        return $permiso;
+    private function normalizarRuta($ruta) {
+        // Eliminar './' del inicio si existe
+        $ruta = preg_replace('/^\.\//', '', $ruta);
+        
+        // Asegurarse de que la ruta comience con '/'
+        if (strpos($ruta, '/') !== 0) {
+            $ruta = '/' . $ruta;
+        }
+        
+        // Normalizar la ruta completa
+        return '/TPFinal/Vista/' . $ruta;
     }
 
     public function recorrerPermisosPorRoles($roles, $script)
     {
         $objMR = new abmMenuRol();
         $recorrido = false;
-        foreach ($roles as $rolActual) { // POR CADA ROL OBTENEMOS LOS MENUES Y BUSCAMOS SI EL SCRIPT SE ENCUENTRA AHI
-            $listaMR = $objMR->buscar(['idrol' => $rolActual->getID()]);
-            $abmMenu = new abmMenu(); // MANDAMOS EL ABM PARA BUSCAR LOS HIJOS EN CASO DE QUE EXISTAN
-
-            $a = 0; //contador
-            while (!$recorrido && ($a < count($listaMR))) {
-                $recorrido = $this->buscarPermiso($listaMR[$a]->getObjMenu(), $script, $abmMenu);
-                $a++;
+        
+        foreach ($roles as $rolActual) {
+            if ($rolActual) {  // Verificar que el rol existe
+                $listaMR = $objMR->buscar(['idrol' => $rolActual->getID()]);
+                $abmMenu = new abmMenu();
+                
+                foreach ($listaMR as $menuRol) {
+                    if ($this->buscarPermiso($menuRol->getObjMenu(), $script, $abmMenu)) {
+                        $recorrido = true;
+                        break;
+                    }
+                }
             }
         }
-
+        
         return $recorrido;
     }
 
     public function buscarPermiso($menu, $param, $abm)
     {
-        $respuesta2 = false;
+        if (!$menu) return false;
+        
+        // Normalizar las rutas para la comparación
+        $menuDesc = $this->normalizarRuta($menu->getMeDescripcion());
+        $paramDesc = $param; // Ya está normalizado
+        
+        if ($menuDesc === $paramDesc) {
+            return true;
+        }
+        
         $hijos = $abm->tieneHijos($menu->getID());
-        if (!empty($hijos)) { // SI TIENE HIJOS VERIFICAMOS QUE TENGAN EL ACCESO
-            $i = 0; //contador
-            while (!$respuesta2 && ($i < count($hijos))) {
-                if ($hijos[$i]->getMeDescripcion() == $param) { // PUEDE SER PADRE OSEA DESCRIPCION = "#"
-                    $respuesta2 = true;
-                } else {
-                    $respuesta2 = $this->buscarPermiso($hijos[$i], $param, $abm); // HACEMOS RECURSIVIDAD PORQUE ESOS HIJOS PUEDEN TENER HIJOS
+        if (!empty($hijos)) {
+            foreach ($hijos as $hijo) {
+                if ($this->buscarPermiso($hijo, $param, $abm)) {
+                    return true;
                 }
-                $i++;
-            }
-        } else {
-            if ($menu->getMeDescripcion() == $param) { // EN CASO DE NO TENER HIJOS VERIFICAMOS SI EL PADRE TIENE EL ACCESO
-                $respuesta2 = true;
             }
         }
-
-        return $respuesta2;
+        
+        return false;
     }
 
     public function cambiarRol($datos)

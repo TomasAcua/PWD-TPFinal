@@ -1,9 +1,9 @@
 <?php
 $Titulo = "Carrito";
-include_once './Estructura/cabecera.php';
-if (!$sesion->verificarPermiso('./carrito.php')) {
+include_once '../Estructura/cabecera.php';
+if (!$sesion->verificarPermiso('Cliente/carrito.php')) {
     $mensaje = "No tiene permiso para acceder a este sitio.";
-    echo "<script> window.location.href='../Home/index.php?mensaje=" . urlencode($mensaje) . "'</script>";
+    echo "<script> window.location.href='/TPFinal/Vista/index.php?mensaje=" . urlencode($mensaje) . "'</script>";
 } else {
 ?>
     <div class="container py-5 text-center">

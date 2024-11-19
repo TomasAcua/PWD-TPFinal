@@ -1,9 +1,9 @@
 <?php
 $Titulo = "Tabla Productos";
-include_once './Estructura/cabecera.php';
-if (!$sesion->verificarPermiso('./tablaProductos.php')) {
+include_once '../Estructura/cabecera.php';
+if (!$sesion->verificarPermiso('Deposito/tablaProductos.php')) {
     $mensaje = "No tiene permiso para acceder a este sitio.";
-    echo "<script> window.location.href='./index.php?mensaje=" . urlencode($mensaje) . "'</script>";
+    echo "<script> window.location.href='/TPFinal/Vista/index.php?mensaje=" . urlencode($mensaje) . "'</script>";
 } else {
 ?>
     <!-- INCLUIMOS MODALES -->

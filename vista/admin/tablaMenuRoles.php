@@ -1,10 +1,10 @@
 <?php
 $Titulo = "Tabla Menu Roles";
-include_once './Estructura/cabecera.php';
+include_once "../Estructura/cabecera.php";
 
-if (!$sesion->verificarPermiso('./tablaMenuRoles.php')) {
+if (!$sesion->verificarPermiso('../Admin/tablaMenuRoles.php')) {
     $mensaje = "No tiene permiso para acceder a este sitio.";
-    echo "<script> window.location.href='./index.php?mensaje=" . urlencode($mensaje) . "'</script>";
+    echo "<script> window.location.href='../index.php?mensaje=" . urlencode($mensaje) . "'</script>";
 } else {
     $abmMenu = new abmMenu();
     $abmMR = new abmMenuRol();
@@ -12,8 +12,8 @@ if (!$sesion->verificarPermiso('./tablaMenuRoles.php')) {
 
     if (count($list) > 0) { ?>
         <!-- INCLUIMOS MODALES -->
-        <?php include './Estructura/Modales/Menu-rol/modal_add_menu.php'; ?>
-        <?php include './Estructura/Modales/Menu-rol/modal_add_hijo.php'; ?>
+        <?php include_once '../Estructura/Modales/Menu-rol/modal_add_menu.php'; ?>
+        <?php include_once '../Estructura/Modales/Menu-rol/modal_add_hijo.php'; ?>
 
         <div class="container my-2">
             <div class="table-responsive">
@@ -33,16 +33,21 @@ if (!$sesion->verificarPermiso('./tablaMenuRoles.php')) {
                             <td>-</td>
                             <td>-</td>
                             <td>-</td>
-                            <td><button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#agregar-modal-menu">Agregar Menú</button></td>
+                            <td>
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#agregar-modal-menu">
+                                    Agregar Menú
+                                </button>
+                            </td>
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
+                        <!-- El contenido se carga dinámicamente con funcionesABMMenu.js -->
                     </tbody>
                 </table>
             </div>
-
-            <script src="../Utiles/js/funcionesABMMenu.js"></script>
         </div>
+
+        <script src="../Utiles/js/funcionesABMMenu.js"></script>
     <?php } else { ?>
         <div class="container p-2">
             <div class="alert alert-info" role="alert">
@@ -51,4 +56,4 @@ if (!$sesion->verificarPermiso('./tablaMenuRoles.php')) {
         </div>
 <?php  }
 }
-include_once '.\Estructura\pie.php'; ?>
+include_once '../Estructura/pie.php'; ?>

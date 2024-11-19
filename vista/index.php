@@ -19,9 +19,9 @@ if (!empty($datos['mensaje'])) {
     </div>
 <?php } ?>
 <div class="container">
-    <div class="container p-2">
+    <div class="container p-2" align="center">
 
-        <img src="../Vista/img/invernadero.png" class="d-block w-100" alt="...">
+        <img src="../Vista/img/bran.jpg"  alt="..." width="80%" align="center">
     </div>
 </div>
 

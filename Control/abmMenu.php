@@ -309,38 +309,31 @@ class abmMenu
         return $arreglo;
     }
 
-    public function armarMenu()
-    {
+    public function armarMenu() {
         $menuFinal = [
             'permisos' => [],
             'roles' => [],
             'usuario' => []
         ];
         
-        error_log("=== INICIO ARMAR MENU ===");
-        
         $sesion = new Session();
         if ($sesion->activa()) {
-            error_log("Sesión activa encontrada");
             $permisos = [];
             $rol = "";
             
             // Obtener el rol activo
             $rolActivo = $sesion->getRolActivo();
-            error_log("Rol activo: " . print_r($rolActivo, true));
             
             if ($rolActivo) {
                 $idRol = $rolActivo['id'];
                 $rolDesc = $rolActivo['rol'];
-                error_log("ID Rol: $idRol, Descripción: $rolDesc");
                 
                 // Obtener menús del rol
                 $objMR = $this->ObtenerMenu(['idrol' => $idRol]);
-                error_log("Menús encontrados: " . count($objMR));
                 
                 foreach ($objMR as $actualMR) {
                     $menu = $actualMR->getObjMenu();
-                    if ($menu->getMeDeshabilitado() != 1) { // Solo menús habilitados
+                    if (!$menu->getMeDeshabilitado()) {
                         $permisoActual = $this->listarPermisos($menu);
                         array_push($permisos, $permisoActual);
                     }
@@ -359,13 +352,8 @@ class abmMenu
                 'nombre' => $sesion->getNombreUsuarioLogueado(),
                 'rol' => $rol
             ];
-            
-            error_log("Menú armado: " . print_r($menuFinal, true));
-        } else {
-            error_log("No hay sesión activa");
         }
         
-        error_log("=== FIN ARMAR MENU ===");
         return $menuFinal;
     }
 
@@ -458,5 +446,17 @@ class abmMenu
         $obj = $this->buscar(['idmenu'=>$param['idmenu']]);
         $obj[0]->setMeDescripcion($param['descripcion']);
         return $obj[0]->modificarDescripcion();
+    }
+
+    public function obtenerMenuRol($rol) {
+        $sql = "SELECT DISTINCT m.* 
+                FROM menu m
+                INNER JOIN menurol mr ON m.idmenu = mr.idmenu
+                INNER JOIN rol r ON mr.idrol = r.idrol
+                WHERE r.rodescripcion = '$rol'
+                ORDER BY m.idpadre, m.idmenu";
+        
+        $objMenu = new menu();
+        return $objMenu->listar($sql);
     }
 }

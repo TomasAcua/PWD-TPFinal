@@ -4,7 +4,7 @@ $sesion = new Session();
 <!-- NAVBAR INICIO -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid m-3">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/TPFinal/Vista/index.php">
             Brandon Cult
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,10 +13,10 @@ $sesion = new Session();
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="../Vista/index.php">Inicio</a>
+                    <a class="nav-link active" aria-current="page" href="/TPFinal/Vista/index.php">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="../Vista/productos.php">Productos</a>
+                    <a class="nav-link active" aria-current="page" href="/TPFinal/Vista/productos.php">Productos</a>
                 </li>
             </ul>
         
@@ -28,19 +28,19 @@ $sesion = new Session();
                             <i class="fas fa-user me-2"></i><?php echo $sesion->getNombreUsuarioLogueado(); ?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="../Vista/perfil.php">Mi Perfil</a></li>
+                            <li><a class="dropdown-item" href="/TPFinal/Vista/Admin/modificarPerfil.php">Mi Perfil</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="../Acciones/login/cerrarSesion.php">Cerrar Sesión</a></li>
+                            <li><a class="dropdown-item" onclick="cerrarSesion()">Cerrar Sesión</a></li>
                         </ul>
                     </li>
                 <?php else: ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="../Vista/login.php">
+                        <a class="nav-link" href="/TPFinal/Vista/login.php">
                             <i class="fas fa-sign-in-alt me-2"></i>Iniciar Sesión
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../Vista/registro.php">
+                        <a class="nav-link" href="/TPFinal/Vista/registro.php">
                             <i class="fas fa-user-plus me-2"></i>Registrarse
                         </a>
                     </li>

@@ -3,5 +3,7 @@ include_once "../../configuracion.php";
 $data = data_submitted();
 $objAbmRol = new abmRol();
 
-echo json_encode($objAbmRol->baja($data));
+header('Content-Type: application/json');
+$resultado = $objAbmRol->baja($data);
+echo json_encode($resultado);
 ?>

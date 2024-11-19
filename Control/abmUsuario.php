@@ -310,14 +310,30 @@ class abmUsuario
     public function habilitarUsuario($data)
     {
         $respuesta = false;
-        if (!empty($data)) {
+        if (!empty($data['idusuario'])) {
             $objUs = $this->buscar(['idusuario' => $data['idusuario']]);
-            $fecha = null;
-            if ($data['accion'] == "deshabilitar") {
-                $fecha = date('Y-m-d H:i:s');
+            error_log("Usuario encontrado: " . print_r($objUs, true));
+            if (!empty($objUs)) {
+                $objUs[0]->setUsdeshabilitado(null);
+                $respuesta = $objUs[0]->modificar();
+                error_log("Resultado modificar: " . ($respuesta ? "true" : "false"));
             }
-            $objUs[0]->setUsdeshabilitado($fecha);
-            $respuesta = $objUs[0]->modificar();
+        }
+        return $respuesta;
+    }
+
+    public function deshabilitarUsuario($data)
+    {
+        $respuesta = false;
+        if (!empty($data['idusuario'])) {
+            $objUs = $this->buscar(['idusuario' => $data['idusuario']]);
+            error_log("Usuario encontrado: " . print_r($objUs, true));
+            if (!empty($objUs)) {
+                $fecha = date('Y-m-d H:i:s');
+                $objUs[0]->setUsdeshabilitado($fecha);
+                $respuesta = $objUs[0]->modificar();
+                error_log("Resultado modificar: " . ($respuesta ? "true" : "false"));
+            }
         }
         return $respuesta;
     }

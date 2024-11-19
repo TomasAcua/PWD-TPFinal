@@ -6,17 +6,18 @@ $(window).on("load", function () {
 function cargarUsuarios() {
     $.ajax({
         type: "POST",
-        url: '../Acciones/usuario/listarUsuarios.php',
+        url: '/TPFinal/Acciones/usuario/listarUsuarios.php',
         data: null,
         success: function (response) {
-            //console.log(response)
+            console.log("Respuesta listarUsuarios:", response);
             var arreglo = [];
             $.each($.parseJSON(response), function (index, value) {
-                
-                    arreglo.push(value);
-                
+                arreglo.push(value);
             });
             armarTabla(arreglo);
+        },
+        error: function(xhr, status, error) {
+            console.error("Error al cargar usuarios:", error);
         }
     });
 }
@@ -320,37 +321,35 @@ $(document).on('click', '.deshabilitar', function () {
 });
 
 function deshabilitar(idusuario) {
-    $.ajax({
-        type: "POST",
-        //Llamamos a la funcion deshabilitarUsuario con el arreglo del id del usuario con la accion a tomar.
-        url: '../Acciones/usuario/deshabilitarUsuario.php',
-        data: { idusuario: idusuario, accion: 'deshabilitar'},
-        success: function (response) {
-            //console.log(response)
-            var response = jQuery.parseJSON(response);
-            if (response) {
-                // CARTEL LIBRERIA, ESPERA 1,5 SEG Y LUEGO HACE EL RELOAD
-                var dialog = bootbox.dialog({
-                    message: '<div class="text-center"><i class="fa fa-spin fa-spinner me-2"></i>Deshabilitando Usuario...</div>',
-                    closeButton: false
-                });
-                dialog.init(function () {
-                    setTimeout(function () {
-                        cargarUsuarios();
-                        bootbox.hideAll();
-                    }, 1500);
-                });
-            } else {
-                // ALERT LIBRERIA
-                bootbox.alert({
-                    message: "No se pudo deshabilitar el usuario!",
-                    size: 'small',
-                    closeButton: false,
-                });
+    if (confirm('¿Está seguro que desea deshabilitar este usuario?')) {
+        $.ajax({
+            type: "POST",
+            url: '../Acciones/usuario/deshabilitarUsuario.php',
+            data: { idusuario: idusuario, accion: 'deshabilitar'},
+            success: function (response) {
+                var response = jQuery.parseJSON(response);
+                if (response) {
+                    var dialog = bootbox.dialog({
+                        message: '<div class="text-center"><i class="fa fa-spin fa-spinner me-2"></i>Deshabilitando Usuario...</div>',
+                        closeButton: false
+                    });
+                    dialog.init(function () {
+                        setTimeout(function () {
+                            location.reload();
+                            bootbox.hideAll();
+                        }, 1500);
+                    });
+                } else {
+                    bootbox.alert({
+                        message: "No se pudo deshabilitar el usuario!",
+                        size: 'small',
+                        closeButton: false,
+                    });
+                }
             }
-        }
-    });
-};
+        });
+    }
+}
 
 /*################################# HABILITAR USUARIO #################################*/
 
@@ -365,8 +364,8 @@ $(document).on('click', '.habilitar', function () {
     bootbox.confirm({
         title: "HABILITAR USUARIO?",
         closeButton: false,
-        message: "Estas seguro que quieres HABILITAR a <b>" + usnombre + "</b> con ID: <b>" + idusuario+'</b>',
-        buttons: {
+        message: "Estas seguro que quieres HABILITAR a <b>" + usnombre + "</b> con ID: <b>" + idusuario + "</b>",
+        buttons: {      
             cancel: {
                 className: 'btn btn-outline-danger',
                 label: '<i class="fa fa-times"></i> Cancelar'
@@ -385,29 +384,24 @@ $(document).on('click', '.habilitar', function () {
 });
 
 function habilitar(idusuario) {
-
     $.ajax({
         type: "POST",
-        //Llamamos a la funcion habilitarUsuario con el arreglo del id del usuario con la accion a tomar.
         url: '../Acciones/usuario/deshabilitarUsuario.php',
         data: {idusuario: idusuario, accion: 'habilitar'},
         success: function (response) {
-            //console.log(response);
             var response = jQuery.parseJSON(response);
             if (response) {
-                // CARTEL LIBRERIA, ESPERA 1,5 SEG Y LUEGO HACE EL RELOAD
                 var dialog = bootbox.dialog({
                     message: '<div class="text-center"><i class="fa fa-spin fa-spinner me-2"></i>Habilitando Usuario...</div>',
                     closeButton: false
                 });
                 dialog.init(function () {
                     setTimeout(function () {
-                        cargarUsuarios();
+                        location.reload();
                         bootbox.hideAll();
                     }, 1500);
                 });
             } else {
-                // ALERT LIBRERIA
                 bootbox.alert({
                     message: "No se pudo habilitar el usuario!",
                     size: 'small',
@@ -416,4 +410,238 @@ function habilitar(idusuario) {
             }
         }
     });
-};
+}
+
+function agregarRol(idusuario) {
+    // Mostrar modal para seleccionar rol
+    bootbox.dialog({
+        title: 'Agregar Rol',
+        message: '<div class="form-group">' +
+            '<label>Seleccione un rol:</label>' +
+            '<select id="rolSeleccionado" class="form-control">' +
+            // Cargaremos las opciones dinámicamente
+            '</select>' +
+            '</div>',
+        buttons: {
+            cancel: {
+                label: 'Cancelar',
+                className: 'btn-secondary'
+            },
+            ok: {
+                label: 'Agregar',
+                className: 'btn-primary',
+                callback: function() {
+                    var idrol = $('#rolSeleccionado').val();
+                    $.ajax({
+                        type: "POST",
+                        url: '../Acciones/usuario/agregarRol.php',
+                        data: { 
+                            idusuario: idusuario,
+                            idrol: idrol
+                        },
+                        success: function(response) {
+                            var result = jQuery.parseJSON(response);
+                            if (result) {
+                                location.reload();
+                            } else {
+                                bootbox.alert("Error al agregar el rol");
+                            }
+                        }
+                    });
+                }
+            }
+        }
+    });
+
+    // Cargar roles disponibles
+    $.ajax({
+        type: "POST",
+        url: '../Acciones/usuario/listarRoles.php',
+        success: function(response) {
+            var roles = jQuery.parseJSON(response);
+            var select = $('#rolSeleccionado');
+            select.empty();
+            roles.forEach(function(rol) {
+                select.append($('<option></option>')
+                    .attr('value', rol.value)
+                    .text(rol.text));
+            });
+        }
+    });
+}
+
+function quitarRol(idusuario) {
+    // Mostrar modal para seleccionar rol a quitar
+    bootbox.dialog({
+        title: 'Quitar Rol',
+        message: '<div class="form-group">' +
+            '<label>Seleccione el rol a quitar:</label>' +
+            '<select id="rolAQuitar" class="form-control">' +
+            // Cargaremos las opciones dinámicamente
+            '</select>' +
+            '</div>',
+        buttons: {
+            cancel: {
+                label: 'Cancelar',
+                className: 'btn-secondary'
+            },
+            ok: {
+                label: 'Quitar',
+                className: 'btn-danger',
+                callback: function() {
+                    var idrol = $('#rolAQuitar').val();
+                    $.ajax({
+                        type: "POST",
+                        url: '../Acciones/usuario/quitarRol.php',
+                        data: { 
+                            idusuario: idusuario,
+                            idrol: idrol
+                        },
+                        success: function(response) {
+                            var result = jQuery.parseJSON(response);
+                            if (result) {
+                                location.reload();
+                            } else {
+                                bootbox.alert("Error al quitar el rol");
+                            }
+                        }
+                    });
+                }
+            }
+        }
+    });
+
+    // Cargar roles actuales del usuario
+    $.ajax({
+        type: "POST",
+        url: '../Acciones/usuario/listarRolesUsuario.php',
+        data: { idusuario: idusuario },
+        success: function(response) {
+            var roles = jQuery.parseJSON(response);
+            var select = $('#rolAQuitar');
+            select.empty();
+            roles.forEach(function(rol) {
+                select.append($('<option></option>')
+                    .attr('value', rol.value)
+                    .text(rol.text));
+            });
+        }
+    });
+}
+
+$(document).ready(function() {
+    // Deshabilitar usuario
+    $(document).on('click', '.deshabilitar', function(e) {
+        e.preventDefault();
+        var idusuario = $(this).closest('tr').find('td:first').text();
+        
+        bootbox.confirm({
+            title: "DESHABILITAR USUARIO?",
+            message: "¿Está seguro que desea deshabilitar este usuario?",
+            buttons: {
+                cancel: {
+                    label: 'Cancelar',
+                    className: 'btn-secondary'
+                },
+                confirm: {
+                    label: 'Deshabilitar',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function(result) {
+                if (result) {
+                    $.ajax({
+                        type: "POST",
+                        url: '/TPFinal/Acciones/usuario/deshabilitarUsuario.php',
+                        data: { 
+                            idusuario: idusuario, 
+                            accion: 'deshabilitar'
+                        },
+                        success: function(response) {
+                            console.log("Respuesta deshabilitarUsuario:", response);
+                            try {
+                                var result = JSON.parse(response);
+                                if (result) {
+                                    bootbox.alert("Usuario deshabilitado correctamente", function() {
+                                        cargarUsuarios();
+                                    });
+                                } else {
+                                    bootbox.alert("Error al deshabilitar el usuario");
+                                }
+                            } catch(e) {
+                                console.error("Error parsing JSON:", e);
+                                bootbox.alert("Error en la respuesta del servidor");
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    });
+
+    // Habilitar usuario
+    $(document).on('click', '.habilitar', function(e) {
+        e.preventDefault();
+        var idusuario = $(this).closest('tr').find('td:first').text();
+        
+        bootbox.confirm({
+            title: "HABILITAR USUARIO?",
+            message: "¿Está seguro que desea habilitar este usuario?",
+            buttons: {
+                cancel: {
+                    label: 'Cancelar',
+                    className: 'btn-secondary'
+                },
+                confirm: {
+                    label: 'Habilitar',
+                    className: 'btn-success'
+                }
+            },
+            callback: function(result) {
+                if (result) {
+                    $.ajax({
+                        type: "POST",
+                        url: '/TPFinal/Acciones/usuario/deshabilitarUsuario.php',
+                        data: { 
+                            idusuario: idusuario, 
+                            accion: 'habilitar'
+                        },
+                        success: function(response) {
+                            console.log("Respuesta habilitarUsuario:", response);
+                            try {
+                                var result = JSON.parse(response);
+                                if (result) {
+                                    bootbox.alert("Usuario habilitado correctamente", function() {
+                                        cargarUsuarios();
+                                    });
+                                } else {
+                                    bootbox.alert("Error al habilitar el usuario");
+                                }
+                            } catch(e) {
+                                console.error("Error parsing JSON:", e);
+                                bootbox.alert("Error en la respuesta del servidor");
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    });
+
+    // Agregar rol
+    $(document).on('click', '.agregarRol', function(e) {
+        e.preventDefault();
+        var idusuario = $(this).closest('tr').find('td:first').text();
+        
+        $.ajax({
+            type: "POST",
+            url: '/TPFinal/Acciones/usuario/listarRolesUsuario.php',
+            data: { idusuario: idusuario },
+            success: function(response) {
+                console.log("Respuesta listarRoles:", response);
+                var roles = JSON.parse(response);
+                // ... resto del código para agregar rol
+            }
+        });
+    });
+});

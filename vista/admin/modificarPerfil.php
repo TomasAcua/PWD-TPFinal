@@ -1,9 +1,9 @@
 <?php
-$Titulo = "Editar Perfil";
-include_once './Estructura/cabecera.php';
-if (!$sesion->verificarPermiso('./modificarPerfil.php')) {
-    $mensaje = "No tiene permiso para acceder a este sitio.";
-    echo "<script> window.location.href='./index.php?mensaje=" . urlencode($mensaje) . "'</script>";
+$Titulo = "Mi Perfil";
+include_once("../Estructura/cabecera.php");
+if (!$sesion->activa()) {
+    $mensaje = "Debe iniciar sesión para acceder a este sitio.";
+    echo "<script> window.location.href='/TPFinal/Vista/login.php?mensaje=".urlencode($mensaje)."'</script>";
 } else {
     if ($sesion->getNombreUsuarioLogueado() <> null) {
         $datosUser = [
@@ -46,7 +46,7 @@ if (!$sesion->verificarPermiso('./modificarPerfil.php')) {
 
         <script src="..\Utiles\js\modificar.js"></script>
 
-<?php include_once '.\Estructura\pie.php';
+<?php include_once '..\Estructura\pie.php';
     } else {
         $mensaje = "No estas logeado";
         echo "<script> window.location.href='../Home/index.php?mensaje=" . urlencode($mensaje) . "'</script>";
