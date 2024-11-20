@@ -2,7 +2,7 @@
 
 <br />
 <div align="center">
-    <img src="./Vista/img/logo.png" alt="Logo" width="80" height="80">
+    
 
   <h3 align="center">Trabajo Práctico Final</h3>
 
@@ -24,8 +24,9 @@ El objetivo del trabajo es integrar los conceptos vistos en la materia. Se esper
 * Desde la vista privada, luego de concretar el proceso de autenticación y dependiendo los roles con el que cuenta el usuario que ingresa al sistema, se van a poder realizar diferentes operaciones. Los roles iniciales son: cliente, depósito y administrador.
 ### Hecho Con
 
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+### boostrap
+### jquery
+### phpMailer
 
 ### Pautas Básicas:
 
