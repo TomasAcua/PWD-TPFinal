@@ -73,27 +73,33 @@ class producto extends BaseDatos
     public function insertar()
     {
         $resp = false;
+        error_log("Intentando insertar producto");
         
-        // Si lleva ID Autoincrement, la consulta SQL no lleva dicho ID
-        $sql="INSERT INTO producto(pronombre, prodetalle, procantstock, precio, prodeshabilitado, imagen) 
-            VALUES('"
-            .$this->getPronombre()."', '"
-            .$this->getProdetalle()."', '"
-            .$this->getProCantStock()."', '"
-            .$this->getPrecio()."', '"
-            .$this->getProDeshabilitado()."', '"
-            .$this->getImagen()."'
-        );";
         if ($this->Iniciar()) {
+            $sql = "INSERT INTO producto(pronombre, prodetalle, procantstock, precio, prodeshabilitado, imagen) 
+                    VALUES ('" . 
+                    $this->getPronombre() . "', '" . 
+                    $this->getProdetalle() . "', " . 
+                    $this->getProCantStock() . ", " . 
+                    $this->getPrecio() . ", " . 
+                    ($this->getProDeshabilitado() ? "'" . $this->getProDeshabilitado() . "'" : "NULL") . ", '" . 
+                    $this->getImagen() . "')";
+                    
+            error_log("SQL a ejecutar: " . $sql);
+            
             if ($esteid = $this->Ejecutar($sql)) {
-                // Si se usa ID autoincrement, descomentar lo siguiente:
                 $this->setID($esteid);
                 $resp = true;
+                error_log("Inserción exitosa. ID: " . $esteid);
             } else {
-                $this->setMensajeOperacion("producto->insertar: ".$this->getError());
+                $error = $this->getError();
+                error_log("Error en inserción: " . $error);
+                $this->setMensajeOperacion("producto->insertar: " . $error);
             }
         } else {
-            $this->setMensajeOperacion("producto->insertar: ".$this->getError());
+            $error = $this->getError();
+            error_log("Error al iniciar conexión: " . $error);
+            $this->setMensajeOperacion("producto->insertar: " . $error);
         }
         return $resp;
     }
@@ -125,16 +131,25 @@ class producto extends BaseDatos
     public function eliminar()
     {
         $resp = false;
+        error_log("Intentando deshabilitar producto ID: " . $this->getID());
         
-        $sql="DELETE FROM producto WHERE idproducto=".$this->getID();
         if ($this->Iniciar()) {
-            if ($this->Ejecutar($sql)) {
-                return true;
+            $sql = "UPDATE producto SET prodeshabilitado = NOW() WHERE idproducto = " . $this->getID();
+            error_log("SQL a ejecutar: " . $sql);
+            
+            $resultado = $this->Ejecutar($sql);
+            if ($resultado > 0) {
+                $resp = true;
+                error_log("Deshabilitación exitosa");
             } else {
-                $this->setMensajeOperacion("producto->eliminar: ".$this->getError());
+                $error = $this->getError();
+                error_log("Error en deshabilitación: " . $error);
+                $this->setMensajeOperacion("producto->eliminar: " . $error);
             }
         } else {
-            $this->setMensajeOperacion("producto->eliminar: ".$this->getError());
+            $error = $this->getError();
+            error_log("Error al iniciar conexión: " . $error);
+            $this->setMensajeOperacion("producto->eliminar: " . $error);
         }
         return $resp;
     }

@@ -1,8 +1,10 @@
-<?php 
+<?php
 include_once "../../configuracion.php";
 $data = data_submitted();
-$obj = new abmProducto();
+$objControl = new abmProducto();
 
-echo json_encode($obj->listarProductos($data));
+$arreglo_salida = $objControl->listarProductos($data);
+
+echo json_encode($arreglo_salida);
 ?>
 

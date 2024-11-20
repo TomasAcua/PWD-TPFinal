@@ -2,20 +2,20 @@
 
 <br />
 <div align="center">
-    <img src="./Vista/img/logo.png" alt="Logo" width="80" height="80">
+
 
   <h3 align="center">Trabajo Práctico Final</h3>
 
   <p align="center">
-    Programación Web Dinámica
+    Programación Web Dinámica 2024
     <br />
   </p>
 </div>
 
 # Participantes
 
-Acuña Tomas FAI-2510
-Garcia Facundo FAI-2911
+## Acuña Tomas FAI-2510
+## Garcia Facundo FAI-2911
 
 ## Objetivos:
 El objetivo del trabajo es integrar los conceptos vistos en la materia. Se espera que el alumno implemente una tienda On-Line que tendrá 2 vistas: una vista “pública” y otra “privada”.
@@ -24,8 +24,9 @@ El objetivo del trabajo es integrar los conceptos vistos en la materia. Se esper
 * Desde la vista privada, luego de concretar el proceso de autenticación y dependiendo los roles con el que cuenta el usuario que ingresa al sistema, se van a poder realizar diferentes operaciones. Los roles iniciales son: cliente, depósito y administrador.
 ### Hecho Con
 
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+### boostrap
+### jquery
+### phpMailer
 
 ### Pautas Básicas:
 

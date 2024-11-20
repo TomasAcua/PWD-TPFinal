@@ -1,45 +1,36 @@
-<div class="modal fade" id="editar-modal-producto" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+<div class="modal fade" id="modal-editar-producto" tabindex="-1">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Editar Producto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <form enctype="multipart/form-data" name="editarForm" id="editarForm" class="row g-3">
-                    <div class="form-group col-md-6">
-                        <label for="idproducto" class="form-label">ID: </label>
-                        <input type="text" class="form-control" id="idproducto" name="idproducto" readonly>
+                <form id="form-editar-producto" enctype="multipart/form-data">
+                    <input type="hidden" id="idproducto" name="idproducto">
+                    <div class="mb-3">
+                        <label for="edit_pronombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="edit_pronombre" name="pronombre" required>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="prodeshabilitado" class="form-label">Deshabilitado: </label>
-                        <input type="text" class="form-control" id="prodeshabilitado" name="prodeshabilitado" readonly>
+                    <div class="mb-3">
+                        <label for="edit_prodetalle" class="form-label">Detalle</label>
+                        <textarea class="form-control" id="edit_prodetalle" name="prodetalle" required></textarea>
                     </div>
-                    <small>El ID es un dato INTOCABLE, puede deshabilitar el producto con el botón de la tabla</small>
-                    <div class="form-group col-md-6">
-                        <label for="pronombre" class="form-label">Nombre del Producto: </label>
-                        <input type="text" class="form-control" id="pronombre" name="pronombre" autocomplete="off">
+                    <div class="mb-3">
+                        <label for="edit_procantstock" class="form-label">Stock</label>
+                        <input type="number" class="form-control" id="edit_procantstock" name="procantstock" required>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="prodetalle" class="form-label">Descripción del Producto: </label>
-                        <input type="text" class="form-control" id="prodetalle" name="prodetalle" autocomplete="off">
+                    <div class="mb-3">
+                        <label for="edit_precio" class="form-label">Precio</label>
+                        <input type="number" class="form-control" id="edit_precio" name="precio" required>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="procantstock" class="form-label">Stock: </label>
-                        <input type="number" min="0" class="form-control" id="procantstock" name="procantstock" autocomplete="off">
+                    <div class="mb-3">
+                        <label for="edit_imagen" class="form-label">Nueva Imagen (opcional)</label>
+                        <input type="file" class="form-control" id="edit_imagen" name="imagen" accept="image/*">
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="precio" class="form-label">Precio: </label>
-                        <input type="number" min="0" class="form-control" id="precio" name="precio" autocomplete="off">
-                    </div>
-                    <input type="text" id="imagen" name="imagen" hidden>
-                    <div class="form-group col-md-12 d-flex flex-row-reverse">
-                        <button type="submit" class="btn btn-outline-warning ms-2">Editar</button>
-                        <button type="button" class="editarImagenButton btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editar-modal-imagen">Editar imagen</button>
-                        <button type="button" class="btn btn-outline-danger me-2" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
-                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                 </form>
             </div>
-            </form>
         </div>
     </div>
 </div>

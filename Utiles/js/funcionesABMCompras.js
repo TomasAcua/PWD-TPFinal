@@ -1,69 +1,56 @@
 /*################################################## CARGAR COMPRAS ##################################################*/
 
-$(window).on("load", function () {
+$(document).ready(function() {
+    console.log("Iniciando carga de compras...");
     cargarCompras();
 });
 
-function cargarCompras(){
+function cargarCompras() {
     $.ajax({
-        //Llamamos a la funcion cargar compra y las cargamos en un arreglo para mandar a la funcion armarTabla
         type: "POST",
-        url: '../Acciones/compras/listarCompras.php',
-        data: null,
-        success: function (response) {
-            var arreglo = [];
-            $.each($.parseJSON(response), function (index, array) {
-                $.each(array, function (index, arrayCompra) {
-                    arreglo.push(arrayCompra);
-                });
-            });
-
-            armarTabla(arreglo);
+        url: "../Acciones/compra/listadoCompras.php",
+        success: function(response) {
+            console.log("Respuesta del servidor:", response);
+            try {
+                let compras = JSON.parse(response);
+                actualizarTablaCompras(compras);
+            } catch (e) {
+                console.error("Error al parsear respuesta:", e);
+                console.log("Respuesta raw:", response);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error("Error al cargar compras:", error);
+            console.log("Status:", status);
+            console.log("Response:", xhr.responseText);
         }
     });
 }
 
-// Buscamos la tabla y añadimos cada compra
-function armarTabla(arreglo) {
-    $('#tablaCompras > tbody:last-child').empty();
-
-    $.each(arreglo, function (index, compra) {
-        var botones = null;
-        var estadoVista = null;
-        //BOTONES ACCIONES SEGÚN SI ES EL ÚLTIMO ESTADO
-        if (compra.finfecha == null || compra.finfecha == "0000-00-00 00:00:00") {
-            switch (compra.estado) {
-                case "iniciada":
-                    botones = "<td><a href='#' class='me-2' onclick='cambiarEstado(2,"+compra.idcompra+","+compra.idcompraestado+")'><button class='btn btn-outline-success'><i class='fa-solid fa-check me-2'></i>Aceptar</button></a><a href='#' onclick='cambiarEstado(4,"+compra.idcompra+","+compra.idcompraestado+")'><button class='btn btn-outline-danger'><i class='fa-solid fa-xmark me-2'></i>Cancelar</button></a></td>";
-                    break;
-                case "aceptada":
-                    botones = "<td><a href='#' class='me-2' onclick='cambiarEstado(3,"+compra.idcompra+","+compra.idcompraestado+")'><button class='btn btn-outline-info'><i class='fa-solid fa-truck-fast me-2'></i>Enviar</button></a><a href='#' onclick='cambiarEstado(4,"+compra.idcompra+","+compra.idcompraestado+")'><button class='btn btn-outline-danger'><i class='fa-solid fa-xmark me-2'></i>Cancelar</button></a></td>";
-                    break;
-                case "cancelada":
-                case "enviada":
-                    botones = "<td>-</td>";
-                    break;
-            }
-        } else {
-            botones = "<td>-</td>";
-        }
-
-        // BADGE SEGÚN ESTADO
-        switch (compra.estado) {
-            case "iniciada":
-                estadoVista = "<span class='badge rounded-pill text-bg-primary'>Iniciada</span>";
-                break;
-            case "aceptada":
-                estadoVista = "<span class='badge rounded-pill text-bg-success'>Aceptada</span>";
-                break;
-            case "enviada":
-                estadoVista = "<span class='badge rounded-pill text-bg-warning'>Enviada</span>";
-                break;
-            case "cancelada":
-                estadoVista = "<span class='badge rounded-pill text-bg-danger'>Cancelada</span>";
-                break;
-        }
-        $('#tablaCompras > tbody:last-child').append('<tr><td hidden>' + compra.idcompraestado + '</td><th scope="row">' + compra.idcompra + '</th><td>' + compra.usnombre + '</td><td><a href="#" class="verProductos"><button class="btn btn-outline-info col-8"><i class="fa-solid fa-list-ul mx-2"></i></button></a></td><td>' + estadoVista + '</td><td>' + compra.cofecha + '</td>' + botones + '</tr>');
+function actualizarTablaCompras(compras) {
+    console.log("Actualizando tabla con compras:", compras);
+    let tbody = $('#tablaCompras tbody');
+    tbody.empty();
+    
+    compras.forEach(function(compra) {
+        let fila = `
+            <tr>
+                <td>${compra.idcompra}</td>
+                <td>${compra.usnombre}</td>
+                <td>
+                    <button class="btn btn-info btn-ver-productos" data-id="${compra.idcompra}" data-usuario="${compra.usnombre}">
+                        <i class="fas fa-eye me-2"></i>Ver Productos
+                    </button>
+                </td>
+                <td>${compra.estado}</td>
+                <td>${compra.cofecha}</td>
+                <td>
+                    <button class="btn btn-success btn-cambiar-estado" data-id="${compra.idcompra}">
+                        <i class="fas fa-sync-alt me-2"></i>Cambiar Estado
+                    </button>
+                </td>
+            </tr>`;
+        tbody.append(fila);
     });
 }
 

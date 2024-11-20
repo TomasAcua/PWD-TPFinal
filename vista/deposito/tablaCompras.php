@@ -1,9 +1,11 @@
 <?php
 $Titulo = "Tabla Compras";
 include_once '../Estructura/cabecera.php';
-if (!$sesion->verificarPermiso('Deposito/tablaCompras.php')) {
+
+if (!$sesion->verificarPermiso('deposito/tablacompras.php')) {
     $mensaje = "No tiene permiso para acceder a este sitio.";
     echo "<script> window.location.href='/TPFinal/Vista/index.php?mensaje=" . urlencode($mensaje) . "'</script>";
+    exit;
 } else {
     $objItems = new abmCompra();
     $listaCompras = $objItems->buscar(null);
@@ -52,5 +54,5 @@ if (!$sesion->verificarPermiso('Deposito/tablaCompras.php')) {
         </div>
 <?php
     }
-    include_once '.\Estructura\pie.php';
+    include_once '../Estructura/pie.php';
 } ?>

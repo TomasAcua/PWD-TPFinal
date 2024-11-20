@@ -1,10 +1,11 @@
 <?php
-$Titulo = "Tabla Menu Roles";
-include_once "../Estructura/cabecera.php";
+$Titulo = "Tabla Menu-Roles";
+include_once '../Estructura/cabecera.php';
 
-if (!$sesion->verificarPermiso('../Admin/tablaMenuRoles.php')) {
+if (!$sesion->verificarPermiso('admin/tablamenuRoles.php')) {
     $mensaje = "No tiene permiso para acceder a este sitio.";
-    echo "<script> window.location.href='../index.php?mensaje=" . urlencode($mensaje) . "'</script>";
+    echo "<script> window.location.href='/TPFinal/Vista/index.php?mensaje=" . urlencode($mensaje) . "'</script>";
+    exit;
 } else {
     $abmMenu = new abmMenu();
     $abmMR = new abmMenuRol();

@@ -295,82 +295,100 @@ class Session
 
     public function verificarPermiso($param)
     {
+        error_log("=== INICIO verificarPermiso ===");
+        error_log("Verificando acceso a: " . $param);
+        
         $permiso = false;
         
         if ($this->activa()) {
             $rolActivo = $this->getRolActivo();
+            error_log("Rol activo: " . print_r($rolActivo, true));
+            
             if ($rolActivo) {
-                // Normalizar la ruta para la comparación
-                $param = $this->normalizarRuta($param);
+                $objMR = new abmMenuRol();
+                $listaMR = $objMR->buscar(['idrol' => $rolActivo['id']]);
+                error_log("Resultado búsqueda menús: " . print_r($listaMR, true));
                 
-                $user = $this->getUsuario();
-                if ($user != null && $this->obtenerDeshabilitado($user->getUsDeshabilitado())) {
-                    $roles = [$this->getRoles()[$rolActivo['id']]];
-                    $permiso = $this->recorrerPermisosPorRoles($roles, $param);
+                // Verificar si $listaMR es array y no está vacío
+                if (is_array($listaMR) && !empty($listaMR)) {
+                    error_log("Menús encontrados para rol: " . count($listaMR));
+                    
+                    foreach ($listaMR as $menuRol) {
+                        $menu = $menuRol->getObjMenu();
+                        if (!$menu) {
+                            error_log("Menú no encontrado para menuRol");
+                            continue;
+                        }
+                        
+                        error_log("Verificando menú: " . $menu->getMeNombre() . " - Ruta: " . $menu->getMeDescripcion());
+                        
+                        // Si es menú padre
+                        if ($menu->getMeDescripcion() === '#') {
+                            $abmMenu = new abmMenu();
+                            $hijos = $abmMenu->tieneHijos($menu->getID());
+                            
+                            if (is_array($hijos) && !empty($hijos)) {
+                                error_log("Menú padre encontrado, verificando " . count($hijos) . " hijos");
+                                
+                                foreach ($hijos as $hijo) {
+                                    $rutaHijo = $this->normalizarRuta($hijo->getMeDescripcion());
+                                    $rutaParam = $this->normalizarRuta($param);
+                                    error_log("Comparando rutas - Hijo: '$rutaHijo' con Param: '$rutaParam'");
+                                    
+                                    if ($rutaHijo === $rutaParam) {
+                                        error_log("¡Coincidencia encontrada!");
+                                        $permiso = true;
+                                        break 2;
+                                    }
+                                }
+                            } else {
+                                error_log("No se encontraron hijos para el menú padre");
+                            }
+                        } else {
+                            $rutaMenu = $this->normalizarRuta($menu->getMeDescripcion());
+                            $rutaParam = $this->normalizarRuta($param);
+                            error_log("Comparando rutas - Menu: '$rutaMenu' con Param: '$rutaParam'");
+                            
+                            if ($rutaMenu === $rutaParam) {
+                                error_log("¡Coincidencia encontrada!");
+                                $permiso = true;
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    error_log("No se encontraron menús para el rol " . $rolActivo['id']);
                 }
+            } else {
+                error_log("No hay rol activo");
             }
+        } else {
+            error_log("Sesión no activa");
         }
         
+        error_log("Resultado final: " . ($permiso ? "PERMITIDO" : "DENEGADO"));
+        error_log("=== FIN verificarPermiso ===");
         return $permiso;
     }
 
-    private function normalizarRuta($ruta) {
-        // Eliminar './' del inicio si existe
-        $ruta = preg_replace('/^\.\//', '', $ruta);
-        
-        // Asegurarse de que la ruta comience con '/'
-        if (strpos($ruta, '/') !== 0) {
-            $ruta = '/' . $ruta;
-        }
-        
-        // Normalizar la ruta completa
-        return '/TPFinal/Vista/' . $ruta;
-    }
-
-    public function recorrerPermisosPorRoles($roles, $script)
+    private function normalizarRuta($ruta)
     {
-        $objMR = new abmMenuRol();
-        $recorrido = false;
+        if ($ruta === '#') return $ruta;
         
-        foreach ($roles as $rolActual) {
-            if ($rolActual) {  // Verificar que el rol existe
-                $listaMR = $objMR->buscar(['idrol' => $rolActual->getID()]);
-                $abmMenu = new abmMenu();
-                
-                foreach ($listaMR as $menuRol) {
-                    if ($this->buscarPermiso($menuRol->getObjMenu(), $script, $abmMenu)) {
-                        $recorrido = true;
-                        break;
-                    }
-                }
-            }
-        }
+        // Convertir a minúsculas
+        $ruta = strtolower($ruta);
         
-        return $recorrido;
-    }
-
-    public function buscarPermiso($menu, $param, $abm)
-    {
-        if (!$menu) return false;
+        // Eliminar '/TPFinal/Vista/' si existe
+        $ruta = str_replace('/tpfinal/vista/', '', $ruta);
         
-        // Normalizar las rutas para la comparación
-        $menuDesc = $this->normalizarRuta($menu->getMeDescripcion());
-        $paramDesc = $param; // Ya está normalizado
+        // Eliminar './' si existe al principio
+        $ruta = str_replace('./', '', $ruta);
         
-        if ($menuDesc === $paramDesc) {
-            return true;
-        }
+        // Eliminar barras iniciales y finales
+        $ruta = trim($ruta, '/');
         
-        $hijos = $abm->tieneHijos($menu->getID());
-        if (!empty($hijos)) {
-            foreach ($hijos as $hijo) {
-                if ($this->buscarPermiso($hijo, $param, $abm)) {
-                    return true;
-                }
-            }
-        }
-        
-        return false;
+        error_log("Ruta normalizada: '$ruta'");
+        return $ruta;
     }
 
     public function cambiarRol($datos)
@@ -388,3 +406,4 @@ class Session
         return $resp;
     }
 }
+

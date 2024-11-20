@@ -1,37 +1,54 @@
 /*################################################## CARGAR PRODUCTOS ##################################################*/
-$(window).on("load", function () {
+$(document).ready(function() {
+    console.log("Iniciando carga de productos...");
     cargarProductos();
 });
 
 function cargarProductos() {
+    console.log("Intentando cargar productos...");
     $.ajax({
         type: "POST",
-        url: '../Acciones/producto/listarProductos.php',
-        data: null,
-        success: function (response) {
-            var arreglo = [];
-            $.each($.parseJSON(response), function (index, productoActual) {
-                arreglo.push(productoActual);
-            });
-
-            armarTabla(arreglo);
+        url: '/TPFinal/Acciones/producto/listarProductos.php',
+        dataType: 'json',
+        success: function(response) {
+            console.log("Respuesta del servidor:", response);
+            actualizarTablaProductos(response);
+        },
+        error: function(xhr, status, error) {
+            console.error("Error al cargar productos:");
+            console.error("Status:", status);
+            console.error("Error:", error);
+            console.error("Respuesta:", xhr.responseText);
         }
     });
 }
 
-// Buscamos la tabla y añadimos cada producto
-function armarTabla(arreglo) {
-    // VACIAMOS LA TABLA
-    $('#tablaProductos > tbody').empty();
-    // AGREGAMOS LOS PRODUCTOS
-    $.each(arreglo, function (index, producto) {
-        if (producto.deshabilitado == null || producto.deshabilitado == "0000-00-00 00:00:00") {
-            var boton = '<a href="#" class="deshabilitar me-2"><button class="btn btn-outline-secondary"><i class="fa-solid fa-ban"></i></button></a>';
-        } else {
-            var boton = '<a href="#" class="habilitar me-2"><button class="btn btn-outline-success"><i class="fa-solid fa-square-check"></i></button></a>';
-        }
-
-        $('#tablaProductos > tbody:last-child').append('<tr><td>' + producto.idproducto + '</td><td>' + producto.pronombre + '</td><td>' + producto.prodetalle + '</td><td>' + producto.procantstock + '</td><td>' + producto.precio + '</td><td><img src="./img/productos/' + producto.imagen + '" class="rounded float-start" width="150" height="150"></td><td>' + producto.deshabilitado + '</td><td><button type="button" class="editarButton btn btn-outline-warning mx-2" data-bs-toggle="modal" data-bs-target="#editar-modal-producto"><i class="fa-solid fa-file-pen"></i></button>' + boton + '<a href="#" class="eliminar"><button class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></button></a></td></tr>');
+function actualizarTablaProductos(productos) {
+    console.log("Actualizando tabla con productos:", productos);
+    let tbody = $('#tablaProductos tbody');
+    tbody.empty();
+    
+    productos.forEach(function(producto) {
+        let deshabilitadoText = producto.prodeshabilitado ? 'Sí' : 'No';
+        let fila = `
+            <tr>
+                <td>${producto.idproducto}</td>
+                <td>${producto.pronombre}</td>
+                <td>${producto.prodetalle}</td>
+                <td>${producto.procantstock}</td>
+                <td>$${producto.precio}</td>
+                <td><img src="/TPFinal/Vista/img/productos/${producto.imagen}" alt="Imagen producto" style="max-width: 50px;"></td>
+                <td>${deshabilitadoText}</td>
+                <td>
+                    <button class="btn btn-primary btn-editar" onclick="editarProducto(${producto.idproducto})">
+                        <i class="fas fa-edit"></i> Editar
+                    </button>
+                    <button class="btn btn-danger btn-eliminar" onclick="eliminarProducto(${producto.idproducto})">
+                        <i class="fas fa-trash"></i> Eliminar
+                    </button>
+                </td>
+            </tr>`;
+        tbody.append(fila);
     });
 }
 
@@ -378,3 +395,151 @@ function habilitar(idproducto) {
         }
     });
 };
+
+function editarProducto(idproducto) {
+    console.log("Editando producto:", idproducto);
+    $.ajax({
+        type: "POST",
+        url: '/TPFinal/Acciones/producto/listarProductos.php',
+        data: { idproducto: idproducto },
+        dataType: 'json',
+        success: function(response) {
+            console.log("Datos del producto a editar:", response);
+            if (response && response.length > 0) {
+                let producto = response[0];
+                // Llenar el modal con los datos del producto
+                $('#idproducto').val(producto.idproducto);
+                $('#edit_pronombre').val(producto.pronombre);
+                $('#edit_prodetalle').val(producto.prodetalle);
+                $('#edit_procantstock').val(producto.procantstock);
+                $('#edit_precio').val(producto.precio);
+                
+                // Mostrar el modal
+                $('#modal-editar-producto').modal('show');
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error("Error al obtener datos del producto:", error);
+        }
+    });
+}
+
+function eliminarProducto(idproducto) {
+    console.log("Deshabilitando producto:", idproducto);
+    bootbox.confirm({
+        title: "Deshabilitar Producto",
+        message: "¿Está seguro que desea deshabilitar este producto? No podrá ser comprado pero se mantendrá el historial de compras.",
+        buttons: {
+            cancel: {
+                label: '<i class="fa fa-times"></i> Cancelar',
+                className: 'btn-secondary'
+            },
+            confirm: {
+                label: '<i class="fa fa-ban"></i> Deshabilitar',
+                className: 'btn-danger'
+            }
+        },
+        callback: function(result) {
+            if (result) {
+                $.ajax({
+                    type: "POST",
+                    url: '/TPFinal/Acciones/producto/eliminarProducto.php',
+                    data: { 
+                        idproducto: idproducto,
+                        action: 'eliminar'
+                    },
+                    success: function(response) {
+                        console.log("Respuesta del servidor:", response);
+                        try {
+                            if (response.success) {
+                                bootbox.alert({
+                                    message: "Producto deshabilitado exitosamente",
+                                    callback: function() {
+                                        cargarProductos();
+                                    }
+                                });
+                            } else {
+                                bootbox.alert("Error al deshabilitar el producto");
+                            }
+                        } catch(e) {
+                            console.error("Error al procesar respuesta:", e);
+                            console.error("Respuesta recibida:", response);
+                            bootbox.alert("Error al procesar la respuesta del servidor");
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error en la petición:", {
+                            status: status,
+                            error: error,
+                            response: xhr.responseText
+                        });
+                        bootbox.alert("Error en la comunicación con el servidor");
+                    }
+                });
+            }
+        }
+    });
+}
+
+// Función para guardar cambios al editar
+$('#form-editar-producto').on('submit', function(e) {
+    e.preventDefault();
+    let formData = new FormData(this);
+    
+    $.ajax({
+        type: "POST",
+        url: '/TPFinal/Acciones/producto/editarProd.php',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            if (response.success) {
+                $('#modal-editar-producto').modal('hide');
+                bootbox.alert({
+                    message: "Producto actualizado exitosamente",
+                    callback: function() {
+                        cargarProductos(); // Recargar la tabla
+                    }
+                });
+            } else {
+                bootbox.alert("Error al actualizar el producto");
+            }
+        }
+    });
+});
+
+// Función para agregar nuevo producto
+$('#form-add-producto').on('submit', function(e) {
+    e.preventDefault();
+    console.log("Enviando formulario de nuevo producto");
+    let formData = new FormData(this);
+    
+    $.ajax({
+        type: "POST",
+        url: '/TPFinal/Acciones/producto/altaProd.php',
+        data: formData,
+        processData: false,
+        contentType: false,
+        dataType: 'json',
+        success: function(response) {
+            console.log("Respuesta del servidor:", response);
+            if (response) {
+                $('#modal-add-producto').modal('hide');
+                bootbox.alert({
+                    message: "Producto agregado exitosamente",
+                    callback: function() {
+                        cargarProductos();
+                        $('#form-add-producto')[0].reset();
+                    }
+                });
+            } else {
+                bootbox.alert("Error al agregar el producto: " + response.mensaje);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error("Error en la petición:", error);
+            console.error("Respuesta del servidor:", xhr.responseText);
+            bootbox.alert("Error al procesar la solicitud");
+        }
+    });
+});
