@@ -37,18 +37,23 @@ class usuario extends BaseDatos{
 
     public function cargar(){
         $resp = false;
-        $sql="SELECT * FROM usuario WHERE idusuario = ".$this->getID();
-        if ($this->Iniciar()) {
-            $res = $this->Ejecutar($sql);
-            if($res>-1){
-                if($res>0){
-                    $row = $this->Registro();
-                    $this->setear($row['idusuario'], $row['usnombre'], $row['uspass'],
-                        $row['usmail'], $row['usdeshabilitado']);
+        $base = new BaseDatos();
+        if($base->Iniciar()){
+            $sql = "SELECT * FROM usuario WHERE idusuario = ".$this->getID();
+            if($base->Ejecutar($sql)){
+                if($row = $base->Registro()){
+                    $this->setID($row['idusuario']);
+                    $this->setUsNombre($row['usnombre']);
+                    $this->setUsPass($row['uspass']);
+                    $this->setUsMail($row['usmail']);
+                    $this->setUsDeshabilitado($row['usdeshabilitado']);
+                    $resp = true;
                 }
+            } else {
+                $this->setMensajeOperacion("usuario->cargar: ".$base->getError());
             }
         } else {
-            $this->setMensajeOperacion("usuario->listar: ".$this->getError());
+            $this->setMensajeOperacion("usuario->cargar: ".$base->getError());
         }
         return $resp;
     }

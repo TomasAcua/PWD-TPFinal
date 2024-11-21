@@ -5,7 +5,8 @@ class compra extends BaseDatos
 
     private $idcompra;
     private $cofecha; //TIMESTAMP
-    private $objusuario;
+    private $idusuario;
+    private $objUsuario;
     private $mensajeoperacion;
 
     public function __construct()
@@ -13,20 +14,35 @@ class compra extends BaseDatos
         parent::__construct();
         $this->idcompra = "";
         $this->cofecha = date('Y-m-d H:i:s');
-        $this->objusuario = "";
+        $this->idusuario = null;
+        $this->objUsuario = null;
         $this->mensajeoperacion = "";
     }
 
-    public function setear($idcompra, $cofecha, $objusuario)
+    public function setear($idcompra, $cofecha, $idusuario)
     {
         $this->setID($idcompra);
-        $this->setCoFecha($cofecha);
-        $this->setObjUsuario($objusuario);
+        $this->setCofecha($cofecha);
+        $this->setIdUsuario($idusuario);
+        
+        // Crear objeto usuario si recibimos el ID
+        if ($idusuario != null) {
+            $objUsuario = new usuario();
+            $objUsuario->setID($idusuario);
+            $objUsuario->cargar(); // Cargar datos del usuario
+            $this->setObjUsuario($objUsuario);
+        }
     }
 
-    public function setearSinID($cofecha, $objusuario){
-        $this->setCoFecha($cofecha);
-        $this->setObjUsuario($objusuario);
+    public function setearSinID($cofecha, $objUsuario){
+        $resp = false;
+        if ($objUsuario != null && $objUsuario instanceof usuario) {
+            $this->setCofecha($cofecha);
+            $this->setIdUsuario($objUsuario->getID());
+            $this->setObjUsuario($objUsuario);
+            $resp = true;
+        }
+        return $resp;
     }
 
 
@@ -41,34 +57,39 @@ class compra extends BaseDatos
             if ($res > -1) {
                 if ($res > 0) {
                     $row = $this->Registro();
-
+                    
+                    // Crear y cargar objeto usuario
                     $objUsuario = new usuario();
                     $objUsuario->setID($row['idusuario']);
                     $objUsuario->cargar();
-
-                    $this->setear($row['idcompra'], $row['cofecha'], $objUsuario);
+                    
+                    $this->setear($row['idcompra'], $row['cofecha'], $row['idusuario']);
+                    $resp = true;
                 }
             }
         } else {
-            $this->setMensajeOperacion("compra->listar: " . $this->getError());
+            $this->setMensajeOperacion("compra->cargar: " . $this->getError());
         }
         return $resp;
     }
 
     public function insertar()
     {
-        //Fecha ini poner fecha actual
-        //Setear fecha fin cuando el admin apruebe la compra (fecha)
         $resp = false;
-        // Si lleva ID Autoincrement, la consulta SQL no lleva dicho ID
         $sql = "INSERT INTO compra(cofecha, idusuario) 
-            VALUES('"
-            . $this->getCofecha() . "', '"
-            . $this->getObjUsuario()->getID() . "'
-        );";
+            VALUES('" . $this->getCofecha() . "', ";
+        
+        // Verificar que tenemos un objeto usuario válido
+        if ($this->getObjUsuario() != null) {
+            $sql .= $this->getObjUsuario()->getID();
+        } else {
+            throw new Exception("Error: Se requiere un usuario válido para crear una compra");
+        }
+        
+        $sql .= ");";
+        
         if ($this->Iniciar()) {
             if ($esteid = $this->Ejecutar($sql)) {
-                // Si se usa ID autoincrement, descomentar lo siguiente:
                 $this->setID($esteid);
                 $resp = true;
             } else {
@@ -83,10 +104,17 @@ class compra extends BaseDatos
     public function modificar()
     {
         $resp = false;
-        $sql = "UPDATE compra 
-        SET cofecha='" . $this->getCofecha()
-            . "', idusuario='" . $this->getObjUsuario()->getID()
-            . "' WHERE idcompra='" . $this->getID() . "'";
+        
+        // Verificar que tenemos un objeto usuario válido
+        if ($this->getObjUsuario() == null) {
+            throw new Exception("Error: Se requiere un usuario válido para modificar la compra");
+        }
+        
+        $sql = "UPDATE compra SET 
+                cofecha='" . $this->getCofecha() . "', 
+                idusuario=" . $this->getObjUsuario()->getID() . "
+                WHERE idcompra=" . $this->getID();
+        
         if ($this->Iniciar()) {
             if ($this->Ejecutar($sql)) {
                 $resp = true;
@@ -118,28 +146,26 @@ class compra extends BaseDatos
     public function listar($parametro = "")
     {
         $arreglo = array();
+        $base = new BaseDatos();
         $sql = "SELECT * FROM compra ";
         if ($parametro != "") {
-            $sql .= 'WHERE ' . $parametro;
+            $sql .= " WHERE " . $parametro;
         }
-        $res = $this->Ejecutar($sql);
-        if ($res > -1) {
-            if ($res > 0) {
-                while ($row = $this->Registro()) {
+        error_log("SQL en compra->listar: " . $sql);
+        
+        if ($base->Iniciar()) {
+            if ($base->Ejecutar($sql)) {
+                while ($row2 = $base->Registro()) {
                     $obj = new compra();
-
-                    $objUsuario = new usuario();
-                    $objUsuario->setID($row['idusuario']);
-                    $objUsuario->cargar();
-
-                    $obj->setear($row['idcompra'], $row['cofecha'], $objUsuario);
+                    $obj->setear($row2['idcompra'], $row2['cofecha'], $row2['idusuario']);
                     array_push($arreglo, $obj);
                 }
+            } else {
+                error_log("Error en compra->listar: " . $base->getError());
             }
         } else {
-            $this->setMensajeOperacion("compra->listar: " . $this->getError());
+            error_log("Error al iniciar base de datos en compra->listar");
         }
-
         return $arreglo;
     }
 
@@ -189,9 +215,9 @@ class compra extends BaseDatos
     /**
      * Get the value of idusuario
      */
-    public function getObjUsuario()
+    public function getIdUsuario()
     {
-        return $this->objusuario;
+        return $this->idusuario;
     }
 
     /**
@@ -199,11 +225,33 @@ class compra extends BaseDatos
      *
      * @return  self
      */
-    public function setObjUsuario($newObjetoUsuario)
+    public function setIdUsuario($idusuario)
     {
-        $this->objusuario = $newObjetoUsuario;
+        $this->idusuario = $idusuario;
+    }
 
-        return $this;
+    /**
+     * Get the value of objUsuario
+     */
+    public function getObjUsuario()
+    {
+        if ($this->objUsuario == null && $this->idusuario != null) {
+            $objUsuario = new usuario();
+            $objUsuario->setID($this->idusuario);
+            $objUsuario->cargar();
+            $this->objUsuario = $objUsuario;
+        }
+        return $this->objUsuario;
+    }
+
+    /**
+     * Set the value of objUsuario
+     *
+     * @return  self
+     */
+    public function setObjUsuario($objUsuario)
+    {
+        $this->objUsuario = $objUsuario;
     }
 
     /**

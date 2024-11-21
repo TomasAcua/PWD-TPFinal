@@ -1,70 +1,118 @@
 /*################################# CARGAR COMPRAS #################################*/
 
-$(window).on("load", function () {
+$(document).ready(function() {
+    console.log("Documento listo, iniciando carga de compras...");
     cargarCompras();
 });
 
-function cargarCompras(){
+function cargarCompras() {
+    console.log('Iniciando cargarCompras()');
+    const url = '/TPFinal/Acciones/compra/listadoCompras.php';
+    console.log('URL:', url);
+    
     $.ajax({
         type: "POST",
-        url: '../Acciones/compra/listadoCompras.php',
-        data: null,
-        success: function (response) {
-            //console.log(response);
-            var arreglo = [];
-            $.each($.parseJSON(response), function (index, compraActual) {
-                
-                    arreglo.push(compraActual);
-        
-            });
-            //console.log(arreglo)
-
-            armarTabla(arreglo);
-        }
-    });
-}
-
-// Buscamos la tabla y añadimos cada compra
-function armarTabla(arreglo) {
-
-    $('#tablaCompras > tbody:last-child').empty();
-
-    $.each(arreglo, function (index, compra) {
-        var estadoVista = null;
-        var botones= null;
-        if (compra.finfecha == null || compra.finfecha == "0000-00-00 00:00:00") {
-            
-            switch (compra.estado) {
-                case "iniciada":
-                    botones = "<td><a href='#' onclick='cancelarCompra(4,"+compra.idcompra+","+compra.idcompraestado+")'><button class='btn btn-outline-danger'><i class='fa-solid fa-xmark me-2'></i>Cancelar</button></a></td>";
-                    break;
-                default:
-                    botones = "<td>-</td>";
-                    break;
+        url: url,
+        dataType: 'json',
+        success: function(response) {
+            console.log('Respuesta recibida:', response);
+            if (Array.isArray(response)) {
+                armarTabla(response);
+            } else if (response.error) {
+                $('#mensaje').html(`
+                    <div class="alert alert-danger">
+                        Error del servidor: ${response.mensaje}
+                    </div>
+                `);
+            } else {
+                $('#mensaje').html(`
+                    <div class="alert alert-danger">
+                        Respuesta inesperada del servidor
+                    </div>
+                `);
             }
-        } else {
-            botones = "<td>-</td>";
+        },
+        error: function(xhr, status, error) {
+            console.error('Error en la petición:');
+            console.error('Status:', status);
+            console.error('Error:', error);
+            console.error('Respuesta:', xhr.responseText);
+            
+            let mensaje = 'Error al cargar las compras';
+            try {
+                const response = JSON.parse(xhr.responseText);
+                if (response.mensaje) {
+                    mensaje = response.mensaje;
+                }
+            } catch(e) {
+                console.error('Respuesta no es JSON válido:', xhr.responseText);
+                mensaje += ': ' + error;
+            }
+            
+            $('#mensaje').html(`
+                <div class="alert alert-danger">
+                    ${mensaje}
+                </div>
+            `);
         }
-
-        // BADGE SEGÚN ESTADO
-        switch (compra.estado) {
-            case "iniciada":
-                estadoVista = "<span class='badge rounded-pill text-bg-primary'>Iniciada</span>";
-                break;
-            case "aceptada":
-                estadoVista = "<span class='badge rounded-pill text-bg-success'>Aceptada</span>";
-                break;
-            case "enviada":
-                estadoVista = "<span class='badge rounded-pill text-bg-warning'>Enviada</span>";
-                break;
-            case "cancelada":
-                estadoVista = "<span class='badge rounded-pill text-bg-danger'>Cancelada</span>";
-                break;
-        }
-        $('#tablaCompras > tbody:last-child').append('<tr><td hidden>' + compra.idcompraestado + '</td><th scope="row">' + compra.idcompra + '</th><td hidden>' + compra.usnombre + '</td><td><a href="#" class="verProductos"><button class="btn btn-outline-info col-8"><i class="fa-solid fa-list-ul mx-2"></i></button></a></td><td>' + estadoVista + '</td><td>' + compra.cofecha + '</td>' +botones+ '</tr>');
     });
 }
 
+function armarTabla(compras) {
+    console.log("Armando tabla con datos:", compras);
+    $('#tablaCompras > tbody').empty();
+    
+    if (!Array.isArray(compras) || compras.length === 0) {
+        console.log("No hay compras para mostrar");
+        $('#tablaCompras > tbody').append(`
+            <tr>
+                <td colspan="6" class="text-center">No hay compras registradas</td>
+            </tr>
+        `);
+        return;
+    }
+    
+    compras.forEach(function(compra) {
+        console.log("Procesando compra:", compra);
+        let estadoVista = getEstadoBadge(compra.estado);
+        let botones = getBotonesAccion(compra);
+        
+        $('#tablaCompras > tbody').append(`
+            <tr>
+                <td>${compra.idcompra}</td>
+                <td>
+                    <button class="btn btn-info btn-sm verProductos" 
+                            data-id="${compra.idcompra}" 
+                            data-usuario="${compra.usnombre}">
+                        <i class="fas fa-eye me-2"></i>Ver productos
+                    </button>
+                </td>
+                <td>${getEstadoBadge(compra.estado)}</td>
+                <td>${compra.cofecha}</td>
+                <td>
+                    ${compra.estado === 'iniciada' ? 
+                        `<button class="btn btn-danger btn-sm cancelarCompra" 
+                                data-id="${compra.idcompra}">
+                            <i class="fas fa-times me-2"></i>Cancelar
+                        </button>` : 
+                        ''
+                    }
+                </td>
+            </tr>
+        `);
+    });
+}
+
+function getEstadoBadge(estado) {
+    const badges = {
+        'iniciada': 'bg-primary',
+        'aceptada': 'bg-success',
+        'enviada': 'bg-info',
+        'cancelada': 'bg-danger'
+    };
+    
+    return `<span class="badge ${badges[estado.toLowerCase()] || 'bg-secondary'}">${estado}</span>`;
+}
 
 /*################################# VER PRODUCTOS DE COMPRA #################################*/
 

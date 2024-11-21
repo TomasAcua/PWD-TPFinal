@@ -30,8 +30,16 @@ function actualizarTablaProductos(productos) {
     
     productos.forEach(function(producto) {
         let deshabilitadoText = producto.prodeshabilitado ? 'Sí' : 'No';
+        let botonEliminar = producto.prodeshabilitado ? 
+            `<button class="btn btn-success btn-habilitar" onclick="habilitarProducto(${producto.idproducto})">
+                <i class="fas fa-check"></i> Habilitar
+            </button>` :
+            `<button class="btn btn-danger btn-eliminar" onclick="eliminarProducto(${producto.idproducto})">
+                <i class="fas fa-trash"></i> Eliminar
+            </button>`;
+
         let fila = `
-            <tr>
+            <tr class="${producto.prodeshabilitado ? 'table-secondary' : ''}">
                 <td>${producto.idproducto}</td>
                 <td>${producto.pronombre}</td>
                 <td>${producto.prodetalle}</td>
@@ -43,9 +51,7 @@ function actualizarTablaProductos(productos) {
                     <button class="btn btn-primary btn-editar" onclick="editarProducto(${producto.idproducto})">
                         <i class="fas fa-edit"></i> Editar
                     </button>
-                    <button class="btn btn-danger btn-eliminar" onclick="eliminarProducto(${producto.idproducto})">
-                        <i class="fas fa-trash"></i> Eliminar
-                    </button>
+                    ${botonEliminar}
                 </td>
             </tr>`;
         tbody.append(fila);
@@ -58,7 +64,7 @@ $('#agregar').submit(function (e) {
     formData = new FormData(this);
     $.ajax({
         type: "POST",
-        url: '../Acciones/producto/altaProd.php',
+        url: '/TPFinal/Acciones/producto/altaProd.php',
         data: formData,
         processData: false,
         contentType: false,
@@ -127,7 +133,7 @@ $('#editarForm').submit(function (e) {
 
     $.ajax({
         type: "POST",
-        url: '../Acciones/producto/editarProd.php',
+        url: '/TPFinal/Acciones/producto/editarProd.php',
         data: $(this).serialize(),
         success: function (response) {
             var response = jQuery.parseJSON(response);
@@ -173,7 +179,7 @@ $('#editarImagen').submit(function (e) {
     formData = new FormData(this);
     $.ajax({
         type: "POST",
-        url: '../Acciones/producto/editarImagen.php',
+        url: '/TPFinal/Acciones/producto/editarImagen.php',
         data: formData,
         processData: false,
         contentType: false,
@@ -240,7 +246,7 @@ function eliminar(idproducto) {
 
     $.ajax({
         type: "POST",
-        url: '../Acciones/producto/eliminarProducto.php',
+        url: '/TPFinal/Acciones/producto/eliminarProducto.php',
         data: { idproducto: idproducto },
         success: function (response) {
             var response = jQuery.parseJSON(response);
@@ -304,7 +310,7 @@ $(document).on('click', '.deshabilitar', function () {
 function deshabilitar(idproducto) {
     $.ajax({
         type: "POST",
-        url: '../Acciones/producto/deshabilitarProducto.php',
+        url: '/TPFinal/Acciones/producto/deshabilitarProducto.php',
         data: { idproducto: idproducto, accion: 'deshabilitar' },
         success: function (response) {
             var response = jQuery.parseJSON(response);
@@ -368,7 +374,7 @@ function habilitar(idproducto) {
 
     $.ajax({
         type: "POST",
-        url: '../Acciones/producto/deshabilitarProducto.php',
+        url: '/TPFinal/Acciones/producto/deshabilitarProducto.php',
         data: { idproducto: idproducto, accion: 'habilitar' },
         success: function (response) {
             var response = jQuery.parseJSON(response);
@@ -543,3 +549,50 @@ $('#form-add-producto').on('submit', function(e) {
         }
     });
 });
+
+// Agregar la nueva función para habilitar productos
+function habilitarProducto(idproducto) {
+    console.log("Habilitando producto:", idproducto);
+    bootbox.confirm({
+        title: "Habilitar Producto",
+        message: "¿Está seguro que desea habilitar este producto?",
+        buttons: {
+            confirm: {
+                label: 'Sí',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-secondary'
+            }
+        },
+        callback: function(result) {
+            if(result) {
+                $.ajax({
+                    type: "POST",
+                    url: "/TPFinal/Acciones/producto/habilitarProducto.php",
+                    data: { idproducto: idproducto },
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log("Respuesta del servidor:", response);
+                        if(response.success) {
+                            bootbox.alert("Producto habilitado exitosamente", function() {
+                                cargarProductos();
+                            });
+                        } else {
+                            bootbox.alert("Error al habilitar el producto: " + (response.message || "Error desconocido"));
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error en la petición:", {
+                            status: status,
+                            error: error,
+                            response: xhr.responseText
+                        });
+                        bootbox.alert("Error en la comunicación con el servidor");
+                    }
+                });
+            }
+        }
+    });
+}

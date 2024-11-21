@@ -166,20 +166,25 @@ class abmCompra
      */
     public function buscar($param)
     {
+        error_log("=== Inicio abmCompra->buscar ===");
+        error_log("Parámetros de búsqueda: " . print_r($param, true));
+        
         $where = " true ";
-        if ($param <> null) {
-            if (isset($param['idcompra'])) {
-                $where .= " and idcompra ='" . $param['idcompra'] . "'";
-            }
-            if (isset($param['cofecha'])) {
-                $where .= " and cofecha ='" . $param['cofecha'] . "'";
-            }
-            if (isset($param['idusuario'])) {
-                $where .= " and idusuario ='" . $param['idusuario'] . "'";
-            }
+        if ($param !== null) {
+            if (isset($param['idcompra']))
+                $where.=" and idcompra =".$param['idcompra'];
+            if (isset($param['cofecha']))
+                $where.=" and cofecha ='".$param['cofecha']."'";
+            if (isset($param['idusuario']))
+                $where.=" and idusuario =".$param['idusuario'];
         }
-        $objC =  new compra();
-        $arreglo = $objC->listar($where);
+        
+        error_log("WHERE construido: " . $where);
+        
+        $obj = new compra();
+        $arreglo = $obj->listar($where);
+        error_log("Resultado de listar: " . print_r($arreglo, true));
+        
         return $arreglo;
     }
 
@@ -187,30 +192,52 @@ class abmCompra
 
     /* AGREGAR PRODUCTO AL CARRITO */
 
-    public function agregarProdCarrito($data)
-    {
-        $respuesta = false;
-        $objSession = new Session();
-        $objAbmUsuario = new abmUsuario();
-        $idUserLogueado = $objSession->getIDUsuarioLogueado();
-        $carrito = $objAbmUsuario->obtenerCarrito($idUserLogueado);
-        if ($carrito <> null) {
-            //si el carrito existe agrego el producto
-            $respuesta = $this->verificarStockProd($carrito, $data);
-            if ($respuesta) {
-                $respuesta = $this->sumarProdCarrito($carrito, $data);
+    public function agregarProdCarrito($datos){
+        $resp = false;
+        try {
+            $session = new Session();
+            $idUsuario = $session->getIDUsuarioLogueado();
+            
+            if (!$idUsuario) {
+                throw new Exception("Usuario no logueado");
             }
-        } else { //si el carrito no existe lo creo
-            $carritoNuevo = $this->crearCarrito($idUserLogueado);
-            if ($carritoNuevo <> null) {
-                //y agrego el producto
-                $respuesta = $this->sumarProdCarrito($carritoNuevo, $data);
+
+            $objUsuario = new usuario();
+            $objUsuario->setID($idUsuario);
+            if (!$objUsuario->cargar()) {
+                throw new Exception("Error al cargar usuario");
             }
+
+            // Buscar carrito activo o crear uno nuevo
+            $carritoActual = $this->obtenerCarrito($idUsuario);
+            if (empty($carritoActual)) {
+                $carritoActual = $this->crearCarrito($idUsuario);
+            }
+
+            if ($carritoActual) {
+                // Agregar producto al carrito
+                $objCompraItem = new compraItem();
+                $objProducto = new producto();
+                $objProducto->setID($datos['idproducto']);
+                
+                $paramCI = [
+                    'idcompraitem' => null,
+                    'idproducto' => $datos['idproducto'],
+                    'idcompra' => $carritoActual->getID(),
+                    'cicantidad' => $datos['cicantidad']
+                ];
+                
+                $abmCI = new abmCompraItem();
+                $resp = $abmCI->alta($paramCI);
+            }
+            
+            return $resp;
+            
+        } catch (Exception $e) {
+            error_log("Error en agregarProdCarrito: " . $e->getMessage());
+            return false;
         }
-
-        return $respuesta;
     }
-
 
     public function sumarProdCarrito($objCompraCarrito, $data)
     {
@@ -247,37 +274,57 @@ class abmCompra
         return $respuesta;
     }
 
-    public function crearCarrito($idUser)
+    public function crearCarrito($idUsuario)
     {
-        date_default_timezone_set('America/Argentina/Buenos_Aires');
-        $carrito = null;
-        $objAbmCompra = new abmCompra();
-        $param = array(
-            'cofecha' => date('Y-m-d H:i:s'),
-            'idusuario' => $idUser
-        );
-        $respuesta = $this->altaSinID($param);
-        if (!$respuesta) {
-            echo "no se creo el carrito";
-        }
-        if ($respuesta) { //si se creo el carrito creo el estadocompra
-            $paramIDUsuario['idusuario'] = $idUser;
-            $objAbmCompraEstado = new abmCompraEstado();
-            $listaCompras = $this->buscar($paramIDUsuario);
-            $posCompra = count($listaCompras) - 1; //la ultima compra que cree es el carrito
-            $idCompra = $listaCompras[$posCompra]->getID();
-            $paramCompraEstado = array(
-                'idcompra' => $idCompra,
-                'idcompraestadotipo' => 5,
-                'cefechaini' => date('Y-m-d H:i:s'), //ver lo de la hora actual
-                'cefechafin' => '0000-00-00 00:00:00'
-            ); // ver el null
-            $respuesta = $objAbmCompraEstado->altaSinID($paramCompraEstado);
-            if ($respuesta) { //si se creo el estado compra, devuelvo el carrito
-                $carrito = $listaCompras[$posCompra];
+        try {
+            error_log("Iniciando creación de carrito para usuario: " . $idUsuario);
+            
+            $objUsuario = new usuario();
+            $objUsuario->setID($idUsuario);
+            if (!$objUsuario->cargar()) {
+                throw new Exception("Error al cargar usuario");
             }
+
+            // Crear nueva compra
+            $datos = array(
+                'idusuario' => $idUsuario,
+                'cofecha' => date('Y-m-d H:i:s')
+            );
+
+            error_log("Intentando crear compra con datos: " . print_r($datos, true));
+
+            // Usar altaSinID para crear la compra
+            if ($this->altaSinID($datos)) {
+                // Buscar la compra recién creada
+                $compras = $this->buscar($datos);
+                if (!empty($compras)) {
+                    $compra = $compras[0];
+                    
+                    // Crear estado inicial (borrador)
+                    $abmCompraEstado = new abmCompraEstado();
+                    $datosEstado = array(
+                        'idcompra' => $compra->getID(),
+                        'idcompraestadotipo' => 5, // ID del estado 'borrador'
+                        'cefechaini' => date('Y-m-d H:i:s'),
+                        'cefechafin' => null
+                    );
+                    
+                    error_log("Intentando crear estado inicial con datos: " . print_r($datosEstado, true));
+                    
+                    if ($abmCompraEstado->altaSinID($datosEstado)) {
+                        error_log("Carrito creado exitosamente con ID: " . $compra->getID());
+                        return $compra;
+                    }
+                }
+            }
+            
+            error_log("No se pudo crear el carrito");
+            return null;
+            
+        } catch (Exception $e) {
+            error_log("Error en crearCarrito: " . $e->getMessage());
+            return null;
         }
-        return $carrito;
     }
 
     public function verificarStockProd($objCompraCarrito, $data)
@@ -490,32 +537,79 @@ class abmCompra
         return $arreglo;
     }
 
-    public function listarCompras($idUsuario)
-    {
-        //Lista las compras con su ultimo estadocompra referidas al usuario con idUsuario
-        $arreglo_salida =  [];
-        $listaCompras = $this->buscar(['idusuario' => $idUsuario]);
-        if (count($listaCompras) > 0) {
+    public function listarCompras($idUsuario = null) {
+        try {
+            error_log("Ejecutando listarCompras");
+            
+            $where = " true ";
+            if ($idUsuario !== null) {
+                $where .= " AND idusuario = " . $idUsuario;
+            }
+            
+            error_log("WHERE clause: " . $where);
+            
+            $obj = new compra();
+            $arreglo = $obj->listar($where);
+            error_log("Compras encontradas: " . print_r($arreglo, true));
+            
+            $resultado = [];
+            foreach ($arreglo as $compra) {
+                $abmCompraEstado = new abmCompraEstado();
+                $estadoActual = $abmCompraEstado->obtenerEstadoActual($compra->getID());
+                
+                $objUsuario = $compra->getObjUsuario();
+                
+                $resultado[] = array(
+                    'idcompra' => $compra->getID(),
+                    'cofecha' => $compra->getCoFecha(),
+                    'usnombre' => $objUsuario ? $objUsuario->getUsNombre() : 'N/A',
+                    'estado' => $estadoActual['descripcion'],
+                    'idcompraestado' => $estadoActual['idcompraestado'],
+                    'idcompraestadotipo' => $estadoActual['idcompraestadotipo']
+                );
+            }
+            
+            error_log("Resultado final: " . print_r($resultado, true));
+            return $resultado;
+            
+        } catch (Exception $e) {
+            error_log("Error en listarCompras: " . $e->getMessage());
+            return [];
+        }
+    }
 
-            foreach ($listaCompras as $elem) {
-                $objCE = new abmCompraEstado;
-                $listaCE = $objCE->buscar(['idcompra' => $elem->getID()]);
-                $lastPosCE = count($listaCE) - 1;
-                //RECORREMOS EL LISTADO DE COMPRAS ESTADO Y SOLO MOSTRAMOS LA ULTIMA CE
-                //SI ES CARRITO NO LO MOSTRAMOS
-                if (!($listaCE[$lastPosCE]->getObjCompraEstadoTipo()->getCetDescripcion() === "carrito")) {
-                    $nuevoElem = [
-                        "idcompra" => $listaCE[$lastPosCE]->getObjCompra()->getID(),
-                        "cofecha" => $listaCE[$lastPosCE]->getCeFechaIni(),
-                        "finfecha" => $listaCE[$lastPosCE]->getCeFechaFin(),
-                        "usnombre" => $listaCE[$lastPosCE]->getObjCompra()->getObjUsuario()->getUsNombre(),
-                        "estado" => $listaCE[$lastPosCE]->getObjCompraEstadoTipo()->getCetDescripcion(),
-                        "idcompraestado" => $listaCE[$lastPosCE]->getID()
-                    ];
-                    array_push($arreglo_salida, $nuevoElem);
+    /**
+     * Obtiene el carrito activo del usuario
+     * @param int $idUsuario
+     * @return compra|null
+     */
+    public function obtenerCarrito($idUsuario) {
+        try {
+            // Buscar compra en estado 'borrador' (carrito) para el usuario
+            $param = array(
+                'idusuario' => $idUsuario
+            );
+            
+            $compras = $this->buscar($param);
+            
+            if (!empty($compras)) {
+                foreach ($compras as $compra) {
+                    // Obtener el estado actual de la compra
+                    $abmCompraEstado = new abmCompraEstado();
+                    $estadoActual = $abmCompraEstado->obtenerEstadoActual($compra->getID());
+                    
+                    // Si encontramos una compra en estado 'borrador', es el carrito activo
+                    if ($estadoActual && $estadoActual['descripcion'] === 'borrador') {
+                        return $compra;
+                    }
                 }
             }
+            
+            return null;
+            
+        } catch (Exception $e) {
+            error_log("Error en obtenerCarrito: " . $e->getMessage());
+            return null;
         }
-        return $arreglo_salida;
     }
 }

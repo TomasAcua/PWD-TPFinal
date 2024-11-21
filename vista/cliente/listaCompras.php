@@ -48,12 +48,12 @@ if (!$sesion->verificarPermiso('Cliente/listaCompras.php')) {
         <div class="container py-5 text-center">
             <div class=" card mb-3" style="max-width: 540px;">
                 <div class="row g-0">
-                    <div class="col-md-4"><img src="./img/logo_black.svg" class="img-fluid rounded-start" alt="..."></div>
+                    <div class="col-md-4"><img src="./img/kaltriste.jpeg" class="img-fluid rounded-start" alt="..."></div>
                     <div class="col-md-8">
                         <div class="card-body">
                             <h4 class="card-title">A&uacute;n no has realizado ninguna compra</h4>
                             <p class="card-text"> Ingresa al cat&aacutelogo de productos para seleccionar los que mas te gusten.</p>
-                            <p class="card-text"><a href="./productos.php"><button class="btn btn-outline-success col-11">Cat&aacutelogo de productos</button></a></p>
+                            <p class="card-text"><a href="./tienda.php"><button class="btn btn-outline-success col-11">Cat&aacutelogo de productos</button></a></p>
                         </div>
                     </div>
                 </div>
@@ -61,5 +61,5 @@ if (!$sesion->verificarPermiso('Cliente/listaCompras.php')) {
         </div>
 <?php
     }
-    include_once '.\Estructura\pie.php';
+    include_once '../Estructura/pie.php';
 } ?>

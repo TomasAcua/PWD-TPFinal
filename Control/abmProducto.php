@@ -279,13 +279,12 @@ class abmProducto
                     "prodetalle" => $elem->getProDetalle(),
                     "procantstock" => $elem->getProCantStock(),
                     "precio" => $elem->getPrecio(),
-                    "deshabilitado" => $elem->getProDeshabilitado(),
+                    "prodeshabilitado" => $elem->getProDeshabilitado() !== null && $elem->getProDeshabilitado() !== '0000-00-00 00:00:00',
                     "imagen" => $elem->getImagen()
                 ];
                 array_push($arreglo, $nuevoElem);
             }
         }
-
         return $arreglo;
     }
 

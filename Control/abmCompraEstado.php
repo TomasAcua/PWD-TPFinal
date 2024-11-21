@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../Utiles/funcionesMailer.php';
 
 class abmCompraEstado
 {
@@ -265,26 +266,58 @@ class abmCompraEstado
      * @param array $param
      * @return boolean
      */
-    public function cambiarEstado($datos, $obj)
-    {
-        $resp = false;
-        date_default_timezone_set('America/Argentina/Buenos_Aires');
-        $fechaFin = date('Y-m-d H:i:s'); //FECHA FIN
-        $obj->setCeFechaFin($fechaFin);
-        
-        if ($obj->modificar()) { // SI SE PUDO MODIFICAR EL ESTADO ANTERIOR, AGREGAMOS EL NUEVO
-
-            $arregloNewCompra = [
-                'idcompra' => $datos['idcompra'],
-                'idcompraestadotipo' => $datos['idcompraestadotipo'],
-                'cefechaini' => $fechaFin,
+    public function cambiarEstado($idcompra, $nuevoEstado) {
+        try {
+            // Obtener el estado actual
+            $estadoActual = $this->obtenerEstadoActual($idcompra);
+            
+            // Obtener el ID del nuevo tipo de estado
+            $abmCompraEstadoTipo = new abmCompraEstadoTipo();
+            $tiposEstado = $abmCompraEstadoTipo->buscar(['cetdescripcion' => $nuevoEstado]);
+            
+            if (empty($tiposEstado)) {
+                throw new Exception("Tipo de estado no válido");
+            }
+            
+            // Si hay un estado actual, cerrarlo
+            if ($estadoActual['idcompraestado']) {
+                $this->finalizarEstado($estadoActual['idcompraestado']);
+            }
+            
+            // Crear nuevo estado
+            $datos = [
+                'idcompra' => $idcompra,
+                'idcompraestadotipo' => $tiposEstado[0]->getID(),
+                'cefechaini' => date('Y-m-d H:i:s'),
                 'cefechafin' => null,
+                'action' => 'alta'
             ];
-
-            $resp = $this->altaSinID($arregloNewCompra);
+            
+            if (!$this->alta($datos)) {
+                throw new Exception("No se pudo crear el nuevo estado");
+            }
+            
+            // Si el estado es "aceptada", actualizar stock
+            if ($nuevoEstado === 'aceptada') {
+                $abmCompraItem = new abmCompraItem();
+                $abmCompraItem->modificarCantidad($idcompra);
+            }
+            
+            return true;
+            
+        } catch (Exception $e) {
+            error_log("Error en cambiarEstado: " . $e->getMessage());
+            throw $e;
         }
+    }
 
-        return $resp;
+    private function finalizarEstado($idcompraestado) {
+        $datos = [
+            'idcompraestado' => $idcompraestado,
+            'cefechafin' => date('Y-m-d H:i:s'),
+            'action' => 'modificar'
+        ];
+        return $this->modificacion($datos);
     }
 
     /**
@@ -308,5 +341,44 @@ class abmCompraEstado
         }
 
         return $resp;
+    }
+
+    public function obtenerEstadoActual($idcompra) {
+        error_log("Obteniendo estado actual para compra ID: " . $idcompra);
+        
+        try {
+            $obj = new compraEstado();
+            // Modificamos el WHERE para obtener el último estado activo
+            $where = " idcompra = " . $idcompra . " AND cefechafin IS NULL";
+            error_log("Ejecutando búsqueda con WHERE: " . $where);
+            
+            $estados = $obj->listar($where);
+            error_log("Estados encontrados: " . print_r($estados, true));
+            
+            if (count($estados) > 0) {
+                $estadoActual = $estados[0];
+                $objCompraEstadoTipo = $estadoActual->getObjCompraEstadoTipo();
+                
+                return array(
+                    'idcompraestado' => $estadoActual->getID(),
+                    'descripcion' => $objCompraEstadoTipo->getCetDescripcion(),
+                    'idcompraestadotipo' => $objCompraEstadoTipo->getID()
+                );
+            }
+            
+            return array(
+                'idcompraestado' => null,
+                'descripcion' => 'sin estado',
+                'idcompraestadotipo' => null
+            );
+            
+        } catch (Exception $e) {
+            error_log("Error en obtenerEstadoActual: " . $e->getMessage());
+            return array(
+                'idcompraestado' => null,
+                'descripcion' => 'error',
+                'idcompraestadotipo' => null
+            );
+        }
     }
 }
