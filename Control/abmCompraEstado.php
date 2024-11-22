@@ -215,9 +215,7 @@ class abmCompraEstado
      * @param array $param
      * @return boolean
      */
-    public function modificarEstado($datos)
-    {
-        $resp = false;
+    public function modificarEstado($datos) {
         try {
             // Obtener el estado actual
             $estadoActual = $this->obtenerEstadoActual($datos['idcompra']);
@@ -227,42 +225,53 @@ class abmCompraEstado
 
             // Si vamos a aceptar la compra (estado 2)
             if ($datos['idcompraestadotipo'] == 2) {
+                $objCI = new abmCompraItem();
+                // Primero verificamos el stock
                 if (!$this->verificarStock($datos['idcompra'])) {
                     throw new Exception("No hay suficiente stock para algunos productos");
                 }
                 
                 // Si hay stock, modificar cantidades
-                $objCI = new abmCompraItem();
-                $objCI->modificarCantidad($datos['idcompra']);
-            }
-            
-            // Si vamos a cancelar una compra aceptada
-            else if ($datos['idcompraestadotipo'] == 4 && $estadoActual['idcompraestadotipo'] == 2) {
-                if (!$this->devolverStock($datos['idcompra'])) {
-                    throw new Exception("Error al devolver el stock");
+                try {
+                    $objCI->modificarCantidad($datos['idcompra']);
+                } catch (Exception $e) {
+                    throw new Exception("Error al modificar stock: " . $e->getMessage());
                 }
             }
 
+            // Preparar datos para cerrar el estado actual
+            $datosModificacion = array(
+                'idcompraestado' => $estadoActual['idcompraestado'],
+                'idcompra' => $estadoActual['idcompra'],
+                'idcompraestadotipo' => $estadoActual['idcompraestadotipo'],
+                'cefechaini' => $estadoActual['cefechaini'],
+                'cefechafin' => date('Y-m-d H:i:s')
+            );
+
             // Cerrar el estado actual
-            $estadoActual['cefechafin'] = date('Y-m-d H:i:s');
-            $this->modificacion($estadoActual);
+            if (!$this->modificacion($datosModificacion)) {
+                throw new Exception("Error al cerrar el estado actual");
+            }
 
             // Crear nuevo estado
-            $nuevoEstado = [
+            $nuevoEstado = array(
+                'idcompraestado' => null, // Asegurarnos que sea null para que autoincrement funcione
                 'idcompra' => $datos['idcompra'],
                 'idcompraestadotipo' => $datos['idcompraestadotipo'],
                 'cefechaini' => date('Y-m-d H:i:s'),
                 'cefechafin' => null
-            ];
+            );
             
-            $resp = $this->alta($nuevoEstado);
+            if (!$this->alta($nuevoEstado)) {
+                throw new Exception("Error al crear el nuevo estado");
+            }
+
+            return true;
 
         } catch (Exception $e) {
             error_log("Error en modificarEstado: " . $e->getMessage());
             throw new Exception($e->getMessage());
         }
-        
-        return $resp;
     }
 
     /**
@@ -275,15 +284,21 @@ class abmCompraEstado
         try {
             // Obtener los items de la compra
             $objCompraItem = new abmCompraItem();
-            $param = array(
-                'idcompra' => $idcompra
-            );
+            $param = array('idcompra' => $idcompra);
             $listaItems = $objCompraItem->buscar($param);
             
             $stockSuficiente = true;
             foreach ($listaItems as $item) {
-                $producto = $item->getObjProducto(); // Asegurarnos de que esto devuelve un objeto producto
-                if (!$producto || $producto->getProCantStock() < $item->getCicantidad()) {
+                // Crear objeto producto y cargarlo
+                $objProducto = new producto();
+                $objProducto->setID($item->getObjProducto());  // Asumiendo que getObjProducto() devuelve el ID
+                if ($objProducto->cargar()) {
+                    // Verificar si hay suficiente stock
+                    if ($objProducto->getProCantStock() < $item->getCicantidad()) {
+                        $stockSuficiente = false;
+                        break;
+                    }
+                } else {
                     $stockSuficiente = false;
                     break;
                 }
@@ -381,41 +396,25 @@ class abmCompraEstado
     }
 
     public function obtenerEstadoActual($idcompra) {
-        error_log("Obteniendo estado actual para compra ID: " . $idcompra);
-        
         try {
-            $obj = new compraEstado();
-            // Modificamos el WHERE para obtener el último estado activo
-            $where = " idcompra = " . $idcompra . " AND cefechafin IS NULL";
-            error_log("Ejecutando búsqueda con WHERE: " . $where);
+            $where = " idcompra = {$idcompra} AND cefechafin IS NULL";
+            $estados = $this->buscar(['idcompra' => $idcompra]);
             
-            $estados = $obj->listar($where);
-            error_log("Estados encontrados: " . print_r($estados, true));
-            
-            if (count($estados) > 0) {
-                $estadoActual = $estados[0];
-                $objCompraEstadoTipo = $estadoActual->getObjCompraEstadoTipo();
-                
-                return array(
-                    'idcompraestado' => $estadoActual->getID(),
-                    'descripcion' => $objCompraEstadoTipo->getCetDescripcion(),
-                    'idcompraestadotipo' => $objCompraEstadoTipo->getID()
-                );
+            foreach ($estados as $estado) {
+                if ($estado->getCeFechaFin() === null) {
+                    return array(
+                        'idcompraestado' => $estado->getID(),
+                        'idcompra' => $estado->getObjCompra()->getID(),
+                        'idcompraestadotipo' => $estado->getObjCompraEstadoTipo()->getID(),
+                        'cefechaini' => $estado->getCeFechaIni(),
+                        'cefechafin' => $estado->getCeFechaFin()
+                    );
+                }
             }
-            
-            return array(
-                'idcompraestado' => null,
-                'descripcion' => 'sin estado',
-                'idcompraestadotipo' => null
-            );
-            
+            return null;
         } catch (Exception $e) {
             error_log("Error en obtenerEstadoActual: " . $e->getMessage());
-            return array(
-                'idcompraestado' => null,
-                'descripcion' => 'error',
-                'idcompraestadotipo' => null
-            );
+            throw new Exception("Error al obtener estado actual: " . $e->getMessage());
         }
     }
 }

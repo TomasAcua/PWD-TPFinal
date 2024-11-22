@@ -198,11 +198,37 @@ class abmCompraItem
 
     public function modificarCantidad($idCompra)
     {
-        $list = $this->buscar(['idcompra' => $idCompra]);
-        foreach ($list as $objCI) {
-            $nuevaCantidad = $objCI->getObjProducto()->getProCantStock() - $objCI->getCiCantidad();
-            $objCI->getObjProducto()->setProCantStock($nuevaCantidad);
-            $objCI->getObjProducto()->modificar();
+        try {
+            $list = $this->buscar(['idcompra' => $idCompra]);
+            foreach ($list as $objCI) {
+                // Obtener el producto como objeto
+                $objProducto = new producto();
+                $idProducto = $objCI->getObjProducto(); // Asumiendo que esto devuelve el ID
+                $objProducto->setID($idProducto);
+                
+                if (!$objProducto->cargar()) {
+                    throw new Exception("No se pudo cargar el producto ID: " . $idProducto);
+                }
+                
+                // Calcular y actualizar el stock
+                $stockActual = $objProducto->getProCantStock();
+                $cantidadComprada = $objCI->getCiCantidad();
+                $nuevoStock = $stockActual - $cantidadComprada;
+                
+                if ($nuevoStock < 0) {
+                    throw new Exception("Stock insuficiente para el producto: " . $objProducto->getProNombre());
+                }
+                
+                $objProducto->setProCantStock($nuevoStock);
+                if (!$objProducto->modificar()) {
+                    throw new Exception("Error al actualizar el stock del producto: " . $objProducto->getProNombre());
+                }
+            }
+            return true;
+            
+        } catch (Exception $e) {
+            error_log("Error en modificarCantidad: " . $e->getMessage());
+            throw new Exception($e->getMessage());
         }
     }
 
@@ -224,5 +250,37 @@ class abmCompraItem
         }
 
         return $arreglo;
+    }
+
+    public function devolverStock($idCompra)
+    {
+        try {
+            $list = $this->buscar(['idcompra' => $idCompra]);
+            foreach ($list as $objCI) {
+                // Obtener el producto como objeto
+                $objProducto = new producto();
+                $idProducto = $objCI->getObjProducto(); // Asumiendo que esto devuelve el ID
+                $objProducto->setID($idProducto);
+                
+                if (!$objProducto->cargar()) {
+                    throw new Exception("No se pudo cargar el producto ID: " . $idProducto);
+                }
+                
+                // Calcular y actualizar el stock
+                $stockActual = $objProducto->getProCantStock();
+                $cantidadDevolver = $objCI->getCiCantidad();
+                $nuevoStock = $stockActual + $cantidadDevolver;
+                
+                $objProducto->setProCantStock($nuevoStock);
+                if (!$objProducto->modificar()) {
+                    throw new Exception("Error al actualizar el stock del producto: " . $objProducto->getProNombre());
+                }
+            }
+            return true;
+            
+        } catch (Exception $e) {
+            error_log("Error en devolverStock: " . $e->getMessage());
+            throw new Exception($e->getMessage());
+        }
     }
 }
