@@ -9,6 +9,10 @@ if (!$sesion->verificarPermiso('deposito/tablacompras.php')) {
 }
 ?>
 
+<head>
+   
+</head>
+
 <div class="container mt-4">
     <h2 class="mb-4">Gestión de Compras</h2>
     <div id="mensaje"></div>
@@ -28,10 +32,13 @@ if (!$sesion->verificarPermiso('deposito/tablacompras.php')) {
     </table>
 </div>
 
-<!-- Asegurarnos que jQuery esté cargado primero -->
+<!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Bootstrap Bundle con Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Bootbox -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
 
-<!-- Nuestro script con debug -->
 <script>
 console.log('Documento cargado');
 
@@ -81,7 +88,7 @@ function armarTabla(compras) {
     }
     
     compras.forEach(function(compra) {
-        let estadoVista = getEstadoBadge(compra.estado);
+        let estadoVista = getEstadoBadge(compra.estado || 'sin estado');
         let botones = getBotonesAccion(compra);
         
         $('#tablaCompras > tbody').append(`
@@ -103,29 +110,58 @@ function armarTabla(compras) {
 
 function getEstadoBadge(estado) {
     const badges = {
-        'carrito': '<span class="badge bg-primary">En carrito</span>',
         'iniciada': '<span class="badge bg-warning">Iniciada</span>',
         'aceptada': '<span class="badge bg-success">Aceptada</span>',
         'enviada': '<span class="badge bg-info">Enviada</span>',
-        'cancelada': '<span class="badge bg-danger">Cancelada</span>'
+        'cancelada': '<span class="badge bg-danger">Cancelada</span>',
+        'sin estado': '<span class="badge bg-secondary">Sin estado</span>'
     };
-    return badges[estado?.toLowerCase()] || `<span class="badge bg-secondary">${estado || 'Sin estado'}</span>`;
+    return badges[estado.toLowerCase()] || `<span class="badge bg-secondary">${estado}</span>`;
 }
 
 function getBotonesAccion(compra) {
-    // Si la compra está enviada o cancelada, no mostramos botones de acción
-    if (['enviada', 'cancelada'].includes(compra.estado?.toLowerCase())) {
-        return `<span class="badge bg-secondary">No disponible</span>`;
+    let botones = '';
+    const estado = compra.estado?.toLowerCase() || 'sin estado';
+    
+    console.log('Estado de la compra:', estado);
+    
+    switch(estado) {
+        case 'iniciada':
+            botones = `
+                <button class="btn btn-success btn-sm" onclick="aceptarCompra(${compra.idcompra})" title="Aceptar compra">
+                    <i class="fas fa-check"></i>
+                </button>
+                <button class="btn btn-danger btn-sm" onclick="cancelarCompra(${compra.idcompra})" title="Cancelar compra">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            break;
+            
+        case 'aceptada':
+            botones = `
+                <button class="btn btn-info btn-sm" onclick="enviarCompra(${compra.idcompra})" title="Marcar como enviada">
+                    <i class="fas fa-truck"></i>
+                </button>
+                <button class="btn btn-danger btn-sm" onclick="cancelarCompra(${compra.idcompra})" title="Cancelar compra">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            break;
+            
+        case 'enviada':
+        case 'cancelada':
+            botones = `<span class="badge bg-secondary">No disponible</span>`;
+            break;
+            
+        case 'sin estado':
+            botones = `<span class="badge bg-warning">Pendiente</span>`;
+            break;
+            
+        default:
+            botones = `<span class="badge bg-secondary">Estado desconocido</span>`;
     }
-
-    return `
-        <button class="btn btn-success btn-sm" onclick="aceptarCompra(${compra.idcompra})" title="Aceptar compra">
-            <i class="fas fa-check"></i>
-        </button>
-        <button class="btn btn-danger btn-sm" onclick="cancelarCompra(${compra.idcompra})" title="Cancelar compra">
-            <i class="fas fa-times"></i>
-        </button>
-    `;
+    
+    return botones;
 }
 
 function verProductos(idcompra) {
@@ -178,38 +214,9 @@ function mostrarModalProductos(productos) {
 }
 
 function aceptarCompra(idcompra) {
-    // Primero verificamos el stock
-    $.ajax({
-        type: "POST",
-        url: '/TPFinal/Acciones/compra/verificarStock.php',
-        data: { idcompra: idcompra },
-        dataType: 'json',
-        success: function(response) {
-            if (response.exito) {
-                confirmarAceptacion(idcompra);
-            } else {
-                let mensaje = "No hay suficiente stock para los siguientes productos:<br><ul>";
-                response.productosInsuficientes.forEach(function(prod) {
-                    mensaje += `<li>${prod.producto}: Solicitado: ${prod.solicitado}, Disponible: ${prod.disponible}</li>`;
-                });
-                mensaje += "</ul>";
-                
-                bootbox.alert({
-                    title: "Stock Insuficiente",
-                    message: mensaje
-                });
-            }
-        },
-        error: function(xhr, status, error) {
-            bootbox.alert("Error al verificar stock: " + error);
-        }
-    });
-}
-
-function confirmarAceptacion(idcompra) {
     bootbox.confirm({
-        title: "Confirmar Aceptación",
-        message: "¿Está seguro de aceptar esta compra? Se actualizará el stock de los productos.",
+        title: 'Confirmar Aceptación',
+        message: '¿Está seguro de aceptar esta compra?',
         buttons: {
             confirm: {
                 label: 'Sí',
@@ -222,30 +229,8 @@ function confirmarAceptacion(idcompra) {
         },
         callback: function(result) {
             if (result) {
-                ejecutarAceptacion(idcompra);
+                cambiarEstadoCompra(idcompra, 2); // 2 = aceptada
             }
-        }
-    });
-}
-
-function ejecutarAceptacion(idcompra) {
-    $.ajax({
-        type: "POST",
-        url: '/TPFinal/Acciones/compra/aceptarCompra.php',
-        data: { idcompra: idcompra },
-        dataType: 'json',
-        success: function(response) {
-            if (response.exito) {
-                bootbox.alert("Compra aceptada exitosamente", function() {
-                    cargarCompras(); // Recargar tabla
-                });
-            } else {
-                bootbox.alert("Error: " + response.mensaje);
-            }
-        },
-        error: function(xhr, status, error) {
-            console.error('Error:', error);
-            alert('Error al aceptar la compra');
         }
     });
 }
@@ -266,30 +251,69 @@ function cancelarCompra(idcompra) {
         },
         callback: function(result) {
             if (result) {
-                ejecutarCancelacion(idcompra);
+                cambiarEstadoCompra(idcompra, 4); // 4 = cancelada
             }
         }
     });
 }
 
-function ejecutarCancelacion(idcompra) {
+function enviarCompra(idcompra) {
+    bootbox.confirm({
+        title: 'Confirmar Envío',
+        message: '¿Está seguro de marcar esta compra como enviada?',
+        buttons: {
+            confirm: {
+                label: 'Sí',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-secondary'
+            }
+        },
+        callback: function(result) {
+            if (result) {
+                cambiarEstadoCompra(idcompra, 3); // 3 = enviada
+            }
+        }
+    });
+}
+
+function cambiarEstadoCompra(idcompra, idcompraestadotipo) {
     $.ajax({
         type: "POST",
-        url: '/TPFinal/Acciones/compra/cancelarCompra.php',
-        data: { idcompra: idcompra },
+        url: '../../Acciones/compras/modificarEstadoCompra.php',
+        data: { 
+            idcompra: idcompra,
+            idcompraestadotipo: idcompraestadotipo
+        },
         dataType: 'json',
         success: function(response) {
             if (response.exito) {
-                bootbox.alert("Compra cancelada exitosamente", function() {
-                    cargarCompras(); // Recargar tabla
+                let mensaje = '';
+                switch(idcompraestadotipo) {
+                    case 2:
+                        mensaje = "Compra aceptada exitosamente";
+                        break;
+                    case 3:
+                        mensaje = "Compra marcada como enviada exitosamente";
+                        break;
+                    case 4:
+                        mensaje = "Compra cancelada exitosamente";
+                        break;
+                }
+                
+                bootbox.alert(mensaje, function() {
+                    cargarCompras();
                 });
             } else {
                 bootbox.alert("Error: " + response.mensaje);
             }
         },
         error: function(xhr, status, error) {
-            console.error('Error:', error);
-            alert('Error al cancelar la compra');
+            console.error('Error en la petición:', error);
+            console.error('Respuesta del servidor:', xhr.responseText);
+            bootbox.alert('Error al procesar la solicitud');
         }
     });
 }

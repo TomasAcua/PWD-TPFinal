@@ -4,10 +4,8 @@ class Session
 {
     public function __construct()
     {
-        if (!session_start()) {
-            return false;
-        } else {
-            return true;
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
         }
     }
 
@@ -191,7 +189,7 @@ class Session
     }
 
 
-    private function getUsuario()
+    public function getUsuario()
 {
     $user = null;
     if ($this->activa() && isset($_SESSION['usnombre'])) {

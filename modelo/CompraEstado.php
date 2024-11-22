@@ -13,12 +13,12 @@ class compraEstado extends BaseDatos{
 
     public function __construct(){
         parent::__construct();
-        $this->idcompraestado="";
-        $this->objcompra="";
-        $this->objcompraestadotipo="";
-        $this->cefechaini=date('Y-m-d H:i:s');
-        $this->cefechafin=null;
-        $this->mensajeOperacion="";
+        $this->idcompraestado = null;
+        $this->objcompra = new compra();
+        $this->objcompraestadotipo = new compraEstadoTipo();
+        $this->cefechaini = null;
+        $this->cefechafin = null;
+        $this->mensajeoperacion = "";
     }
 
     public function setear($idcompraestado,$objcompra,$objcompraestadotipo,$cefechaini,$cefechafin){
@@ -65,27 +65,23 @@ class compraEstado extends BaseDatos{
     }
     
     public function insertar(){
-        //Fecha ini poner fecha actual
-        //Setear fecha fin cuando el admin apruebe la compra (fecha)
         $resp = false;
-        // Si lleva ID Autoincrement, la consulta SQL no lleva dicho ID
-        $sql="INSERT INTO compraestado(idcompra, idcompraestadotipo, cefechaini, cefechafin) 
-            VALUES('"
-            .$this->getObjCompra()->getID()."', '"
-            .$this->getObjCompraEstadoTipo()->getID()."', '"
-            .$this->getCeFechaIni()."', '"
-            .$this->getCeFechaFin()."'
-        );";
+        $sql = "INSERT INTO compraestado (idcompra, idcompraestadotipo, cefechaini, cefechafin) 
+                VALUES (
+                    ".$this->getObjCompra()->getID().",
+                    ".$this->getObjCompraEstadoTipo()->getID().",
+                    '".$this->getCeFechaIni()."',
+                    ".($this->getCeFechaFin() ? "'".$this->getCeFechaFin()."'" : "null")."
+                )";
+        
         if ($this->Iniciar()) {
-            if ($esteid = $this->Ejecutar($sql)) {
-                // Si se usa ID autoincrement, descomentar lo siguiente:
-                $this->setID($esteid);
+            if ($this->Ejecutar($sql)) {
                 $resp = true;
             } else {
-                $this->setMensajeOperacion("compraestado->insertar: ".$this->getError());
+                $this->setmensajeoperacion("CompraEstado->insertar: ".$this->getError());
             }
         } else {
-            $this->setMensajeOperacion("compraestado->insertar: ".$this->getError());
+            $this->setmensajeoperacion("CompraEstado->insertar: ".$this->getError());
         }
         return $resp;
     }

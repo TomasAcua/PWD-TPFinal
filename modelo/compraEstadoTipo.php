@@ -216,4 +216,11 @@ class compraEstadoTipo extends BaseDatos
 
         return $this;
     }
+
+    /**
+     * @param int $idcompraestadotipo
+     */
+    public function setIdcompraestadotipo($idcompraestadotipo) {
+        $this->idcompraestadotipo = $idcompraestadotipo;
+    }
 }

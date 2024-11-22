@@ -12,8 +12,8 @@ class compra extends BaseDatos
     public function __construct()
     {
         parent::__construct();
-        $this->idcompra = "";
-        $this->cofecha = date('Y-m-d H:i:s');
+        $this->idcompra = null;
+        $this->cofecha = "";
         $this->idusuario = null;
         $this->objUsuario = null;
         $this->mensajeoperacion = "";
@@ -21,9 +21,9 @@ class compra extends BaseDatos
 
     public function setear($idcompra, $cofecha, $idusuario)
     {
-        $this->setID($idcompra);
+        $this->setIdcompra($idcompra);
         $this->setCofecha($cofecha);
-        $this->setIdUsuario($idusuario);
+        $this->setIdusuario($idusuario);
         
         // Crear objeto usuario si recibimos el ID
         if ($idusuario != null) {
@@ -38,7 +38,7 @@ class compra extends BaseDatos
         $resp = false;
         if ($objUsuario != null && $objUsuario instanceof usuario) {
             $this->setCofecha($cofecha);
-            $this->setIdUsuario($objUsuario->getID());
+            $this->setIdusuario($objUsuario->getID());
             $this->setObjUsuario($objUsuario);
             $resp = true;
         }
@@ -76,27 +76,18 @@ class compra extends BaseDatos
     public function insertar()
     {
         $resp = false;
-        $sql = "INSERT INTO compra(cofecha, idusuario) 
-            VALUES('" . $this->getCofecha() . "', ";
-        
-        // Verificar que tenemos un objeto usuario válido
-        if ($this->getObjUsuario() != null) {
-            $sql .= $this->getObjUsuario()->getID();
-        } else {
-            throw new Exception("Error: Se requiere un usuario válido para crear una compra");
-        }
-        
-        $sql .= ");";
+        $sql = "INSERT INTO compra (cofecha, idusuario) 
+                VALUES ('".$this->getCofecha()."', ".$this->getIdusuario().")";
         
         if ($this->Iniciar()) {
-            if ($esteid = $this->Ejecutar($sql)) {
-                $this->setID($esteid);
+            if ($elid = $this->Ejecutar($sql)) {
+                $this->setIdcompra($elid);
                 $resp = true;
             } else {
-                $this->setMensajeOperacion("compra->insertar: " . $this->getError());
+                $this->setmensajeoperacion("compra->insertar: ".$this->getError());
             }
         } else {
-            $this->setMensajeOperacion("compra->insertar: " . $this->getError());
+            $this->setmensajeoperacion("compra->insertar: ".$this->getError());
         }
         return $resp;
     }
@@ -169,6 +160,39 @@ class compra extends BaseDatos
         return $arreglo;
     }
 
+    public function buscar($param) {
+        $where = " true ";
+        if ($param) {
+            if (isset($param['sql'])) {
+                // Si se proporciona una consulta SQL completa, usarla directamente
+                $sql = $param['sql'];
+            } else {
+                if (isset($param['idusuario'])) {
+                    $where .= " AND idusuario = " . $param['idusuario'];
+                }
+                // ... otros parámetros de búsqueda ...
+                
+                $sql = "SELECT * FROM compra WHERE $where";
+            }
+        }
+        
+        $arreglo = array();
+        if ($this->Iniciar()) {
+            if ($this->Ejecutar($sql)) {
+                while ($row = $this->Registro()) {
+                    $obj = new compra();
+                    $obj->setear($row['idcompra'], $row['cofecha'], $row['idusuario']);
+                    array_push($arreglo, $obj);
+                }
+            } else {
+                $this->setmensajeoperacion("compra->buscar: " . $this->getError());
+            }
+        } else {
+            $this->setmensajeoperacion("compra->buscar: " . $this->getError());
+        }
+        return $arreglo;
+    }
+
 
 
 
@@ -235,11 +259,12 @@ class compra extends BaseDatos
      */
     public function getObjUsuario()
     {
-        if ($this->objUsuario == null && $this->idusuario != null) {
+        if ($this->objUsuario == null && $this->idusuario !== null) {
             $objUsuario = new usuario();
             $objUsuario->setID($this->idusuario);
-            $objUsuario->cargar();
-            $this->objUsuario = $objUsuario;
+            if ($objUsuario->cargar()) {
+                $this->objUsuario = $objUsuario;
+            }
         }
         return $this->objUsuario;
     }
@@ -272,5 +297,16 @@ class compra extends BaseDatos
         $this->mensajeoperacion = $mensajeoperacion;
 
         return $this;
+    }
+
+    /**
+     * @param int $idcompra
+     */
+    public function setIdcompra($idcompra) {
+        $this->idcompra = $idcompra;
+    }
+
+    public function getIdcompra() {
+        return $this->idcompra;
     }
 }

@@ -14,6 +14,11 @@ if (!$sesion->verificarPermiso('Cliente/tienda.php')) {
         <div class="col">
             <h2 class="text-center"><i class="fas fa-store me-2"></i>Nuestra Tienda</h2>
         </div>
+        <div class="col-auto">
+            <a href="carrito.php" class="btn btn-primary">
+                <i class="fas fa-shopping-cart me-2"></i>Ver Carrito
+            </a>
+        </div>
     </div>
     
     <!-- Contenedor de productos -->

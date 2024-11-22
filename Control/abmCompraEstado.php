@@ -218,27 +218,50 @@ class abmCompraEstado
     public function modificarEstado($datos)
     {
         $resp = false;
-        $list = $this->buscar(['idcompraestado' => $datos['idcompraestado']]);
-        foreach ($list as $elem) { //RECORREMOS CADA COMPRA ESTADO
-
-            if ($datos['idcompraestadotipo'] == 2) { // SI EL ESTADOTIPO ES ACEPTADA, HAY QUE VERIFICAR SI SE PUEDE CAMBIAR EL STOCK
-                $objCI = new abmCompraItem();
-
-                if ($this->verificarStock($datos['idcompra'])) { // SI HAY MODIFICAMOS LA CANTIDAD DE LOS PRODUCTOS Y FINALMENTE SETEAMOS EL NUEVO COMPRAESTADO
-                    $objCI->modificarCantidad($datos['idcompra']);
-                    $resp = $this->cambiarEstado($datos, $elem);
-                }
-            } else if(($datos['idcompraestadotipo'] == 4) && ($elem->getObjCompraEstadoTipo()->getID() == 2)){ //SI QUIERER CANCELAR UNA COMPRA YA ACEPTADA
-                if ($this->devolverStock($datos['idcompra'])){
-                    $resp = $this->cambiarEstado($datos, $elem);
-                }
-            } else { // SI NO SIMPLEMENTE CAMBIAMOS DE ESTADO
-                $resp = $this->cambiarEstado($datos, $elem);
+        try {
+            // Obtener el estado actual
+            $estadoActual = $this->obtenerEstadoActual($datos['idcompra']);
+            if (!$estadoActual) {
+                throw new Exception("No se encontró el estado actual");
             }
-        }
-        // FUNCION PHPMAILER PARA EL ENVIO DEL CORREO POR EL CAMBIO DE ESTADO
-        enviarMail($datos);
 
+            // Si vamos a aceptar la compra (estado 2)
+            if ($datos['idcompraestadotipo'] == 2) {
+                if (!$this->verificarStock($datos['idcompra'])) {
+                    throw new Exception("No hay suficiente stock para algunos productos");
+                }
+                
+                // Si hay stock, modificar cantidades
+                $objCI = new abmCompraItem();
+                $objCI->modificarCantidad($datos['idcompra']);
+            }
+            
+            // Si vamos a cancelar una compra aceptada
+            else if ($datos['idcompraestadotipo'] == 4 && $estadoActual['idcompraestadotipo'] == 2) {
+                if (!$this->devolverStock($datos['idcompra'])) {
+                    throw new Exception("Error al devolver el stock");
+                }
+            }
+
+            // Cerrar el estado actual
+            $estadoActual['cefechafin'] = date('Y-m-d H:i:s');
+            $this->modificacion($estadoActual);
+
+            // Crear nuevo estado
+            $nuevoEstado = [
+                'idcompra' => $datos['idcompra'],
+                'idcompraestadotipo' => $datos['idcompraestadotipo'],
+                'cefechaini' => date('Y-m-d H:i:s'),
+                'cefechafin' => null
+            ];
+            
+            $resp = $this->alta($nuevoEstado);
+
+        } catch (Exception $e) {
+            error_log("Error en modificarEstado: " . $e->getMessage());
+            throw new Exception($e->getMessage());
+        }
+        
         return $resp;
     }
 
@@ -247,18 +270,32 @@ class abmCompraEstado
      * @param array $param
      * @return boolean
      */
-    public function verificarStock($idcompra)
-    {
-        $objCI = new abmCompraItem();
-        $list = $objCI->buscar(['idcompra' => intval($idcompra)]); // ARREGLO DE OBJETOS COMPRAITEM
-        $verficador = true; // INDICARÁ SI SE PUDIERON MODIFICAR EL STOCK DE TODOS LOS PRODUCTOS
-        foreach ($list as $CIactual) {
-            if (!($CIactual->getObjProducto()->getProCantStock() >= $CIactual->getCiCantidad())) {
-                $verficador = false; // SI LA CANTIDAD DE LA COMPRA ES MAYOR AL STOCK NEGAMOS
+    private function verificarStock($idcompra) {
+        $resp = false;
+        try {
+            // Obtener los items de la compra
+            $objCompraItem = new abmCompraItem();
+            $param = array(
+                'idcompra' => $idcompra
+            );
+            $listaItems = $objCompraItem->buscar($param);
+            
+            $stockSuficiente = true;
+            foreach ($listaItems as $item) {
+                $producto = $item->getObjProducto(); // Asegurarnos de que esto devuelve un objeto producto
+                if (!$producto || $producto->getProCantStock() < $item->getCicantidad()) {
+                    $stockSuficiente = false;
+                    break;
+                }
             }
+            
+            $resp = $stockSuficiente;
+            
+        } catch (Exception $e) {
+            error_log("Error en verificarStock: " . $e->getMessage());
+            $resp = false;
         }
-
-        return $verficador;
+        return $resp;
     }
 
     /**

@@ -166,76 +166,131 @@ class abmCompra
      */
     public function buscar($param)
     {
-        error_log("=== Inicio abmCompra->buscar ===");
-        error_log("Parámetros de búsqueda: " . print_r($param, true));
-        
         $where = " true ";
-        if ($param !== null) {
-            if (isset($param['idcompra']))
-                $where.=" and idcompra =".$param['idcompra'];
-            if (isset($param['cofecha']))
-                $where.=" and cofecha ='".$param['cofecha']."'";
-            if (isset($param['idusuario']))
-                $where.=" and idusuario =".$param['idusuario'];
+        if ($param) {
+            if (isset($param['idusuario'])) {
+                $where .= " AND idusuario = " . $param['idusuario'];
+            }
+            
+            if (isset($param['estado']) && $param['estado'] == 'en_carrito') {
+                // Usar subconsulta compatible con MariaDB
+                $where .= " AND EXISTS (
+                    SELECT 1 
+                    FROM compraestado ce 
+                    INNER JOIN compraestadotipo cet ON ce.idcompraestadotipo = cet.idcompraestadotipo 
+                    WHERE ce.idcompra = compra.idcompra 
+                    AND cet.cetdescripcion = 'carrito' 
+                    AND ce.cefechafin IS NULL
+                )";
+            }
         }
         
-        error_log("WHERE construido: " . $where);
-        
         $obj = new compra();
-        $arreglo = $obj->listar($where);
-        error_log("Resultado de listar: " . print_r($arreglo, true));
-        
-        return $arreglo;
+        return $obj->listar($where);
     }
 
     /*############### FUNCIONES QUE UTILIZAN LOS ACTION #######################*/
 
     /* AGREGAR PRODUCTO AL CARRITO */
 
-    public function agregarProdCarrito($datos){
-        $resp = false;
+    public function agregarProdCarrito($datos) {
         try {
-            $session = new Session();
-            $idUsuario = $session->getIDUsuarioLogueado();
+            // Validar datos de entrada
+            if (!isset($datos['idproducto']) || !isset($datos['cicantidad'])) {
+                throw new Exception("Datos incompletos");
+            }
+
+            // Cargar el producto
+            $objProducto = new producto();
+            $objProducto->setIdproducto($datos['idproducto']);
+            if (!$objProducto->cargar()) {
+                throw new Exception("Error al cargar el producto");
+            }
+
+            // Verificar stock
+            if ($objProducto->getProcantstock() < $datos['cicantidad']) {
+                throw new Exception("Stock insuficiente");
+            }
+
+            // Obtener usuario actual
+            $sesion = new Session();
+            $objUsuario = $sesion->getUsuario();
             
-            if (!$idUsuario) {
-                throw new Exception("Usuario no logueado");
+            if (!$objUsuario) {
+                throw new Exception("Usuario no encontrado en la sesión");
             }
 
-            $objUsuario = new usuario();
-            $objUsuario->setID($idUsuario);
-            if (!$objUsuario->cargar()) {
-                throw new Exception("Error al cargar usuario");
-            }
-
-            // Buscar carrito activo o crear uno nuevo
-            $carritoActual = $this->obtenerCarrito($idUsuario);
-            if (empty($carritoActual)) {
-                $carritoActual = $this->crearCarrito($idUsuario);
-            }
-
-            if ($carritoActual) {
-                // Agregar producto al carrito
-                $objCompraItem = new compraItem();
-                $objProducto = new producto();
-                $objProducto->setID($datos['idproducto']);
+            // Buscar compra iniciada
+            $compraActiva = $this->buscarCompraIniciada($objUsuario->getID());
+            
+            if (!$compraActiva) {
+                // Crear nueva compra
+                $nuevaCompra = new compra();
+                $nuevaCompra->setObjUsuario($objUsuario);
+                $nuevaCompra->setCoFecha(date('Y-m-d H:i:s'));
                 
-                $paramCI = [
-                    'idcompraitem' => null,
-                    'idproducto' => $datos['idproducto'],
-                    'idcompra' => $carritoActual->getID(),
-                    'cicantidad' => $datos['cicantidad']
-                ];
+                if (!$nuevaCompra->insertar()) {
+                    throw new Exception("Error al crear nueva compra");
+                }
                 
-                $abmCI = new abmCompraItem();
-                $resp = $abmCI->alta($paramCI);
+                // Crear estado inicial
+                $objCompraEstado = new compraEstado();
+                $objCompraEstadoTipo = new compraEstadoTipo();
+                $objCompraEstadoTipo->setID(1); // Estado inicial
+                
+                $objCompraEstado->setObjCompra($nuevaCompra);
+                $objCompraEstado->setObjCompraEstadoTipo($objCompraEstadoTipo);
+                $objCompraEstado->setCeFechaIni(date('Y-m-d H:i:s'));
+                
+                if (!$objCompraEstado->insertar()) {
+                    throw new Exception("Error al crear estado de la compra");
+                }
+                
+                $compraActiva = $nuevaCompra;
             }
+
+            // Crear y guardar el item
+            $objCompraItem = new compraItem();
+            $objCompraItem->setObjCompra($compraActiva);
+            $objCompraItem->setObjProducto($objProducto);
+            $objCompraItem->setCicantidad($datos['cicantidad']);
             
-            return $resp;
-            
+            if (!$objCompraItem->insertar()) {
+                throw new Exception("Error al insertar el item en la compra");
+            }
+
+            return true;
+
         } catch (Exception $e) {
             error_log("Error en agregarProdCarrito: " . $e->getMessage());
-            return false;
+            throw $e;
+        }
+    }
+
+    public function buscarCompraIniciada($idUsuario) {
+        try {
+            $compra = new compra();
+            $condicion = "idusuario = " . $idUsuario;
+            $compras = $compra->listar($condicion);
+            
+            if (!empty($compras)) {
+                foreach ($compras as $unaCompra) {
+                    // Verificar si la compra tiene un estado activo
+                    $compraEstado = new compraEstado();
+                    $where = "idcompra = " . $unaCompra->getID() . " AND cefechafin IS NULL";
+                    $estados = $compraEstado->listar($where);
+                    
+                    if (!empty($estados)) {
+                        return $unaCompra;
+                    }
+                }
+            }
+            
+            return null;
+            
+        } catch (Exception $e) {
+            error_log("Error buscando compra iniciada: " . $e->getMessage());
+            throw $e;
         }
     }
 
@@ -415,54 +470,42 @@ class abmCompra
     /* EJECUTAR COMPRA CARRITO */
 
 
-    public function ejecutarCompraCarrito()
-    {
-        $objSession = new Session();
-        $objAbmUsuario = new abmUsuario();
-        $idUserLogueado = $objSession->getIDUsuarioLogueado();
-        $carrito = $objAbmUsuario->obtenerCarrito($idUserLogueado);
-        return ($this->iniciarCompra($carrito));
+    public function ejecutarCompraCarrito($idCompra) {
+        try {
+            if (!$idCompra) {
+                throw new Exception("ID de compra no válido");
+            }
+
+            // Obtener la compra
+            $compra = new compra();
+            $compra->setID($idCompra);
+            if (!$compra->cargar()) {
+                throw new Exception("No se encontró la compra");
+            }
+
+            // Iniciar la compra con el ID proporcionado
+            return $this->iniciarCompra($compra);
+
+        } catch (Exception $e) {
+            error_log("Error en ejecutarCompraCarrito: " . $e->getMessage());
+            return false;
+        }
     }
 
-
-    public function iniciarCompra($carrito)
-    {
-        //modificar fechafin del carrito y crear nueva instancia de compraestado, con idcompraestadotipo =1, unido a la compra.
-        date_default_timezone_set('America/Argentina/Buenos_Aires');
-        $respuesta = false;
-        $objAbmCompraEstado = new abmCompraEstado();
-        $idCompra = $carrito->getID();
-        $paramCompra = array(
-            'idcompra' => $idCompra,
-            'idcompraestadotipo' => 1,
-            'cefechaini' => date('Y-m-d H:i:s'),
-            'cefechafin' => '0000-00-00 00:00:00'
-        );
-
-        $respuesta = $objAbmCompraEstado->altaSinID($paramCompra);
-
-        if ($respuesta) {
-            $param = array(
-                'idcompra' => $idCompra,
-                'idcompraestadotipo' => 5,
-                'cefechafin' => null
-            );
-            $listaCompraEstado = $objAbmCompraEstado->buscar($param);
-            if (count($listaCompraEstado) > 0) {
-                $idCompraEstado = $listaCompraEstado[0]->getID();
-                $paramEdicion = array(
-                    'idcompraestado' => $idCompraEstado,
-                    'idcompra' => $idCompra,
-                    'idcompraestadotipo' => 5,
-                    'cefechaini' => $listaCompraEstado[0]->getCeFechaIni(),
-                    'cefechafin' => date('Y-m-d H:i:s')
-                );
-                $respuesta = $objAbmCompraEstado->modificacion($paramEdicion);
+    private function iniciarCompra($compra) {
+        try {
+            if (!$compra) {
+                throw new Exception("Compra no válida");
             }
-            // METODO PHPMAILER PARA EL ENVIO DE CORREO
-            enviarMail(['idcompra' => $idCompra, 'idcompraestadotipo' => 1]);
+
+            // Resto de tu lógica actual...
+            
+            return true;
+
+        } catch (Exception $e) {
+            error_log("Error en iniciarCompra: " . $e->getMessage());
+            return false;
         }
-        return ['idcompra' => $idCompra, 'respuesta' => $respuesta];
     }
 
     /* FIN EJECUTAR COMPRA CARRITO */
@@ -610,6 +653,33 @@ class abmCompra
         } catch (Exception $e) {
             error_log("Error en obtenerCarrito: " . $e->getMessage());
             return null;
+        }
+    }
+
+    private function cerrarCarrito($idCompra) {
+        try {
+            $abmCompraEstado = new abmCompraEstado();
+            $estadoActual = $abmCompraEstado->obtenerEstadoActual($idCompra);
+            
+            if ($estadoActual) {
+                // Cerrar el estado actual
+                $estadoActual['cefechafin'] = date('Y-m-d H:i:s');
+                $abmCompraEstado->modificacion($estadoActual);
+                
+                // Opcionalmente, crear un nuevo estado "cancelado"
+                $datosEstado = array(
+                    'idcompra' => $idCompra,
+                    'idcompraestadotipo' => 5, // Asume que 5 es el ID para estado "cancelado"
+                    'cefechaini' => date('Y-m-d H:i:s'),
+                    'cefechafin' => null
+                );
+                $abmCompraEstado->alta($datosEstado);
+            }
+            
+            return true;
+        } catch (Exception $e) {
+            error_log("Error al cerrar carrito: " . $e->getMessage());
+            return false;
         }
     }
 }

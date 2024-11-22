@@ -192,6 +192,11 @@ private function analizarDebug() {
         echo "</pre>";
     }
 }
+
+public function getConexion() {
+    // Devuelve la conexión PDO
+    return $this;
+}
 }
 
 ?>

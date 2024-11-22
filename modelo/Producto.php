@@ -54,18 +54,26 @@ class producto extends BaseDatos
     public function cargar()
     {
         $resp = false;
-        
-        $sql="SELECT * FROM producto WHERE idproducto = ".$this->getID();
+        $sql = "SELECT * FROM producto WHERE idproducto = " . $this->getID();
+        error_log("SQL producto cargar: " . $sql);
         if ($this->Iniciar()) {
             $res = $this->Ejecutar($sql);
-            if ($res>-1) {
-                if ($res>0) {
+            if ($res > -1) {
+                if ($res > 0) {
                     $row = $this->Registro();
-                    $this->setear($row['idproducto'], $row['pronombre'], $row['prodetalle'], $row['procantstock'], $row['precio'], $row['prodeshabilitado'], $row['imagen']);
+                    error_log("Producto encontrado: " . print_r($row, true));
+                    $this->setear(
+                        $row['idproducto'],
+                        $row['pronombre'],
+                        $row['prodetalle'],
+                        $row['procantstock'],
+                        $row['precio'],
+                        $row['prodeshabilitado'],
+                        $row['imagen']
+                    );
+                    $resp = true;
                 }
             }
-        } else {
-            $this->setMensajeOperacion("producto->listar: ".$this->getError());
         }
         return $resp;
     }
@@ -340,6 +348,13 @@ class producto extends BaseDatos
         $this->imagen = $imagen;
 
         return $this;
+    }
+
+    /**
+     * @param int $idproducto
+     */
+    public function setIdproducto($idproducto) {
+        $this->idproducto = $idproducto;
     }
 
 }
