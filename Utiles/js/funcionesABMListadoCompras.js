@@ -66,7 +66,7 @@ function armarTabla(compras) {
         console.log("No hay compras para mostrar");
         $('#tablaCompras > tbody').append(`
             <tr>
-                <td colspan="6" class="text-center">No hay compras registradas</td>
+                <td colspan="5" class="text-center">No hay compras registradas</td>
             </tr>
         `);
         return;
@@ -75,7 +75,6 @@ function armarTabla(compras) {
     compras.forEach(function(compra) {
         console.log("Procesando compra:", compra);
         let estadoVista = getEstadoBadge(compra.estado);
-        let botones = getBotonesAccion(compra);
         
         $('#tablaCompras > tbody').append(`
             <tr>
@@ -87,12 +86,12 @@ function armarTabla(compras) {
                         <i class="fas fa-eye me-2"></i>Ver productos
                     </button>
                 </td>
-                <td>${getEstadoBadge(compra.estado)}</td>
+                <td>${estadoVista}</td>
                 <td>${compra.cofecha}</td>
                 <td>
                     ${compra.estado === 'iniciada' ? 
-                        `<button class="btn btn-danger btn-sm cancelarCompra" 
-                                data-id="${compra.idcompra}">
+                        `<button class="btn btn-danger btn-sm" 
+                                onclick="cancelarCompra(${compra.idcompraestadotipo}, ${compra.idcompra}, ${compra.idcompraestado})">
                             <i class="fas fa-times me-2"></i>Cancelar
                         </button>` : 
                         ''
@@ -104,14 +103,15 @@ function armarTabla(compras) {
 }
 
 function getEstadoBadge(estado) {
+    const estadoLower = estado.toLowerCase();
     const badges = {
-        'iniciada': 'bg-primary',
-        'aceptada': 'bg-success',
-        'enviada': 'bg-info',
-        'cancelada': 'bg-danger'
+        'iniciada': '<span class="badge bg-primary">Iniciada</span>',
+        'aceptada': '<span class="badge bg-success">Aceptada</span>',
+        'enviada': '<span class="badge bg-info">Enviada</span>',
+        'cancelada': '<span class="badge bg-danger">Cancelada</span>',
+        'carrito': '<span class="badge bg-warning">En Carrito</span>'
     };
-    
-    return `<span class="badge ${badges[estado.toLowerCase()] || 'bg-secondary'}">${estado}</span>`;
+    return badges[estadoLower] || `<span class="badge bg-secondary">${estado}</span>`;
 }
 
 /*################################# VER PRODUCTOS DE COMPRA #################################*/
@@ -124,7 +124,7 @@ $(document).on('click', '.verProductos', function () {
 
     $.ajax({
         type: "POST",
-        url: '../Acciones/producto/listadoProds.php',
+        url: 'TPFinal/Acciones/producto/listadoProds.php',
         data: { idcompra: idcompra },
         success: function (response) {
             arreglo = [];
@@ -219,3 +219,61 @@ function cancelarCompra(idcompraestadotipo,idboton,idcompraestado) {
 
     
 }
+
+// Agregar este evento después de las funciones existentes
+$(document).on('click', '.verProductos', function() {
+    const idcompra = $(this).data('id');
+    const nombreUsuario = $(this).data('usuario');
+    
+    console.log('Viendo productos de compra:', idcompra);
+    
+    $.ajax({
+        type: "POST",
+        url: '/TPFinal/Acciones/compra/listarProdCompra.php',
+        data: { idcompra: idcompra },
+        success: function(response) {
+            console.log('Respuesta recibida:', response);
+            try {
+                const productos = JSON.parse(response);
+                if (Array.isArray(productos)) {
+                    // Limpiar contenido anterior
+                    $('#usnombre').empty();
+                    $("#listaProductos").empty();
+                    
+                    // Mostrar productos
+                    $('#usnombre').append(`
+                        <i class="fa-regular fa-rectangle-list me-2"></i>
+                        Productos de la compra #${idcompra} - ${nombreUsuario}
+                    `);
+                    
+                    productos.forEach(producto => {
+                        $('#listaProductos').append(`
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="row g-0 w-100">
+                                    <div class="col-md-4">
+                                        <img src="/TPFinal/Vista/img/productos/${producto.imagen}" 
+                                             class="img-fluid rounded-start" 
+                                             alt="${producto.pronombre}">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${producto.pronombre}</h5>
+                                            <p class="card-text">${producto.prodetalle}</p>
+                                            <p class="card-text">
+                                                <small class="text-muted">$ ${producto.precio}</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        `);
+                    });
+                } else {
+                    console.error('Respuesta no es un array válido:', response);
+                }
+            } catch(e) {
+                console.error('Respuesta no es JSON válido:', response);
+            }
+        }
+    });
+});

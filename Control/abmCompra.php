@@ -564,20 +564,45 @@ class abmCompra
 
     /* FIN VACIAR CARRITO */
 
-    public function listarComprasUsuarios()
-    {
-        //Lista todos los datos de compra y compraestado referidos a todos los usuarios
-        $arreglo = [];
-        $abmUsuario = new abmUsuario();
-        $users = $abmUsuario->buscar(null);
-        if (count($users) > 0) {
-            foreach ($users as $user) {
-                $arrDatos = $this->listarCompras($user->getID());
-                array_push($arreglo, $arrDatos);
+    public function listarComprasUsuarios($param = null) {
+        try {
+            $where = " true ";
+            if ($param !== null && isset($param['idusuario'])) {
+                $where .= " AND idusuario = " . $param['idusuario'];
             }
+            
+            $obj = new compra();
+            $arreglo = $obj->listar($where);
+            error_log("Compras encontradas: " . print_r($arreglo, true));
+            
+            $resultado = [];
+            foreach ($arreglo as $compra) {
+                $abmCompraEstado = new abmCompraEstado();
+                $estadoActual = $abmCompraEstado->obtenerEstadoActual($compra->getID());
+                
+                $objUsuario = $compra->getObjUsuario();
+                
+                // Solo incluir si el usuario coincide
+                if ($objUsuario && $objUsuario->getID() == $param['idusuario']) {
+                    $resultado[] = array(
+                        'idcompra' => $compra->getID(),
+                        'cofecha' => $compra->getCoFecha(),
+                        'usnombre' => $objUsuario->getUsNombre(),
+                        'idusuario' => $objUsuario->getID(),
+                        'estado' => $estadoActual['descripcion'],
+                        'idcompraestado' => $estadoActual['idcompraestado'],
+                        'idcompraestadotipo' => $estadoActual['idcompraestadotipo']
+                    );
+                }
+            }
+            
+            error_log("Resultado final filtrado por usuario " . $param['idusuario'] . ": " . print_r($resultado, true));
+            return $resultado;
+            
+        } catch (Exception $e) {
+            error_log("Error en listarComprasUsuarios: " . $e->getMessage());
+            return [];
         }
-
-        return $arreglo;
     }
 
     public function listarCompras($idUsuario = null) {

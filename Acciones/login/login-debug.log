@@ -7299,3 +7299,206 @@
 
 [22-Nov-2024 03:54:25 Europe/Berlin] === FIN DE SOLICITUD DE LOGIN ===
 
+[22-Nov-2024 05:48:45 Europe/Berlin] === INICIO DE SOLICITUD DE LOGIN ===
+[22-Nov-2024 05:48:45 Europe/Berlin] Obteniendo datos enviados...
+[22-Nov-2024 05:48:45 Europe/Berlin] Datos recibidos: Array
+(
+    [usnombre] => cliente
+    [uspass] => 7159bbe0c8ca2a67230a26b72dea7557
+)
+
+[22-Nov-2024 05:48:45 Europe/Berlin] Datos completos recibidos para usuario: cliente
+[22-Nov-2024 05:48:45 Europe/Berlin] Sesión creada
+[22-Nov-2024 05:48:45 Europe/Berlin] Estado de sesión activa: NO
+[22-Nov-2024 05:48:45 Europe/Berlin] Intentando validar usuario...
+[22-Nov-2024 05:48:45 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[22-Nov-2024 05:48:45 Europe/Berlin] Validando usuario: cliente
+[22-Nov-2024 05:48:45 Europe/Berlin] Hash recibido: 7159bbe0c8ca2a67230a26b72dea7557
+[22-Nov-2024 05:48:45 Europe/Berlin] === Inicio búsqueda de usuario ===
+[22-Nov-2024 05:48:45 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => cliente
+)
+
+[22-Nov-2024 05:48:45 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'cliente'
+[22-Nov-2024 05:48:45 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'cliente'
+[22-Nov-2024 05:48:45 Europe/Berlin] Resultado de la ejecución: 1
+[22-Nov-2024 05:48:45 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 4
+    [0] => 4
+    [usnombre] => cliente
+    [1] => cliente
+    [uspass] => 7159bbe0c8ca2a67230a26b72dea7557
+    [2] => 7159bbe0c8ca2a67230a26b72dea7557
+    [usmail] => cliente@gmail.com
+    [3] => cliente@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[22-Nov-2024 05:48:45 Europe/Berlin] Resultados encontrados: 1
+[22-Nov-2024 05:48:45 Europe/Berlin] Usuario encontrado - ID: 4, Nombre: cliente
+[22-Nov-2024 05:48:45 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => cliente
+)
+
+[22-Nov-2024 05:48:45 Europe/Berlin] Usuario encontrado: SI
+[22-Nov-2024 05:48:45 Europe/Berlin] Password almacenado: 7159bbe0c8ca2a67230a26b72dea7557
+[22-Nov-2024 05:48:45 Europe/Berlin] Password recibido: 7159bbe0c8ca2a67230a26b72dea7557
+[22-Nov-2024 05:48:45 Europe/Berlin] Contraseña correcta
+[22-Nov-2024 05:48:45 Europe/Berlin] Resultado de validación: EXITOSO
+[22-Nov-2024 05:48:45 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[22-Nov-2024 05:48:45 Europe/Berlin] Resultado de validación: EXITOSA
+[22-Nov-2024 05:48:45 Europe/Berlin] === INICIO DE MÉTODO INICIAR ===
+[22-Nov-2024 05:48:45 Europe/Berlin] No hay sesión activa, procediendo con la validación
+[22-Nov-2024 05:48:45 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[22-Nov-2024 05:48:45 Europe/Berlin] Validando usuario: cliente
+[22-Nov-2024 05:48:45 Europe/Berlin] Hash recibido: 7159bbe0c8ca2a67230a26b72dea7557
+[22-Nov-2024 05:48:45 Europe/Berlin] === Inicio búsqueda de usuario ===
+[22-Nov-2024 05:48:45 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => cliente
+)
+
+[22-Nov-2024 05:48:45 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'cliente'
+[22-Nov-2024 05:48:45 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'cliente'
+[22-Nov-2024 05:48:45 Europe/Berlin] Resultado de la ejecución: 1
+[22-Nov-2024 05:48:45 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 4
+    [0] => 4
+    [usnombre] => cliente
+    [1] => cliente
+    [uspass] => 7159bbe0c8ca2a67230a26b72dea7557
+    [2] => 7159bbe0c8ca2a67230a26b72dea7557
+    [usmail] => cliente@gmail.com
+    [3] => cliente@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[22-Nov-2024 05:48:45 Europe/Berlin] Resultados encontrados: 1
+[22-Nov-2024 05:48:45 Europe/Berlin] Usuario encontrado - ID: 4, Nombre: cliente
+[22-Nov-2024 05:48:45 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => cliente
+)
+
+[22-Nov-2024 05:48:45 Europe/Berlin] Usuario encontrado: SI
+[22-Nov-2024 05:48:45 Europe/Berlin] Password almacenado: 7159bbe0c8ca2a67230a26b72dea7557
+[22-Nov-2024 05:48:45 Europe/Berlin] Password recibido: 7159bbe0c8ca2a67230a26b72dea7557
+[22-Nov-2024 05:48:45 Europe/Berlin] Contraseña correcta
+[22-Nov-2024 05:48:45 Europe/Berlin] Resultado de validación: EXITOSO
+[22-Nov-2024 05:48:45 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[22-Nov-2024 05:48:45 Europe/Berlin] Validación exitosa, iniciando sesión
+[22-Nov-2024 05:48:45 Europe/Berlin] === Inicio búsqueda de usuario ===
+[22-Nov-2024 05:48:45 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => cliente
+)
+
+[22-Nov-2024 05:48:45 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'cliente'
+[22-Nov-2024 05:48:45 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'cliente'
+[22-Nov-2024 05:48:45 Europe/Berlin] Resultado de la ejecución: 1
+[22-Nov-2024 05:48:45 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 4
+    [0] => 4
+    [usnombre] => cliente
+    [1] => cliente
+    [uspass] => 7159bbe0c8ca2a67230a26b72dea7557
+    [2] => 7159bbe0c8ca2a67230a26b72dea7557
+    [usmail] => cliente@gmail.com
+    [3] => cliente@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[22-Nov-2024 05:48:45 Europe/Berlin] Resultados encontrados: 1
+[22-Nov-2024 05:48:45 Europe/Berlin] Usuario encontrado - ID: 4, Nombre: cliente
+[22-Nov-2024 05:48:45 Europe/Berlin] Buscando datos de usuario
+[22-Nov-2024 05:48:45 Europe/Berlin] Usuario encontrado, ID: 4
+[22-Nov-2024 05:48:45 Europe/Berlin] === INICIO SETEAR ROL ACTIVO ===
+[22-Nov-2024 05:48:45 Europe/Berlin] === Inicio búsqueda de usuario ===
+[22-Nov-2024 05:48:45 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => cliente
+)
+
+[22-Nov-2024 05:48:45 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'cliente'
+[22-Nov-2024 05:48:45 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'cliente'
+[22-Nov-2024 05:48:45 Europe/Berlin] Resultado de la ejecución: 1
+[22-Nov-2024 05:48:45 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 4
+    [0] => 4
+    [usnombre] => cliente
+    [1] => cliente
+    [uspass] => 7159bbe0c8ca2a67230a26b72dea7557
+    [2] => 7159bbe0c8ca2a67230a26b72dea7557
+    [usmail] => cliente@gmail.com
+    [3] => cliente@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[22-Nov-2024 05:48:45 Europe/Berlin] Resultados encontrados: 1
+[22-Nov-2024 05:48:45 Europe/Berlin] Usuario encontrado - ID: 4, Nombre: cliente
+[22-Nov-2024 05:48:45 Europe/Berlin] Roles encontrados: 1
+[22-Nov-2024 05:48:45 Europe/Berlin] Rol activo descripción: cliente
+[22-Nov-2024 05:48:45 Europe/Berlin] === Inicio búsqueda de usuario ===
+[22-Nov-2024 05:48:45 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => cliente
+)
+
+[22-Nov-2024 05:48:45 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'cliente'
+[22-Nov-2024 05:48:45 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'cliente'
+[22-Nov-2024 05:48:45 Europe/Berlin] Resultado de la ejecución: 1
+[22-Nov-2024 05:48:45 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 4
+    [0] => 4
+    [usnombre] => cliente
+    [1] => cliente
+    [uspass] => 7159bbe0c8ca2a67230a26b72dea7557
+    [2] => 7159bbe0c8ca2a67230a26b72dea7557
+    [usmail] => cliente@gmail.com
+    [3] => cliente@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[22-Nov-2024 05:48:45 Europe/Berlin] Resultados encontrados: 1
+[22-Nov-2024 05:48:45 Europe/Berlin] Usuario encontrado - ID: 4, Nombre: cliente
+[22-Nov-2024 05:48:45 Europe/Berlin] ID del rol: 3
+[22-Nov-2024 05:48:45 Europe/Berlin] Rol activo seteado correctamente
+[22-Nov-2024 05:48:45 Europe/Berlin] Resultado setearRolActivo: EXITOSO
+[22-Nov-2024 05:48:45 Europe/Berlin] === FIN SETEAR ROL ACTIVO ===
+[22-Nov-2024 05:48:45 Europe/Berlin] Rol activo seteado correctamente
+[22-Nov-2024 05:48:45 Europe/Berlin] Sesión iniciada correctamente
+[22-Nov-2024 05:48:45 Europe/Berlin] Resultado de iniciar(): EXITOSO
+[22-Nov-2024 05:48:45 Europe/Berlin] === FIN DE MÉTODO INICIAR ===
+[22-Nov-2024 05:48:45 Europe/Berlin] Inicio de sesión exitoso
+[22-Nov-2024 05:48:45 Europe/Berlin] Respuesta a enviar: Array
+(
+    [success] => 1
+    [message] => Inicio de sesión exitoso
+    [debug] => Array
+        (
+            [datos_recibidos] => Array
+                (
+                    [usnombre] => cliente
+                    [uspass] => 7159bbe0c8ca2a67230a26b72dea7557
+                )
+
+        )
+
+)
+
+[22-Nov-2024 05:48:45 Europe/Berlin] === FIN DE SOLICITUD DE LOGIN ===
+

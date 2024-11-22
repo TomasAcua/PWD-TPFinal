@@ -41,7 +41,7 @@ if (!$sesion->verificarPermiso('Cliente/listaCompras.php')) {
                 </div>
             </div>
 
-            <script src="..\Utiles\js\funcionesABMListadoCompras.js"></script>
+            <script src="/TPFinal/Utiles/js/funcionesABMListadoCompras.js"></script>
         </div>
     <?php } else {
         ?>
