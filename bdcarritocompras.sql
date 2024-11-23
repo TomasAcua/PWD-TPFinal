@@ -157,11 +157,7 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`idproducto`, `pronombre`, `prodetalle`, `procantstock`, `precio`, `prodeshabilitado`, `imagen`) VALUES
-(99, 'Planta 1', 'descripcion sobre planta 1', 10, 100, '0000-00-00 00:00:00', 'producto1674668198103801747363d168a6b8d69.jpeg'),
-(100, 'Planta 2', 'descripcion sobre planta 2', 10, 100, '0000-00-00 00:00:00', 'producto167466821298072312663d168b431436.jpeg'),
-(101, 'Planta 3', 'descripcion sobre planta 3', 10, 100, '0000-00-00 00:00:00', 'producto167466822524751216463d168c1d9ef6.jpeg'),
-(102, 'Planta 4', 'descripcion sobre planta 4', 10, 100, '0000-00-00 00:00:00', 'producto1674668236131023293663d168cc86c42.jpeg'),
-(103, 'Planta 5', 'descripcion sobre planta 5', 10, 100, '0000-00-00 00:00:00', 'producto1674668261197346209963d168e50d7dd.jpeg');
+
 
 -- --------------------------------------------------------
 
@@ -202,7 +198,6 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idusuario`, `usnombre`, `uspass`, `usmail`, `usdeshabilitado`) VALUES
-(1, 'mondongo', '9fe75de7500e7073d749469bb3a46cc2', 'braiankrayan@hotmail.com', NULL),
 (2, 'admin', '0192023a7bbd73250516f069df18b500', 'admin@gmail.com', NULL),
 (3, 'deposito', 'caaf856169610904e4f188e6ee23e88c', 'deposito@gmail.com', NULL),
 (4, 'cliente', '7159bbe0c8ca2a67230a26b72dea7557', 'cliente@gmail.com', NULL);

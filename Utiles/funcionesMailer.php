@@ -15,14 +15,13 @@ function enviarMail ($data) {
 
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'autos.phpmailer@gmail.com';
+        $mail->Username = 'acunacode@gmail.com';
         $mail->Password = 'pcilpoomhtuyoeel';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port = 465;
 
-        $mail->setFrom('Autos.phpmailer@gmail.com', 'Administrador');
+        $mail->setFrom('acunacode@gmail.com', 'Administrador');
         $mail->addAddress($user['usmail'], $user['usname']);
-        //$mail->addCC('lunalaureanoluna@gmail.com');lacasadelasplantasnqn@gmail.com
 
         $mail->isHTML(true);
         $mail->Subject = 'Estado de tu pedido';
@@ -162,7 +161,7 @@ function devolverBody($data){
                     <div class='containerFull'>
                         <div class='nav'>
                             <div class='namebrand'>
-                                <h2><i class='fa-solid fa-seedling'></i>La casa de las plantas<i class='fa-solid fa-seedling'></i></h2>
+                                <h2><i class='fa-solid fa-seedling'></i>Brandon Cult<i class='fa-solid fa-seedling'></i></h2>
                             </div>
                             
                         </div>
@@ -300,7 +299,7 @@ function devolverBody($data){
                     <div class='containerFull'>
                         <div class='nav'>
                             <div class='namebrand'>
-                                <h2><i class='fa-solid fa-seedling'></i>La casa de las plantas<i class='fa-solid fa-seedling'></i></h2>
+                                <h2><i class='fa-solid fa-seedling'></i>Brandon Cult<i class='fa-solid fa-seedling'></i></h2>
                             </div>
                             
                         </div>
@@ -435,7 +434,7 @@ function devolverBody($data){
                     <div class='containerFull'>
                         <div class='nav'>
                             <div class='namebrand'>
-                                <h2><i class='fa-solid fa-seedling'></i>La casa de las plantas<i class='fa-solid fa-seedling'></i></h2>
+                                <h2><i class='fa-solid fa-seedling'></i>Brandon Cult<i class='fa-solid fa-seedling'></i></h2>
                             </div>
                             
                         </div>
@@ -575,7 +574,7 @@ function devolverBody($data){
                     <div class='containerFull'>
                         <div class='nav'>
                             <div class='namebrand'>
-                                <h2><i class='fa-solid fa-seedling'></i>La casa de las plantas<i class='fa-solid fa-seedling'></i></h2>
+                                <h2><i class='fa-solid fa-seedling'></i>Brandon Cult<i class='fa-solid fa-seedling'></i></h2>
                             </div>
                             
                         </div>
@@ -602,4 +601,15 @@ function devolverBody($data){
         break;
     }
     return $body;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['idcompra']) && isset($_POST['idcompraestadotipo'])) {
+        $resultado = enviarMail([
+            'idcompra' => $_POST['idcompra'],
+            'idcompraestadotipo' => $_POST['idcompraestadotipo']
+        ]);
+        
+        echo json_encode(['exito' => $resultado]);
+    }
 }

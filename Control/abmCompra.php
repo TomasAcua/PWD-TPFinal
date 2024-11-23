@@ -233,17 +233,24 @@ class abmCompra
                     throw new Exception("Error al crear nueva compra");
                 }
                 
-                // Crear estado inicial
+                // Crear estado inicial (id 1 = estado inicial/borrador)
                 $objCompraEstado = new compraEstado();
                 $objCompraEstadoTipo = new compraEstadoTipo();
-                $objCompraEstadoTipo->setID(1); // Estado inicial
+                $objCompraEstadoTipo->setID(1); // Estado inicial/borrador
                 
-                $objCompraEstado->setObjCompra($nuevaCompra);
-                $objCompraEstado->setObjCompraEstadoTipo($objCompraEstadoTipo);
-                $objCompraEstado->setCeFechaIni(date('Y-m-d H:i:s'));
+                if (!$objCompraEstadoTipo->cargar()) {
+                    throw new Exception("Error al cargar el tipo de estado inicial");
+                }
+                
+                $objCompraEstado->setearSinID(
+                    $nuevaCompra,
+                    $objCompraEstadoTipo,
+                    date('Y-m-d H:i:s'),
+                    null
+                );
                 
                 if (!$objCompraEstado->insertar()) {
-                    throw new Exception("Error al crear estado de la compra");
+                    throw new Exception("Error al crear estado inicial de la compra");
                 }
                 
                 $compraActiva = $nuevaCompra;
@@ -359,7 +366,7 @@ class abmCompra
                     $abmCompraEstado = new abmCompraEstado();
                     $datosEstado = array(
                         'idcompra' => $compra->getID(),
-                        'idcompraestadotipo' => 5, // ID del estado 'borrador'
+                        'idcompraestadotipo' => 1, // ID del estado 'borrador'
                         'cefechaini' => date('Y-m-d H:i:s'),
                         'cefechafin' => null
                     );

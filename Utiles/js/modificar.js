@@ -1,4 +1,3 @@
-
 /*################################# FORMULARIO DE REGISTRO #################################*/
 $('#modificar').submit(function (e) {
     e.preventDefault();
@@ -19,12 +18,11 @@ $('#modificar').submit(function (e) {
 
         $.ajax({
             type: "POST",
-            url: '../Acciones/usuario/actualizar.php',
+            url: '/TPFinal/Acciones/usuario/actualizar.php',
             data: arreglo,
             success: function (response) {
                 console.log(response);
                 var response = jQuery.parseJSON(response);
-                // SI LA MODIFICACION DEL PERFIL ES EXITOSO, CIERRA SESION Y REDIRIGE AL FORMULARIO DE LOGIN
                 if (response) {
                     var dialog = bootbox.dialog({
                         message: '<div class="text-center"><i class="fa fa-spin fa-spinner me-2"></i>Actualizando Perfil ...</div>',
@@ -32,7 +30,7 @@ $('#modificar').submit(function (e) {
                     });
                     dialog.init(function () {
                         setTimeout(function () {
-                            window.location.href = "./login.php";
+                            window.location.href = "/TPFinal/Vista/login.php";
                         }, 1000);
                     });
                 } else {
@@ -42,6 +40,14 @@ $('#modificar').submit(function (e) {
                         closeButton: false,
                     });
                 }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+                bootbox.alert({
+                    message: "Error al actualizar el perfil: " + error,
+                    size: 'small',
+                    closeButton: false,
+                });
             }
         });
     } else {

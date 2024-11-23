@@ -290,6 +290,24 @@ function cambiarEstadoCompra(idcompra, idcompraestadotipo) {
         dataType: 'json',
         success: function(response) {
             if (response.exito) {
+                // Si el estado es "enviada" (3), "aceptada" (2) o "cancelada" (4), enviar el email
+                if ([2, 3, 4].includes(idcompraestadotipo)) {
+                    $.ajax({
+                        type: "POST",
+                        url: '../../Utiles/funcionesMailer.php',
+                        data: { 
+                            idcompra: idcompra,
+                            idcompraestadotipo: idcompraestadotipo
+                        },
+                        success: function(mailResponse) {
+                            console.log('Email enviado:', mailResponse);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error al enviar email:', error);
+                        }
+                    });
+                }
+                
                 let mensaje = '';
                 switch(idcompraestadotipo) {
                     case 2:

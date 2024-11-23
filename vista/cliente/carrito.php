@@ -23,7 +23,6 @@ try {
     $compraActiva = $abmCompra->buscarCompraIniciada($objUsuario->getID());
     
     if ($compraActiva) {
-        // Agregar log para debug
         error_log("Compra activa encontrada: " . $compraActiva->getIdcompra());
         
         // Obtener items del carrito
@@ -36,11 +35,12 @@ try {
         // Obtener detalles de los productos
         $productos = [];
         foreach ($items as $item) {
-            error_log("Procesando item: " . $item->getID() . 
-                     ", producto: " . $item->getID());
+            // Corregir aquí: Obtener el ID del producto directamente
+            $idProducto = $item->getObjProducto(); // Esto devuelve el ID directamente
             
             $producto = new producto();
-            $producto->setID($item->getID());
+            $producto->setID($idProducto);
+            
             if ($producto->cargar()) {
                 error_log("Producto cargado: " . $producto->getPronombre());
                 $productos[] = [
@@ -48,7 +48,7 @@ try {
                     'producto' => $producto
                 ];
             } else {
-                error_log("Error al cargar producto ID: " . $item->getID());
+                error_log("Error al cargar producto ID: " . $idProducto);
             }
         }
         error_log("Total productos procesados: " . count($productos));
@@ -99,13 +99,21 @@ try {
                             <?php 
                             $total = 0;
                             foreach ($productos as $item): 
-                                $subtotal = $item['producto']->getPrecio() * $item['item']->getCicantidad();
+                                $subtotal = $item['producto']->getPrecio() * $item['item']->getCiCantidad();
                                 $total += $subtotal;
                             ?>
                                 <tr>
-                                    <td><?php echo $item['producto']->getPronombre(); ?></td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="../img/productos/<?php echo $item['producto']->getImagen(); ?>" 
+                                                 class="img-thumbnail me-2" 
+                                                 style="width: 50px; height: 50px; object-fit: cover;"
+                                                 alt="<?php echo $item['producto']->getProNombre(); ?>">
+                                            <?php echo $item['producto']->getProNombre(); ?>
+                                        </div>
+                                    </td>
                                     <td>$<?php echo number_format($item['producto']->getPrecio(), 2); ?></td>
-                                    <td><?php echo $item['item']->getCicantidad(); ?></td>
+                                    <td><?php echo $item['item']->getCiCantidad(); ?></td>
                                     <td>$<?php echo number_format($subtotal, 2); ?></td>
                                     <td>
                                         <button class="btn btn-danger btn-sm" 
