@@ -1,6 +1,6 @@
 <?php
 $Titulo = "Tabla Usuarios";
-include_once "../Estructura/cabecera.php";
+include_once "Estructura/cabecera.php";
 
 // Logs temporales para debug
 error_log("=== DEBUG tablaUsuarios.php ===");
@@ -11,13 +11,13 @@ $objMR = new abmMenuRol();
 $listaMR = $objMR->buscar(['idrol' => $rolActivo['id']]);
 error_log("Menús del rol: " . print_r($listaMR, true));
 
-if (!$sesion->verificarPermiso('admin/tablaUsuarios.php')) {
+if (!$sesion->verificarPermiso('tablaUsuarios.php')) {
     error_log("Permiso denegado para admin/tablaUsuarios.php");
     $mensaje = "No tiene permiso para acceder a este sitio.";
     echo "<script> window.location.href='/TPFinal/Vista/index.php?mensaje=" . urlencode($mensaje) . "'</script>";
     exit;
 }
-error_log("Permiso concedido para admin/tablaUsuarios.php");
+error_log("Permiso concedido para tablaUsuarios.php");
 
 $objUsuarios = new abmUsuario();
 $listaUsuario = $objUsuarios->buscar(null);
@@ -77,5 +77,5 @@ $listaUsuario = $objUsuarios->buscar(null);
     <script src="/TPFinal/Utiles/js/funcionesABMUsuario.js"></script>
 
 <?php 
-include_once '../Estructura/pie.php';
+include_once 'Estructura/pie.php';
 ?>

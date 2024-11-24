@@ -1,7 +1,7 @@
 <?php
 $Titulo = "Lista Compras";
-include_once '../Estructura/cabecera.php';
-if (!$sesion->verificarPermiso('Cliente/listaCompras.php')) {
+include_once 'Estructura/cabecera.php';
+if (!$sesion->verificarPermiso('listaCompras.php')) {
     $mensaje = "No tiene permiso para acceder a este sitio.";
     echo "<script> window.location.href='/TPFinal/Vista/index.php?mensaje=" . urlencode($mensaje) . "'</script>";
 } else {
@@ -61,5 +61,5 @@ if (!$sesion->verificarPermiso('Cliente/listaCompras.php')) {
         </div>
 <?php
     }
-    include_once '../Estructura/pie.php';
+    include_once 'Estructura/pie.php';
 } ?>

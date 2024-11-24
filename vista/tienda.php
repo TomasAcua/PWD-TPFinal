@@ -1,7 +1,7 @@
 <?php
 $Titulo = "Tienda";
-include_once '../Estructura/cabecera.php';
-if (!$sesion->verificarPermiso('Cliente/tienda.php')) {
+include_once 'Estructura/cabecera.php';
+if (!$sesion->verificarPermiso('tienda.php')) {
     $mensaje = "No tiene permiso para acceder a este sitio.";
     echo "<script> window.location.href='/TPFinal/Vista/index.php?mensaje=" . urlencode($mensaje) . "'</script>";
 } else {
@@ -26,7 +26,7 @@ if (!$sesion->verificarPermiso('Cliente/tienda.php')) {
         <?php foreach ($listaProductos as $producto) { ?>
             <div class="col-md-3 mb-4">
                 <div class="card h-100">
-                    <img src="../img/productos/<?php echo $producto->getImagen() ?>" 
+                    <img src="img/productos/<?php echo $producto->getImagen() ?>" 
                          class="card-img-top" 
                          alt="<?php echo $producto->getProNombre() ?>"
                          style="height: 200px; object-fit: cover;">
@@ -131,5 +131,5 @@ $(document).ready(function() {
 
 <?php 
 }
-include_once '../Estructura/pie.php'; 
+include_once 'Estructura/pie.php'; 
 ?>

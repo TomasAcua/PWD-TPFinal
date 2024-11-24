@@ -1,6 +1,6 @@
 <?php
 $Titulo = "Iniciar Sesion";
-include_once './Estructura/cabecera.php';
+include_once 'Estructura/cabecera.php';
 ?>
 
 <div class="container p-4 mt-5 border border-secondary border-2 rounded-2 bg-primary bg-opacity-10" style="width: 350px;">
@@ -45,4 +45,4 @@ include_once './Estructura/cabecera.php';
 <link rel="stylesheet" href="../Utiles/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="../Utiles/validaciones.css">
 
-<?php include_once '.\Estructura\pie.php'; ?>
+<?php include_once 'Estructura\pie.php'; ?>

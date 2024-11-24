@@ -223,8 +223,8 @@ class abmCompraEstado
                 throw new Exception("No se encontró el estado actual");
             }
 
-            // Si vamos a aceptar la compra (estado 2)
-            if ($datos['idcompraestadotipo'] == 2) {
+            // Si vamos a enviar la compra (estado 3)
+            if ($datos['idcompraestadotipo'] == 3) {
                 $objCI = new abmCompraItem();
                 // Primero verificamos el stock
                 if (!$this->verificarStock($datos['idcompra'])) {
@@ -323,36 +323,33 @@ class abmCompraEstado
             // Obtener el estado actual
             $estadoActual = $this->obtenerEstadoActual($idcompra);
             
-            // Obtener el ID del nuevo tipo de estado
-            $abmCompraEstadoTipo = new abmCompraEstadoTipo();
-            $tiposEstado = $abmCompraEstadoTipo->buscar(['cetdescripcion' => $nuevoEstado]);
-            
-            if (empty($tiposEstado)) {
-                throw new Exception("Tipo de estado no válido");
+            if (!$estadoActual) {
+                throw new Exception("No se encontró el estado actual de la compra");
             }
             
-            // Si hay un estado actual, cerrarlo
-            if ($estadoActual['idcompraestado']) {
-                $this->finalizarEstado($estadoActual['idcompraestado']);
+            // Primero, cerrar el estado actual estableciendo la fecha fin
+            $datosModificacion = array(
+                'idcompraestado' => $estadoActual['idcompraestado'],
+                'idcompra' => $estadoActual['idcompra'],
+                'idcompraestadotipo' => $estadoActual['idcompraestadotipo'],
+                'cefechaini' => $estadoActual['cefechaini'],
+                'cefechafin' => date('Y-m-d H:i:s')
+            );
+            
+            if (!$this->modificacion($datosModificacion)) {
+                throw new Exception("Error al cerrar el estado actual");
             }
             
-            // Crear nuevo estado
-            $datos = [
+            // Crear el nuevo estado
+            $datosNuevoEstado = array(
                 'idcompra' => $idcompra,
-                'idcompraestadotipo' => $tiposEstado[0]->getID(),
+                'idcompraestadotipo' => $nuevoEstado, // Estado "aceptada"
                 'cefechaini' => date('Y-m-d H:i:s'),
-                'cefechafin' => null,
-                'action' => 'alta'
-            ];
+                'cefechafin' => null
+            );
             
-            if (!$this->alta($datos)) {
-                throw new Exception("No se pudo crear el nuevo estado");
-            }
-            
-            // Si el estado es "aceptada", actualizar stock
-            if ($nuevoEstado === 'aceptada') {
-                $abmCompraItem = new abmCompraItem();
-                $abmCompraItem->modificarCantidad($idcompra);
+            if (!$this->altaSinID($datosNuevoEstado)) {
+                throw new Exception("Error al crear el nuevo estado");
             }
             
             return true;
@@ -397,20 +394,35 @@ class abmCompraEstado
 
     public function obtenerEstadoActual($idcompra) {
         try {
-            $where = " idcompra = {$idcompra} AND cefechafin IS NULL";
+            $where = " idcompra = {$idcompra}";
             $estados = $this->buscar(['idcompra' => $idcompra]);
             
+            $estadoActual = null;
+            $fechaIniMasReciente = null;
+            
             foreach ($estados as $estado) {
+                // Solo considerar estados sin fecha fin
                 if ($estado->getCeFechaFin() === null) {
-                    return array(
-                        'idcompraestado' => $estado->getID(),
-                        'idcompra' => $estado->getObjCompra()->getID(),
-                        'idcompraestadotipo' => $estado->getObjCompraEstadoTipo()->getID(),
-                        'cefechaini' => $estado->getCeFechaIni(),
-                        'cefechafin' => $estado->getCeFechaFin()
-                    );
+                    $fechaIni = strtotime($estado->getCeFechaIni());
+                    
+                    // Actualizar si es el primer estado o si es más reciente
+                    if ($estadoActual === null || $fechaIni > $fechaIniMasReciente) {
+                        $estadoActual = $estado;
+                        $fechaIniMasReciente = $fechaIni;
+                    }
                 }
             }
+            
+            if ($estadoActual) {
+                return array(
+                    'idcompraestado' => $estadoActual->getID(),
+                    'idcompra' => $estadoActual->getObjCompra()->getID(),
+                    'idcompraestadotipo' => $estadoActual->getObjCompraEstadoTipo()->getID(),
+                    'cefechaini' => $estadoActual->getCeFechaIni(),
+                    'cefechafin' => $estadoActual->getCeFechaFin()
+                );
+            }
+            
             return null;
         } catch (Exception $e) {
             error_log("Error en obtenerEstadoActual: " . $e->getMessage());

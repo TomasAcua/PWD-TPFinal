@@ -1,8 +1,8 @@
 <?php
 $Titulo = "Tabla Menu-Roles";
-include_once '../Estructura/cabecera.php';
+include_once 'Estructura/cabecera.php';
 
-if (!$sesion->verificarPermiso('admin/tablamenuRoles.php')) {
+if (!$sesion->verificarPermiso('tablamenuRoles.php')) {
     $mensaje = "No tiene permiso para acceder a este sitio.";
     echo "<script> window.location.href='/TPFinal/Vista/index.php?mensaje=" . urlencode($mensaje) . "'</script>";
     exit;
@@ -13,8 +13,8 @@ if (!$sesion->verificarPermiso('admin/tablamenuRoles.php')) {
 
     if (count($list) > 0) { ?>
         <!-- INCLUIMOS MODALES -->
-        <?php include_once '../Estructura/Modales/Menu-rol/modal_add_menu.php'; ?>
-        <?php include_once '../Estructura/Modales/Menu-rol/modal_add_hijo.php'; ?>
+        <?php include_once 'Estructura/Modales/Menu-rol/modal_add_menu.php'; ?>
+        <?php include_once 'Estructura/Modales/Menu-rol/modal_add_hijo.php'; ?>
 
         <div class="container my-2">
             <div class="table-responsive">
@@ -57,4 +57,4 @@ if (!$sesion->verificarPermiso('admin/tablamenuRoles.php')) {
         </div>
 <?php  }
 }
-include_once '../Estructura/pie.php'; ?>
+include_once 'Estructura/pie.php'; ?>

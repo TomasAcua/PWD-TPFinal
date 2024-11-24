@@ -1,5 +1,5 @@
 <?php
-include_once '../../configuracion.php';
+include_once '../configuracion.php';
 $session = new Session();
 
 // Verificar que el usuario esté logueado
@@ -19,42 +19,42 @@ $objUsuario = $session->getUsuario();
 $abmCompra = new abmCompra();
 
 try {
-    // Buscar compra activa
+    // Buscar o crear compra iniciada
     $compraActiva = $abmCompra->buscarCompraIniciada($objUsuario->getID());
     
-    if ($compraActiva) {
-        error_log("Compra activa encontrada: " . $compraActiva->getIdcompra());
-        
-        // Obtener items del carrito
-        $compraItem = new compraItem();
-        $where = "idcompra = " . $compraActiva->getIdcompra();
-        $items = $compraItem->listar($where);
-        
-        error_log("Items encontrados: " . count($items));
-        
-        // Obtener detalles de los productos
-        $productos = [];
-        foreach ($items as $item) {
-            // Corregir aquí: Obtener el ID del producto directamente
-            $idProducto = $item->getObjProducto(); // Esto devuelve el ID directamente
-            
-            $producto = new producto();
-            $producto->setID($idProducto);
-            
-            if ($producto->cargar()) {
-                error_log("Producto cargado: " . $producto->getPronombre());
-                $productos[] = [
-                    'item' => $item,
-                    'producto' => $producto
-                ];
-            } else {
-                error_log("Error al cargar producto ID: " . $idProducto);
-            }
-        }
-        error_log("Total productos procesados: " . count($productos));
-    } else {
-        error_log("No se encontró compra activa");
+    if (!$compraActiva) {
+        throw new Exception("No se pudo obtener o crear un carrito");
     }
+    
+    error_log("Compra activa encontrada/creada: " . $compraActiva->getID());
+    
+    // Obtener items del carrito
+    $compraItem = new compraItem();
+    $where = "idcompra = " . $compraActiva->getID();
+    $items = $compraItem->listar($where);
+    
+    error_log("Items encontrados: " . count($items));
+    
+    // Obtener detalles de los productos
+    $productos = [];
+    foreach ($items as $item) {
+        // Corregir aquí: Obtener el ID del producto directamente
+        $idProducto = $item->getObjProducto(); // Esto devuelve el ID directamente
+        
+        $producto = new producto();
+        $producto->setID($idProducto);
+        
+        if ($producto->cargar()) {
+            error_log("Producto cargado: " . $producto->getPronombre());
+            $productos[] = [
+                'item' => $item,
+                'producto' => $producto
+            ];
+        } else {
+            error_log("Error al cargar producto ID: " . $idProducto);
+        }
+    }
+    error_log("Total productos procesados: " . count($productos));
 } catch (Exception $e) {
     error_log("Error en carrito.php: " . $e->getMessage());
 }
@@ -68,7 +68,7 @@ try {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <?php include_once '../Estructura/cabecera.php'; ?>
+    <?php include_once 'Estructura/cabecera.php'; ?>
 
     <div class="container py-4">
         <div class="row mb-4">
@@ -105,7 +105,7 @@ try {
                                 <tr>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <img src="../img/productos/<?php echo $item['producto']->getImagen(); ?>" 
+                                            <img src="img/productos/<?php echo $item['producto']->getImagen(); ?>" 
                                                  class="img-thumbnail me-2" 
                                                  style="width: 50px; height: 50px; object-fit: cover;"
                                                  alt="<?php echo $item['producto']->getProNombre(); ?>">
@@ -156,7 +156,7 @@ try {
     function eliminarDelCarrito(idCompraItem) {
         if (confirm('¿Estás seguro de eliminar este producto del carrito?')) {
             $.ajax({
-                url: '../../Acciones/producto/eliminarProdCarrito.php',
+                url: '../Acciones/producto/eliminarProdCarrito.php',
                 type: 'POST',
                 dataType: 'json',
                 data: { idcompraitem: idCompraItem },
@@ -180,7 +180,7 @@ try {
         if (confirm('¿Estás seguro de aceptar la compra? Una vez aceptada, será enviada a revisión.')) {
             $.ajax({
                 type: 'POST',
-                url: '../../Acciones/compra/ejecutarCompraCarrito.php',
+                url: '../Acciones/compra/ejecutarCompraCarrito.php',
                 data: { idcompra: idCompra },
                 dataType: 'json',
                 success: function(response) {
@@ -205,7 +205,7 @@ try {
         if (confirm('¿Estás seguro de cancelar la compra? Esta acción no se puede deshacer.')) {
             $.ajax({
                 type: 'POST',
-                url: '../../Acciones/compra/cancelarCompra.php',
+                url: '../Acciones/compra/cancelarCompra.php',
                 data: { idcompra: idCompra },
                 dataType: 'json',
                 success: function(response) {
@@ -226,6 +226,6 @@ try {
     }
     </script>
 
-    <?php include_once '../Estructura/pie.php'; ?>
+    <?php include_once 'Estructura/pie.php'; ?>
 </body>
 </html>

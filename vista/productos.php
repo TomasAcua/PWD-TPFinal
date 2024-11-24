@@ -1,7 +1,7 @@
 <?php
 $Titulo = "Tienda";
-include_once '../Estructura/cabecera.php';
-if (!$sesion->verificarPermiso('Cliente/productos.php')) {
+include_once 'Estructura/cabecera.php';
+if (!$sesion->verificarPermiso('productos.php')) {
     $mensaje = "No tiene permiso para acceder a este sitio.";
     echo "<script> window.location.href='/TPFinal/Vista/index.php?mensaje=" . urlencode($mensaje) . "'</script>";
 } else {
@@ -35,5 +35,5 @@ if (!$sesion->verificarPermiso('Cliente/productos.php')) {
 <script src="../Utiles/js/funcionesProductosCliente.js"></script>
 <?php 
 }
-include_once '../Estructura/pie.php'; 
+include_once 'Estructura/pie.php'; 
 ?>

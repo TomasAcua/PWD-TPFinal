@@ -1,6 +1,6 @@
 <?php
 $Titulo = "Inicio";
-include_once './Estructura/cabecera.php';
+include_once 'Estructura/cabecera.php';
 $datos = data_submitted();
 if (!empty($datos['mensaje'])) {
 ?>
@@ -21,9 +21,9 @@ if (!empty($datos['mensaje'])) {
 <div class="container">
     <div class="container p-2" align="center">
 
-        <img src="../Vista/img/bran.jpg"  alt="..." width="80%" align="center">
+        <img src="img/bran.jpg"  alt="..." width="80%" align="center">
     </div>
 </div>
 
 
-<?php include_once './Estructura/pie.php'; ?>
+<?php include_once 'Estructura/pie.php'; ?>

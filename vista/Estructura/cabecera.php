@@ -54,7 +54,7 @@ $sesion = new Session();
                                 <span id="username-display"><?php echo $sesion->getNombreUsuarioLogueado(); ?></span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="/TPFinal/Vista/Admin/modificarPerfil.php">Mi Perfil</a></li>
+                                <li><a class="dropdown-item" href="/TPFinal/Vista/modificarPerfil.php">Mi Perfil</a></li>
                                 <?php if (count($sesion->getRoles()) > 1): ?>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>

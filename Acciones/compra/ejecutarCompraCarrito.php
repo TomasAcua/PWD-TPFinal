@@ -10,12 +10,12 @@ try {
         throw new Exception("ID de compra no proporcionado");
     }
     
-    $objC = new abmCompra();
-    $resultado = $objC->ejecutarCompraCarrito($data['idcompra']);
+    $objCompra = new abmCompra();
+    $resultado = $objCompra->aceptarCarrito($data);
     
     echo json_encode([
         'respuesta' => $resultado,
-        'mensaje' => 'Compra ejecutada correctamente'
+        'mensaje' => $resultado ? 'Compra aceptada correctamente' : 'No se pudo aceptar la compra'
     ]);
 
 } catch (Exception $e) {
@@ -26,6 +26,5 @@ try {
 }
 
 ?>
- 
 
 

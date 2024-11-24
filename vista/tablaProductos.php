@@ -1,8 +1,8 @@
 <?php
 $Titulo = "Tabla Productos";
-include_once '../Estructura/cabecera.php';
+include_once 'Estructura/cabecera.php';
 
-if (!$sesion->verificarPermiso('deposito/tablaproductos.php')) {
+if (!$sesion->verificarPermiso('tablaproductos.php')) {
     $mensaje = "No tiene permiso para acceder a este sitio.";
     echo "<script> window.location.href='/TPFinal/Vista/index.php?mensaje=" . urlencode($mensaje) . "'</script>";
     exit;
@@ -10,9 +10,9 @@ if (!$sesion->verificarPermiso('deposito/tablaproductos.php')) {
 ?>
 
 <!-- INCLUIMOS MODALES -->
-<?php include '../Estructura/Modales/Productos/modal_add_producto.php'; ?>
-<?php include '../Estructura/Modales/Productos/modal_editar_producto.php'; ?>
-<?php include '../Estructura/Modales/Productos/modal_editar_imagen.php'; ?>
+<?php include 'Estructura/Modales/Productos/modal_add_producto.php'; ?>
+<?php include 'Estructura/Modales/Productos/modal_editar_producto.php'; ?>
+<?php include 'Estructura/Modales/Productos/modal_editar_imagen.php'; ?>
 
 <div class="container my-2">
     <div class="d-flex justify-content-end mb-3">
@@ -58,4 +58,4 @@ if (!$sesion->verificarPermiso('deposito/tablaproductos.php')) {
 <script src="/TPFinal/Utiles/js/validaciones.js"></script>
 <script src="/TPFinal/Utiles/js/funcionesABMProducto.js"></script>
 
-<?php include_once '../Estructura/pie.php'; ?>
+<?php include_once 'Estructura/pie.php'; ?>

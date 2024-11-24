@@ -1,8 +1,8 @@
 <?php
 $Titulo = "Tabla Compras";
-include_once '../Estructura/cabecera.php';
+include_once 'Estructura/cabecera.php';
 
-if (!$sesion->verificarPermiso('deposito/tablacompras.php')) {
+if (!$sesion->verificarPermiso('tablacompras.php')) {
     $mensaje = "No tiene permiso para acceder a este sitio.";
     echo "<script> window.location.href='/TPFinal/Vista/index.php?mensaje=" . urlencode($mensaje) . "'</script>";
     exit;
@@ -282,7 +282,7 @@ function enviarCompra(idcompra) {
 function cambiarEstadoCompra(idcompra, idcompraestadotipo) {
     $.ajax({
         type: "POST",
-        url: '../../Acciones/compras/modificarEstadoCompra.php',
+        url: '../Acciones/compras/modificarEstadoCompra.php',
         data: { 
             idcompra: idcompra,
             idcompraestadotipo: idcompraestadotipo
@@ -294,11 +294,12 @@ function cambiarEstadoCompra(idcompra, idcompraestadotipo) {
                 if ([2, 3, 4].includes(idcompraestadotipo)) {
                     $.ajax({
                         type: "POST",
-                        url: '../../Utiles/funcionesMailer.php',
+                        url: '../Utiles/enviarMail.php',
                         data: { 
                             idcompra: idcompra,
                             idcompraestadotipo: idcompraestadotipo
                         },
+                        dataType: 'json',
                         success: function(mailResponse) {
                             console.log('Email enviado:', mailResponse);
                         },
@@ -337,4 +338,4 @@ function cambiarEstadoCompra(idcompra, idcompraestadotipo) {
 }
 </script>
 
-<?php include_once '../Estructura/pie.php'; ?>
+<?php include_once 'Estructura/pie.php'; ?>

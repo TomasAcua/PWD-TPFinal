@@ -1,8 +1,8 @@
 <?php
 $Titulo = "Tabla Roles";
-include_once '../Estructura/cabecera.php';
+include_once 'Estructura/cabecera.php';
 
-if (!$sesion->verificarPermiso('admin/tablaRoles.php')) {
+if (!$sesion->verificarPermiso('tablaRoles.php')) {
     $mensaje = "No tiene permiso para acceder a este sitio.";
     echo "<script> window.location.href='/TPFinal/Vista/index.php?mensaje=" . urlencode($mensaje) . "'</script>";
     exit;
@@ -174,5 +174,5 @@ if (!$sesion->verificarPermiso('admin/tablaRoles.php')) {
 
 <?php 
 }
-include_once '../Estructura/pie.php';
+include_once 'Estructura/pie.php';
 ?>

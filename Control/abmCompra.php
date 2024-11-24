@@ -1,5 +1,8 @@
 <?php
 
+
+
+
 class abmCompra
 {
 
@@ -172,14 +175,13 @@ class abmCompra
                 $where .= " AND idusuario = " . $param['idusuario'];
             }
             
-            if (isset($param['estado']) && $param['estado'] == 'en_carrito') {
-                // Usar subconsulta compatible con MariaDB
+            if (isset($param['estado']) && $param['estado'] == 'iniciada') {
+                // Modificamos la subconsulta para verificar que no tenga fecha fin
                 $where .= " AND EXISTS (
                     SELECT 1 
                     FROM compraestado ce 
-                    INNER JOIN compraestadotipo cet ON ce.idcompraestadotipo = cet.idcompraestadotipo 
                     WHERE ce.idcompra = compra.idcompra 
-                    AND cet.cetdescripcion = 'carrito' 
+                    AND ce.idcompraestadotipo = 1 
                     AND ce.cefechafin IS NULL
                 )";
             }
@@ -276,24 +278,29 @@ class abmCompra
 
     public function buscarCompraIniciada($idUsuario) {
         try {
-            $compra = new compra();
-            $condicion = "idusuario = " . $idUsuario;
-            $compras = $compra->listar($condicion);
-            
-            if (!empty($compras)) {
-                foreach ($compras as $unaCompra) {
-                    // Verificar si la compra tiene un estado activo
-                    $compraEstado = new compraEstado();
-                    $where = "idcompra = " . $unaCompra->getID() . " AND cefechafin IS NULL";
-                    $estados = $compraEstado->listar($where);
-                    
-                    if (!empty($estados)) {
-                        return $unaCompra;
-                    }
+            // Buscar compra en estado 'iniciada' sin fecha fin para el usuario
+            $objCompraEstado = new abmCompraEstado();
+            $compras = $this->buscar(['idusuario' => $idUsuario]);
+            $compraIniciada = null;
+
+            foreach ($compras as $compra) {
+                $estadoActual = $objCompraEstado->obtenerEstadoActual($compra->getID());
+                
+                // Verificar que sea estado iniciada (1) y no tenga fecha fin
+                if ($estadoActual && 
+                    $estadoActual['idcompraestadotipo'] == 1 && 
+                    $estadoActual['cefechafin'] === null) {
+                    $compraIniciada = $compra;
+                    break;
                 }
             }
             
-            return null;
+            // Si no hay compra iniciada válida, crear una nueva
+            if ($compraIniciada === null) {
+                return $this->crearCarrito($idUsuario);
+            }
+            
+            return $compraIniciada;
             
         } catch (Exception $e) {
             error_log("Error buscando compra iniciada: " . $e->getMessage());
@@ -336,8 +343,7 @@ class abmCompra
         return $respuesta;
     }
 
-    public function crearCarrito($idUsuario)
-    {
+    public function crearCarrito($idUsuario) {
         try {
             error_log("Iniciando creación de carrito para usuario: " . $idUsuario);
             
@@ -357,25 +363,33 @@ class abmCompra
 
             // Usar altaSinID para crear la compra
             if ($this->altaSinID($datos)) {
-                // Buscar la compra recién creada
-                $compras = $this->buscar($datos);
-                if (!empty($compras)) {
-                    $compra = $compras[0];
+                // Buscar la compra recién creada usando el ID más reciente
+                $sql = "SELECT MAX(idcompra) as ultimo_id FROM compra WHERE idusuario = " . $idUsuario;
+                $base = new BaseDatos();
+                $res = $base->Ejecutar($sql);
+                
+                if ($res && $row = $base->Registro()) {
+                    $idCompra = $row['ultimo_id'];
                     
-                    // Crear estado inicial (borrador)
-                    $abmCompraEstado = new abmCompraEstado();
-                    $datosEstado = array(
-                        'idcompra' => $compra->getID(),
-                        'idcompraestadotipo' => 1, // ID del estado 'borrador'
-                        'cefechaini' => date('Y-m-d H:i:s'),
-                        'cefechafin' => null
-                    );
-                    
-                    error_log("Intentando crear estado inicial con datos: " . print_r($datosEstado, true));
-                    
-                    if ($abmCompraEstado->altaSinID($datosEstado)) {
-                        error_log("Carrito creado exitosamente con ID: " . $compra->getID());
-                        return $compra;
+                    // Cargar la compra recién creada
+                    $compra = new compra();
+                    $compra->setID($idCompra);
+                    if ($compra->cargar()) {
+                        // Crear estado inicial (iniciada)
+                        $abmCompraEstado = new abmCompraEstado();
+                        $datosEstado = array(
+                            'idcompra' => $idCompra,
+                            'idcompraestadotipo' => 1, // ID del estado 'iniciada'
+                            'cefechaini' => date('Y-m-d H:i:s'),
+                            'cefechafin' => null
+                        );
+                        
+                        error_log("Intentando crear estado inicial con datos: " . print_r($datosEstado, true));
+                        
+                        if ($abmCompraEstado->altaSinID($datosEstado)) {
+                            error_log("Carrito creado exitosamente con ID: " . $idCompra);
+                            return $compra;
+                        }
                     }
                 }
             }
@@ -421,101 +435,6 @@ class abmCompra
 
     /* CANCELAR COMPRA */
 
-    public function cancelarCompra($data)
-    {
-
-        $respuesta = false;
-        $objCE = new abmCompraEstado();
-        $list = $objCE->buscar(['idcompraestado' => $data['idcompraestado']]);
-
-        foreach ($list as $elem) { //RECORREMOS CADA COMPRA ESTADO
-            date_default_timezone_set('America/Argentina/Buenos_Aires');
-            $idCET = $elem->getObjCompraEstadoTipo()->getID(); //OBTENEMOS EL ID DEL TIPO DE ESTADO
-            $fechaIni = $elem->getCeFechaIni(); //FECHA INICIO
-            $fechaFin = date('Y-m-d H:i:s'); //FECHA FIN
-            $respuesta = $this->cambiarEstado($data, $idCET, $fechaIni, $fechaFin, $objCE);
-        }
-
-        return $respuesta;
-    }
-
-
-
-
-    public function cambiarEstado($data, $idCET, $fechaIni, $fechaFin, $objCE)
-    {
-
-        // PRIMERO ACTUALIZAMOS EL ANTIGUO ESTADO, SETEAMOS SU FECHA FIN
-        $arregloModCompra = [
-            'idcompraestado' => $data['idcompraestado'],
-            'idcompra' => $data['idcompra'],
-            'idcompraestadotipo' => $idCET,
-            'cefechaini' => $fechaIni,
-            'cefechafin' => $fechaFin,
-        ];
-
-        // MODIFICAMOS
-        $resp = $objCE->modificacion($arregloModCompra);
-
-        if ($resp) { // SI SE PUDO MODIFICAR EL ESTADO ANTERIOR, AGREGAMOS EL NUEVO
-
-            $arregloNewCompra = [
-                'idcompra' => $data['idcompra'],
-                'idcompraestadotipo' => $data['idcompraestadotipo'],
-                'cefechaini' => $fechaFin,
-                'cefechafin' => null,
-            ];
-
-            $res = $objCE->altaSinID($arregloNewCompra);
-        }
-
-        return $res;
-    }
-
-    /* FIN CANCELAR COMPRA */
-
-    /* EJECUTAR COMPRA CARRITO */
-
-
-    public function ejecutarCompraCarrito($idCompra) {
-        try {
-            if (!$idCompra) {
-                throw new Exception("ID de compra no válido");
-            }
-
-            // Obtener la compra
-            $compra = new compra();
-            $compra->setID($idCompra);
-            if (!$compra->cargar()) {
-                throw new Exception("No se encontró la compra");
-            }
-
-            // Iniciar la compra con el ID proporcionado
-            return $this->iniciarCompra($compra);
-
-        } catch (Exception $e) {
-            error_log("Error en ejecutarCompraCarrito: " . $e->getMessage());
-            return false;
-        }
-    }
-
-    private function iniciarCompra($compra) {
-        try {
-            if (!$compra) {
-                throw new Exception("Compra no válida");
-            }
-
-            // Resto de tu lógica actual...
-            
-            return true;
-
-        } catch (Exception $e) {
-            error_log("Error en iniciarCompra: " . $e->getMessage());
-            return false;
-        }
-    }
-
-    /* FIN EJECUTAR COMPRA CARRITO */
 
     /* LISTAR PRODUCTOS CARRITO */
 
@@ -660,58 +579,125 @@ class abmCompra
      */
     public function obtenerCarrito($idUsuario) {
         try {
-            // Buscar compra en estado 'borrador' (carrito) para el usuario
+            // Buscar compra en estado 'iniciada' sin fecha fin para el usuario
             $param = array(
-                'idusuario' => $idUsuario
+                'idusuario' => $idUsuario,
+                'estado' => 'iniciada'
             );
             
             $compras = $this->buscar($param);
             
-            if (!empty($compras)) {
-                foreach ($compras as $compra) {
-                    // Obtener el estado actual de la compra
-                    $abmCompraEstado = new abmCompraEstado();
-                    $estadoActual = $abmCompraEstado->obtenerEstadoActual($compra->getID());
-                    
-                    // Si encontramos una compra en estado 'borrador', es el carrito activo
-                    if ($estadoActual && $estadoActual['descripcion'] === 'borrador') {
-                        return $compra;
-                    }
-                }
+            // Si no hay compra iniciada válida, crear una nueva
+            if (empty($compras)) {
+                return $this->crearCarrito($idUsuario);
             }
             
-            return null;
+            // Verificación adicional del estado actual
+            $objCompraEstado = new abmCompraEstado();
+            $estadoActual = $objCompraEstado->obtenerEstadoActual($compras[0]->getID());
+            
+            // Si el estado actual no es 'iniciada' o tiene fecha fin, crear nuevo carrito
+            if (!$estadoActual || 
+                $estadoActual['idcompraestadotipo'] != 1 || 
+                $estadoActual['cefechafin'] !== null) {
+                return $this->crearCarrito($idUsuario);
+            }
+            
+            return $compras[0];
             
         } catch (Exception $e) {
             error_log("Error en obtenerCarrito: " . $e->getMessage());
-            return null;
+            throw $e;
         }
     }
 
-    private function cerrarCarrito($idCompra) {
+    public function cancelarCarrito($data)
+    {
+        // Estado 4: Cancelada
+        $data['idcompraestadotipo'] = 4;
+        return $this->actualizarEstadoCompra($data);
+    }
+    
+    public function aceptarCarrito($data)
+    {
         try {
-            $abmCompraEstado = new abmCompraEstado();
-            $estadoActual = $abmCompraEstado->obtenerEstadoActual($idCompra);
+            $objCompraEstado = new abmCompraEstado();
             
-            if ($estadoActual) {
-                // Cerrar el estado actual
-                $estadoActual['cefechafin'] = date('Y-m-d H:i:s');
-                $abmCompraEstado->modificacion($estadoActual);
-                
-                // Opcionalmente, crear un nuevo estado "cancelado"
-                $datosEstado = array(
-                    'idcompra' => $idCompra,
-                    'idcompraestadotipo' => 5, // Asume que 5 es el ID para estado "cancelado"
-                    'cefechaini' => date('Y-m-d H:i:s'),
-                    'cefechafin' => null
-                );
-                $abmCompraEstado->alta($datosEstado);
+            // Verificar que la compra esté en estado inicial
+            $estadoActual = $objCompraEstado->obtenerEstadoActual($data['idcompra']);
+            
+            if (!$estadoActual || $estadoActual['idcompraestadotipo'] != 1) {
+                throw new Exception("La compra no está en estado inicial");
             }
             
-            return true;
+            // Cambiar el estado de la compra a "aceptada"
+            return $objCompraEstado->cambiarEstado($data['idcompra'], 2);
+            
         } catch (Exception $e) {
-            error_log("Error al cerrar carrito: " . $e->getMessage());
-            return false;
+            error_log("Error en aceptarCarrito: " . $e->getMessage());
+            throw $e;
         }
     }
-}
+    
+    public function enviarCarrito($data)
+    {
+        // Estado 3: Enviada
+        $data['idcompraestadotipo'] = 3;
+        return $this->actualizarEstadoCompra($data);
+    }
+    
+    private function actualizarEstadoCompra($data)
+    {
+        $respuesta = false;
+        $objCE = new abmCompraEstado();
+        
+        // Buscar el estado actual de la compra
+        $list = $objCE->buscar(['idcompraestado' => $data['idcompraestado']]);
+    
+        if (count($list) > 0) {
+            foreach ($list as $elem) {
+                date_default_timezone_set('America/Argentina/Buenos_Aires');
+                $idCET = $elem->getObjCompraEstadoTipo()->getID(); // Estado actual
+                $fechaIni = $elem->getCeFechaIni(); // Fecha de inicio actual
+                $fechaFin = date('Y-m-d H:i:s'); // Fecha fin nueva
+    
+                // Cambiar estado
+                $respuesta = $this->cambiarEstado($data, $idCET, $fechaIni, $fechaFin, $objCE);
+            }
+        } else {
+            throw new Exception("No se encontró un estado para la compra con el ID especificado");
+        }
+    
+        return $respuesta;
+    }
+    
+    public function cambiarEstado($data, $idCET, $fechaIni, $fechaFin, $objCE)
+    {
+        // Actualizar el estado anterior, seteando su fecha fin
+        $arregloModCompra = [
+            'idcompraestado' => $data['idcompraestado'],
+            'idcompra' => $data['idcompra'],
+            'idcompraestadotipo' => $idCET,
+            'cefechaini' => $fechaIni,
+            'cefechafin' => $fechaFin,
+        ];
+    
+        // Modificar el estado actual
+        $resp = $objCE->modificacion($arregloModCompra);
+    
+        if ($resp) {
+            // Crear el nuevo estado con fecha de inicio actual y sin fecha de fin
+            $arregloNewCompra = [
+                'idcompra' => $data['idcompra'],
+                'idcompraestadotipo' => $data['idcompraestadotipo'],
+                'cefechaini' => $fechaFin,
+                'cefechafin' => null,
+            ];
+    
+            // Insertar el nuevo estado
+            return $objCE->altaSinID($arregloNewCompra);
+        }
+    
+        return false;
+    }
+}    

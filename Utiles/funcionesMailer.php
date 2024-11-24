@@ -1,13 +1,15 @@
 <?php
+include_once __DIR__ . '/../Control/abmCompra.php';
 
+include_once __DIR__ . '/../configuracion.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 //Funcion encargada del envio del mail, recibe como parametro un arreglo con el id de la compra y el id de compraestadotipo
-function enviarMail ($data) {
-    $user = buscarUsuario($data['idcompra']);
-    $bodyMail = devolverBody($data);
+function enviarMail($user, $idcompra, $idcompraestadotipo) {
+    
+    $bodyMail = devolverBody($idcompra, $idcompraestadotipo);
     $mail = new PHPMailer(true);
     try {
         $mail->isSMTP();
@@ -41,13 +43,16 @@ function buscarUsuario($idcompra){
     $objCompra = new abmCompra();
     $objC = $objCompra->buscar(['idcompra' => $idcompra]);
    
-    $objUsuario = $objC[0]->getObjUsuario();
-    return (['usmail'=>$objUsuario->getUsMail(), 'usname'=>$objUsuario->getUsNombre()]);
+    if (!empty($objC)) {
+        $objUsuario = $objC[0]->getObjUsuario();
+        return ['usmail' => $objUsuario->getUsMail(), 'usname' => $objUsuario->getUsNombre()];
+    }
+    throw new Exception("No se encontró la compra");
 }
 
 //Funcion que se encarga de crear el cuerpo del mail en base al estado de la compra
-function devolverBody($data){
-    switch($data['idcompraestadotipo']){
+function devolverBody($idcompra, $idcompraestadotipo){
+    switch($idcompraestadotipo){
         case 1: {
             $body = "<!DOCTYPE html>
             <html lang='en'>
@@ -167,7 +172,7 @@ function devolverBody($data){
                         </div>
                         <div class='containerText'><h1 class='h1'>Pedido recibido!</h1>
                             <h3 class='h3'>Hemos recibido correctamente tu pedido!</h3>
-                            <h3 class='h3 subtitle'>El ID de tu pedido es: {$data['idcompra']}</h3>
+                            <h3 class='h3 subtitle'>El ID de tu pedido es: {$idcompra}</h3>
                             <h3 class='h3 subtitle'>Estamos esperando la confirmación del pago,
                                 que puede demorar hasta 48hs hábiles.</h3>
                             <br/>
@@ -305,7 +310,7 @@ function devolverBody($data){
                         </div>
                         <div class='containerText'><h1 class='h1'>Pedido aceptado!</h1>
                             <h3 class='h3'>Ya hemos confirmado tu pedido!</h3>
-                            <h3 class='h3 subtitle'>El ID para seguir tu compra es: {$data['idcompra']}</h3>
+                            <h3 class='h3 subtitle'>El ID para seguir tu compra es: {$idcompra}</h3>
                             <h3 class='h3 subtitle'>La preparación de los pedidos puede tomar hasta 48hs hábiles.</h3>
                             <br/>
                             
@@ -440,7 +445,7 @@ function devolverBody($data){
                         </div>
                         <div class='containerText'><h1 class='h1'>Pedido enviado!</h1>
                             <h3 class='h3'>Ya hemos realizado el envío de tu pedido con ID:
-                            {$data['idcompra']}.</h3>
+                            {$idcompra}.</h3>
                             <h3 class='h3 subtitle'>La empresa encargada del envío se
                                 contactará para enviarte los datos del mismo.</h3>
                             <h3 class='h3 subtitle'>Ante cualquier golpe o extravío debes
@@ -604,11 +609,8 @@ function devolverBody($data){
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['idcompra']) && isset($_POST['idcompraestadotipo'])) {
-        $resultado = enviarMail([
-            'idcompra' => $_POST['idcompra'],
-            'idcompraestadotipo' => $_POST['idcompraestadotipo']
-        ]);
+    if (isset($_POST['user']) && isset($_POST['idcompra']) && isset($_POST['idcompraestadotipo'])) {
+        $resultado = enviarMail($_POST['user'], $_POST['idcompra'], $_POST['idcompraestadotipo']);
         
         echo json_encode(['exito' => $resultado]);
     }

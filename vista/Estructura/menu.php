@@ -28,7 +28,7 @@ $sesion = new Session();
                             <i class="fas fa-user me-2"></i><?php echo $sesion->getNombreUsuarioLogueado(); ?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/TPFinal/Vista/Admin/modificarPerfil.php">Mi Perfil</a></li>
+                            <li><a class="dropdown-item" href="/TPFinal/Vista/modificarPerfil.php">Mi Perfil</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" onclick="cerrarSesion()">Cerrar Sesión</a></li>
                         </ul>

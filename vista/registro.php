@@ -1,6 +1,6 @@
 <?php
 $Titulo = "Registrarse";
-include_once './Estructura/cabecera.php';
+include_once 'Estructura/cabecera.php';
 ?>
 
 <div class="container p-4 mt-5 border border-warning border-2 rounded-2 bg-primary bg-opacity-10" style="width: 350px;">
@@ -33,4 +33,4 @@ include_once './Estructura/cabecera.php';
 <!-- MD5 -->
 <script src="../Utiles/js/md5.js"></script>
 
-<?php include_once '.\Estructura\pie.php'; ?>
+<?php include_once 'Estructura\pie.php'; ?>
