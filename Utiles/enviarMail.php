@@ -10,9 +10,19 @@ try {
     if (!isset($data['idcompra']) || !isset($data['idcompraestadotipo'])) {
         throw new Exception("Faltan datos necesarios");
     }
-    $user = buscarUsuario($idcompra);
+
+    // Primero obtenemos los valores de data
     $idcompra = $data['idcompra'];
     $idcompraestadotipo = $data['idcompraestadotipo'];
+    
+    // Luego buscamos el usuario
+    $user = buscarUsuario($idcompra);
+    
+    if (!$user) {
+        throw new Exception("No se encontró el usuario de la compra");
+    }
+    
+    // Finalmente enviamos el mail
     $resultado = enviarMail($user, $idcompra, $idcompraestadotipo);
     
     echo json_encode([

@@ -11432,3 +11432,3048 @@
 
 [24-Nov-2024 09:00:02 Europe/Berlin] === FIN DE SOLICITUD DE LOGIN ===
 
+[24-Nov-2024 09:02:48 Europe/Berlin] === INICIO DE SOLICITUD DE LOGIN ===
+[24-Nov-2024 09:02:48 Europe/Berlin] Obteniendo datos enviados...
+[24-Nov-2024 09:02:48 Europe/Berlin] Datos recibidos: Array
+(
+    [usnombre] => admin
+    [uspass] => 0192023a7bbd73250516f069df18b500
+)
+
+[24-Nov-2024 09:02:48 Europe/Berlin] Datos completos recibidos para usuario: admin
+[24-Nov-2024 09:02:48 Europe/Berlin] Sesión creada
+[24-Nov-2024 09:02:48 Europe/Berlin] Estado de sesión activa: NO
+[24-Nov-2024 09:02:48 Europe/Berlin] Intentando validar usuario...
+[24-Nov-2024 09:02:48 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[24-Nov-2024 09:02:48 Europe/Berlin] Validando usuario: admin
+[24-Nov-2024 09:02:48 Europe/Berlin] Hash recibido: 0192023a7bbd73250516f069df18b500
+[24-Nov-2024 09:02:48 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:02:48 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => admin
+)
+
+[24-Nov-2024 09:02:48 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'admin'
+[24-Nov-2024 09:02:48 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'admin'
+[24-Nov-2024 09:02:48 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:02:48 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 2
+    [0] => 2
+    [usnombre] => admin
+    [1] => admin
+    [uspass] => 0192023a7bbd73250516f069df18b500
+    [2] => 0192023a7bbd73250516f069df18b500
+    [usmail] => admin@gmail.com
+    [3] => admin@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:02:48 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:02:48 Europe/Berlin] Usuario encontrado - ID: 2, Nombre: admin
+[24-Nov-2024 09:02:48 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => admin
+)
+
+[24-Nov-2024 09:02:48 Europe/Berlin] Usuario encontrado: SI
+[24-Nov-2024 09:02:48 Europe/Berlin] Password almacenado: 0192023a7bbd73250516f069df18b500
+[24-Nov-2024 09:02:48 Europe/Berlin] Password recibido: 0192023a7bbd73250516f069df18b500
+[24-Nov-2024 09:02:48 Europe/Berlin] Contraseña correcta
+[24-Nov-2024 09:02:48 Europe/Berlin] Resultado de validación: EXITOSO
+[24-Nov-2024 09:02:48 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[24-Nov-2024 09:02:48 Europe/Berlin] Resultado de validación: EXITOSA
+[24-Nov-2024 09:02:48 Europe/Berlin] === INICIO DE MÉTODO INICIAR ===
+[24-Nov-2024 09:02:48 Europe/Berlin] No hay sesión activa, procediendo con la validación
+[24-Nov-2024 09:02:48 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[24-Nov-2024 09:02:48 Europe/Berlin] Validando usuario: admin
+[24-Nov-2024 09:02:48 Europe/Berlin] Hash recibido: 0192023a7bbd73250516f069df18b500
+[24-Nov-2024 09:02:48 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:02:48 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => admin
+)
+
+[24-Nov-2024 09:02:48 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'admin'
+[24-Nov-2024 09:02:48 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'admin'
+[24-Nov-2024 09:02:48 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:02:48 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 2
+    [0] => 2
+    [usnombre] => admin
+    [1] => admin
+    [uspass] => 0192023a7bbd73250516f069df18b500
+    [2] => 0192023a7bbd73250516f069df18b500
+    [usmail] => admin@gmail.com
+    [3] => admin@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:02:48 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:02:48 Europe/Berlin] Usuario encontrado - ID: 2, Nombre: admin
+[24-Nov-2024 09:02:48 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => admin
+)
+
+[24-Nov-2024 09:02:48 Europe/Berlin] Usuario encontrado: SI
+[24-Nov-2024 09:02:48 Europe/Berlin] Password almacenado: 0192023a7bbd73250516f069df18b500
+[24-Nov-2024 09:02:48 Europe/Berlin] Password recibido: 0192023a7bbd73250516f069df18b500
+[24-Nov-2024 09:02:48 Europe/Berlin] Contraseña correcta
+[24-Nov-2024 09:02:48 Europe/Berlin] Resultado de validación: EXITOSO
+[24-Nov-2024 09:02:48 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[24-Nov-2024 09:02:48 Europe/Berlin] Validación exitosa, iniciando sesión
+[24-Nov-2024 09:02:48 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:02:48 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => admin
+)
+
+[24-Nov-2024 09:02:48 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'admin'
+[24-Nov-2024 09:02:48 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'admin'
+[24-Nov-2024 09:02:48 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:02:48 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 2
+    [0] => 2
+    [usnombre] => admin
+    [1] => admin
+    [uspass] => 0192023a7bbd73250516f069df18b500
+    [2] => 0192023a7bbd73250516f069df18b500
+    [usmail] => admin@gmail.com
+    [3] => admin@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:02:48 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:02:48 Europe/Berlin] Usuario encontrado - ID: 2, Nombre: admin
+[24-Nov-2024 09:02:48 Europe/Berlin] Buscando datos de usuario
+[24-Nov-2024 09:02:48 Europe/Berlin] Usuario encontrado, ID: 2
+[24-Nov-2024 09:02:48 Europe/Berlin] === INICIO SETEAR ROL ACTIVO ===
+[24-Nov-2024 09:02:48 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:02:48 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => admin
+)
+
+[24-Nov-2024 09:02:48 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'admin'
+[24-Nov-2024 09:02:48 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'admin'
+[24-Nov-2024 09:02:48 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:02:48 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 2
+    [0] => 2
+    [usnombre] => admin
+    [1] => admin
+    [uspass] => 0192023a7bbd73250516f069df18b500
+    [2] => 0192023a7bbd73250516f069df18b500
+    [usmail] => admin@gmail.com
+    [3] => admin@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:02:48 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:02:48 Europe/Berlin] Usuario encontrado - ID: 2, Nombre: admin
+[24-Nov-2024 09:02:48 Europe/Berlin] Roles encontrados: 1
+[24-Nov-2024 09:02:48 Europe/Berlin] Rol activo descripción: admin
+[24-Nov-2024 09:02:48 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:02:48 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => admin
+)
+
+[24-Nov-2024 09:02:48 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'admin'
+[24-Nov-2024 09:02:48 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'admin'
+[24-Nov-2024 09:02:48 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:02:48 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 2
+    [0] => 2
+    [usnombre] => admin
+    [1] => admin
+    [uspass] => 0192023a7bbd73250516f069df18b500
+    [2] => 0192023a7bbd73250516f069df18b500
+    [usmail] => admin@gmail.com
+    [3] => admin@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:02:48 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:02:48 Europe/Berlin] Usuario encontrado - ID: 2, Nombre: admin
+[24-Nov-2024 09:02:48 Europe/Berlin] ID del rol: 1
+[24-Nov-2024 09:02:48 Europe/Berlin] Rol activo seteado correctamente
+[24-Nov-2024 09:02:48 Europe/Berlin] Resultado setearRolActivo: EXITOSO
+[24-Nov-2024 09:02:48 Europe/Berlin] === FIN SETEAR ROL ACTIVO ===
+[24-Nov-2024 09:02:48 Europe/Berlin] Rol activo seteado correctamente
+[24-Nov-2024 09:02:48 Europe/Berlin] Sesión iniciada correctamente
+[24-Nov-2024 09:02:48 Europe/Berlin] Resultado de iniciar(): EXITOSO
+[24-Nov-2024 09:02:48 Europe/Berlin] === FIN DE MÉTODO INICIAR ===
+[24-Nov-2024 09:02:48 Europe/Berlin] Inicio de sesión exitoso
+[24-Nov-2024 09:02:48 Europe/Berlin] Respuesta a enviar: Array
+(
+    [success] => 1
+    [message] => Inicio de sesión exitoso
+    [debug] => Array
+        (
+            [datos_recibidos] => Array
+                (
+                    [usnombre] => admin
+                    [uspass] => 0192023a7bbd73250516f069df18b500
+                )
+
+        )
+
+)
+
+[24-Nov-2024 09:02:48 Europe/Berlin] === FIN DE SOLICITUD DE LOGIN ===
+
+[24-Nov-2024 09:03:07 Europe/Berlin] === INICIO DE SOLICITUD DE LOGIN ===
+[24-Nov-2024 09:03:07 Europe/Berlin] Obteniendo datos enviados...
+[24-Nov-2024 09:03:07 Europe/Berlin] Datos recibidos: Array
+(
+    [usnombre] => tomas
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+)
+
+[24-Nov-2024 09:03:07 Europe/Berlin] Datos completos recibidos para usuario: tomas
+[24-Nov-2024 09:03:07 Europe/Berlin] Sesión creada
+[24-Nov-2024 09:03:07 Europe/Berlin] Estado de sesión activa: NO
+[24-Nov-2024 09:03:07 Europe/Berlin] Intentando validar usuario...
+[24-Nov-2024 09:03:07 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[24-Nov-2024 09:03:07 Europe/Berlin] Validando usuario: tomas
+[24-Nov-2024 09:03:07 Europe/Berlin] Hash recibido: 10dcac146933401ccf0dd0f743b27a0d
+[24-Nov-2024 09:03:07 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:03:07 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomas
+)
+
+[24-Nov-2024 09:03:07 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomas'
+[24-Nov-2024 09:03:07 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomas'
+[24-Nov-2024 09:03:07 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:03:07 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 22
+    [0] => 22
+    [usnombre] => tomas
+    [1] => tomas
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => asd@asd.com
+    [3] => asd@asd.com
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[24-Nov-2024 09:03:07 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:03:07 Europe/Berlin] Usuario encontrado - ID: 22, Nombre: tomas
+[24-Nov-2024 09:03:07 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => tomas
+)
+
+[24-Nov-2024 09:03:07 Europe/Berlin] Usuario encontrado: SI
+[24-Nov-2024 09:03:07 Europe/Berlin] Password almacenado: 10dcac146933401ccf0dd0f743b27a0d
+[24-Nov-2024 09:03:07 Europe/Berlin] Password recibido: 10dcac146933401ccf0dd0f743b27a0d
+[24-Nov-2024 09:03:07 Europe/Berlin] Contraseña correcta
+[24-Nov-2024 09:03:07 Europe/Berlin] Resultado de validación: EXITOSO
+[24-Nov-2024 09:03:07 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[24-Nov-2024 09:03:07 Europe/Berlin] Resultado de validación: EXITOSA
+[24-Nov-2024 09:03:07 Europe/Berlin] === INICIO DE MÉTODO INICIAR ===
+[24-Nov-2024 09:03:07 Europe/Berlin] No hay sesión activa, procediendo con la validación
+[24-Nov-2024 09:03:07 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[24-Nov-2024 09:03:07 Europe/Berlin] Validando usuario: tomas
+[24-Nov-2024 09:03:07 Europe/Berlin] Hash recibido: 10dcac146933401ccf0dd0f743b27a0d
+[24-Nov-2024 09:03:07 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:03:07 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomas
+)
+
+[24-Nov-2024 09:03:07 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomas'
+[24-Nov-2024 09:03:07 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomas'
+[24-Nov-2024 09:03:07 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:03:07 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 22
+    [0] => 22
+    [usnombre] => tomas
+    [1] => tomas
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => asd@asd.com
+    [3] => asd@asd.com
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[24-Nov-2024 09:03:07 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:03:07 Europe/Berlin] Usuario encontrado - ID: 22, Nombre: tomas
+[24-Nov-2024 09:03:07 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => tomas
+)
+
+[24-Nov-2024 09:03:07 Europe/Berlin] Usuario encontrado: SI
+[24-Nov-2024 09:03:07 Europe/Berlin] Password almacenado: 10dcac146933401ccf0dd0f743b27a0d
+[24-Nov-2024 09:03:07 Europe/Berlin] Password recibido: 10dcac146933401ccf0dd0f743b27a0d
+[24-Nov-2024 09:03:07 Europe/Berlin] Contraseña correcta
+[24-Nov-2024 09:03:07 Europe/Berlin] Resultado de validación: EXITOSO
+[24-Nov-2024 09:03:07 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[24-Nov-2024 09:03:07 Europe/Berlin] Validación exitosa, iniciando sesión
+[24-Nov-2024 09:03:07 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:03:07 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomas
+)
+
+[24-Nov-2024 09:03:07 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomas'
+[24-Nov-2024 09:03:07 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomas'
+[24-Nov-2024 09:03:07 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:03:07 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 22
+    [0] => 22
+    [usnombre] => tomas
+    [1] => tomas
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => asd@asd.com
+    [3] => asd@asd.com
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[24-Nov-2024 09:03:07 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:03:07 Europe/Berlin] Usuario encontrado - ID: 22, Nombre: tomas
+[24-Nov-2024 09:03:07 Europe/Berlin] Buscando datos de usuario
+[24-Nov-2024 09:03:07 Europe/Berlin] Usuario encontrado, ID: 22
+[24-Nov-2024 09:03:07 Europe/Berlin] === INICIO SETEAR ROL ACTIVO ===
+[24-Nov-2024 09:03:07 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:03:07 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomas
+)
+
+[24-Nov-2024 09:03:07 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomas'
+[24-Nov-2024 09:03:07 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomas'
+[24-Nov-2024 09:03:07 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:03:07 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 22
+    [0] => 22
+    [usnombre] => tomas
+    [1] => tomas
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => asd@asd.com
+    [3] => asd@asd.com
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[24-Nov-2024 09:03:07 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:03:07 Europe/Berlin] Usuario encontrado - ID: 22, Nombre: tomas
+[24-Nov-2024 09:03:07 Europe/Berlin] Roles encontrados: 1
+[24-Nov-2024 09:03:07 Europe/Berlin] Rol activo descripción: cliente
+[24-Nov-2024 09:03:07 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:03:07 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomas
+)
+
+[24-Nov-2024 09:03:07 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomas'
+[24-Nov-2024 09:03:07 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomas'
+[24-Nov-2024 09:03:07 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:03:07 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 22
+    [0] => 22
+    [usnombre] => tomas
+    [1] => tomas
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => asd@asd.com
+    [3] => asd@asd.com
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[24-Nov-2024 09:03:07 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:03:07 Europe/Berlin] Usuario encontrado - ID: 22, Nombre: tomas
+[24-Nov-2024 09:03:07 Europe/Berlin] ID del rol: 3
+[24-Nov-2024 09:03:07 Europe/Berlin] Rol activo seteado correctamente
+[24-Nov-2024 09:03:07 Europe/Berlin] Resultado setearRolActivo: EXITOSO
+[24-Nov-2024 09:03:07 Europe/Berlin] === FIN SETEAR ROL ACTIVO ===
+[24-Nov-2024 09:03:07 Europe/Berlin] Rol activo seteado correctamente
+[24-Nov-2024 09:03:07 Europe/Berlin] Sesión iniciada correctamente
+[24-Nov-2024 09:03:07 Europe/Berlin] Resultado de iniciar(): EXITOSO
+[24-Nov-2024 09:03:07 Europe/Berlin] === FIN DE MÉTODO INICIAR ===
+[24-Nov-2024 09:03:07 Europe/Berlin] Inicio de sesión exitoso
+[24-Nov-2024 09:03:07 Europe/Berlin] Respuesta a enviar: Array
+(
+    [success] => 1
+    [message] => Inicio de sesión exitoso
+    [debug] => Array
+        (
+            [datos_recibidos] => Array
+                (
+                    [usnombre] => tomas
+                    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+                )
+
+        )
+
+)
+
+[24-Nov-2024 09:03:07 Europe/Berlin] === FIN DE SOLICITUD DE LOGIN ===
+
+[24-Nov-2024 09:03:41 Europe/Berlin] === INICIO DE SOLICITUD DE LOGIN ===
+[24-Nov-2024 09:03:41 Europe/Berlin] Obteniendo datos enviados...
+[24-Nov-2024 09:03:41 Europe/Berlin] Datos recibidos: Array
+(
+    [usnombre] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+)
+
+[24-Nov-2024 09:03:41 Europe/Berlin] Datos completos recibidos para usuario: deposito
+[24-Nov-2024 09:03:41 Europe/Berlin] Sesión creada
+[24-Nov-2024 09:03:41 Europe/Berlin] Estado de sesión activa: NO
+[24-Nov-2024 09:03:41 Europe/Berlin] Intentando validar usuario...
+[24-Nov-2024 09:03:41 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[24-Nov-2024 09:03:41 Europe/Berlin] Validando usuario: deposito
+[24-Nov-2024 09:03:41 Europe/Berlin] Hash recibido: caaf856169610904e4f188e6ee23e88c
+[24-Nov-2024 09:03:41 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:03:41 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:03:41 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:03:41 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:03:41 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:03:41 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:03:41 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:03:41 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[24-Nov-2024 09:03:41 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:03:41 Europe/Berlin] Usuario encontrado: SI
+[24-Nov-2024 09:03:41 Europe/Berlin] Password almacenado: caaf856169610904e4f188e6ee23e88c
+[24-Nov-2024 09:03:41 Europe/Berlin] Password recibido: caaf856169610904e4f188e6ee23e88c
+[24-Nov-2024 09:03:41 Europe/Berlin] Contraseña correcta
+[24-Nov-2024 09:03:41 Europe/Berlin] Resultado de validación: EXITOSO
+[24-Nov-2024 09:03:41 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[24-Nov-2024 09:03:41 Europe/Berlin] Resultado de validación: EXITOSA
+[24-Nov-2024 09:03:41 Europe/Berlin] === INICIO DE MÉTODO INICIAR ===
+[24-Nov-2024 09:03:41 Europe/Berlin] No hay sesión activa, procediendo con la validación
+[24-Nov-2024 09:03:41 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[24-Nov-2024 09:03:41 Europe/Berlin] Validando usuario: deposito
+[24-Nov-2024 09:03:41 Europe/Berlin] Hash recibido: caaf856169610904e4f188e6ee23e88c
+[24-Nov-2024 09:03:41 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:03:41 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:03:41 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:03:41 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:03:41 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:03:41 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:03:41 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:03:41 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[24-Nov-2024 09:03:41 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:03:41 Europe/Berlin] Usuario encontrado: SI
+[24-Nov-2024 09:03:41 Europe/Berlin] Password almacenado: caaf856169610904e4f188e6ee23e88c
+[24-Nov-2024 09:03:41 Europe/Berlin] Password recibido: caaf856169610904e4f188e6ee23e88c
+[24-Nov-2024 09:03:41 Europe/Berlin] Contraseña correcta
+[24-Nov-2024 09:03:41 Europe/Berlin] Resultado de validación: EXITOSO
+[24-Nov-2024 09:03:41 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[24-Nov-2024 09:03:41 Europe/Berlin] Validación exitosa, iniciando sesión
+[24-Nov-2024 09:03:41 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:03:41 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:03:41 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:03:41 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:03:41 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:03:41 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:03:41 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:03:41 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[24-Nov-2024 09:03:41 Europe/Berlin] Buscando datos de usuario
+[24-Nov-2024 09:03:41 Europe/Berlin] Usuario encontrado, ID: 3
+[24-Nov-2024 09:03:41 Europe/Berlin] === INICIO SETEAR ROL ACTIVO ===
+[24-Nov-2024 09:03:41 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:03:41 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:03:41 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:03:41 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:03:41 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:03:41 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:03:41 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:03:41 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[24-Nov-2024 09:03:41 Europe/Berlin] Roles encontrados: 1
+[24-Nov-2024 09:03:41 Europe/Berlin] Rol activo descripción: deposito
+[24-Nov-2024 09:03:41 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:03:41 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:03:41 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:03:41 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:03:41 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:03:41 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:03:41 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:03:41 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[24-Nov-2024 09:03:41 Europe/Berlin] ID del rol: 2
+[24-Nov-2024 09:03:41 Europe/Berlin] Rol activo seteado correctamente
+[24-Nov-2024 09:03:41 Europe/Berlin] Resultado setearRolActivo: EXITOSO
+[24-Nov-2024 09:03:41 Europe/Berlin] === FIN SETEAR ROL ACTIVO ===
+[24-Nov-2024 09:03:41 Europe/Berlin] Rol activo seteado correctamente
+[24-Nov-2024 09:03:41 Europe/Berlin] Sesión iniciada correctamente
+[24-Nov-2024 09:03:41 Europe/Berlin] Resultado de iniciar(): EXITOSO
+[24-Nov-2024 09:03:41 Europe/Berlin] === FIN DE MÉTODO INICIAR ===
+[24-Nov-2024 09:03:41 Europe/Berlin] Inicio de sesión exitoso
+[24-Nov-2024 09:03:41 Europe/Berlin] Respuesta a enviar: Array
+(
+    [success] => 1
+    [message] => Inicio de sesión exitoso
+    [debug] => Array
+        (
+            [datos_recibidos] => Array
+                (
+                    [usnombre] => deposito
+                    [uspass] => caaf856169610904e4f188e6ee23e88c
+                )
+
+        )
+
+)
+
+[24-Nov-2024 09:03:41 Europe/Berlin] === FIN DE SOLICITUD DE LOGIN ===
+
+[24-Nov-2024 09:05:06 Europe/Berlin] === INICIO DE SOLICITUD DE LOGIN ===
+[24-Nov-2024 09:05:06 Europe/Berlin] Obteniendo datos enviados...
+[24-Nov-2024 09:05:06 Europe/Berlin] Datos recibidos: Array
+(
+    [usnombre] => admin
+    [uspass] => 0192023a7bbd73250516f069df18b500
+)
+
+[24-Nov-2024 09:05:06 Europe/Berlin] Datos completos recibidos para usuario: admin
+[24-Nov-2024 09:05:06 Europe/Berlin] Sesión creada
+[24-Nov-2024 09:05:06 Europe/Berlin] Estado de sesión activa: NO
+[24-Nov-2024 09:05:06 Europe/Berlin] Intentando validar usuario...
+[24-Nov-2024 09:05:06 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[24-Nov-2024 09:05:06 Europe/Berlin] Validando usuario: admin
+[24-Nov-2024 09:05:06 Europe/Berlin] Hash recibido: 0192023a7bbd73250516f069df18b500
+[24-Nov-2024 09:05:06 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:05:06 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => admin
+)
+
+[24-Nov-2024 09:05:06 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'admin'
+[24-Nov-2024 09:05:06 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'admin'
+[24-Nov-2024 09:05:06 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:05:06 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 2
+    [0] => 2
+    [usnombre] => admin
+    [1] => admin
+    [uspass] => 0192023a7bbd73250516f069df18b500
+    [2] => 0192023a7bbd73250516f069df18b500
+    [usmail] => admin@gmail.com
+    [3] => admin@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:05:06 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:05:06 Europe/Berlin] Usuario encontrado - ID: 2, Nombre: admin
+[24-Nov-2024 09:05:06 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => admin
+)
+
+[24-Nov-2024 09:05:06 Europe/Berlin] Usuario encontrado: SI
+[24-Nov-2024 09:05:06 Europe/Berlin] Password almacenado: 0192023a7bbd73250516f069df18b500
+[24-Nov-2024 09:05:06 Europe/Berlin] Password recibido: 0192023a7bbd73250516f069df18b500
+[24-Nov-2024 09:05:06 Europe/Berlin] Contraseña correcta
+[24-Nov-2024 09:05:06 Europe/Berlin] Resultado de validación: EXITOSO
+[24-Nov-2024 09:05:06 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[24-Nov-2024 09:05:06 Europe/Berlin] Resultado de validación: EXITOSA
+[24-Nov-2024 09:05:06 Europe/Berlin] === INICIO DE MÉTODO INICIAR ===
+[24-Nov-2024 09:05:06 Europe/Berlin] No hay sesión activa, procediendo con la validación
+[24-Nov-2024 09:05:06 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[24-Nov-2024 09:05:06 Europe/Berlin] Validando usuario: admin
+[24-Nov-2024 09:05:06 Europe/Berlin] Hash recibido: 0192023a7bbd73250516f069df18b500
+[24-Nov-2024 09:05:06 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:05:06 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => admin
+)
+
+[24-Nov-2024 09:05:06 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'admin'
+[24-Nov-2024 09:05:06 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'admin'
+[24-Nov-2024 09:05:06 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:05:06 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 2
+    [0] => 2
+    [usnombre] => admin
+    [1] => admin
+    [uspass] => 0192023a7bbd73250516f069df18b500
+    [2] => 0192023a7bbd73250516f069df18b500
+    [usmail] => admin@gmail.com
+    [3] => admin@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:05:06 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:05:06 Europe/Berlin] Usuario encontrado - ID: 2, Nombre: admin
+[24-Nov-2024 09:05:06 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => admin
+)
+
+[24-Nov-2024 09:05:06 Europe/Berlin] Usuario encontrado: SI
+[24-Nov-2024 09:05:06 Europe/Berlin] Password almacenado: 0192023a7bbd73250516f069df18b500
+[24-Nov-2024 09:05:06 Europe/Berlin] Password recibido: 0192023a7bbd73250516f069df18b500
+[24-Nov-2024 09:05:06 Europe/Berlin] Contraseña correcta
+[24-Nov-2024 09:05:06 Europe/Berlin] Resultado de validación: EXITOSO
+[24-Nov-2024 09:05:06 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[24-Nov-2024 09:05:06 Europe/Berlin] Validación exitosa, iniciando sesión
+[24-Nov-2024 09:05:06 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:05:06 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => admin
+)
+
+[24-Nov-2024 09:05:06 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'admin'
+[24-Nov-2024 09:05:06 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'admin'
+[24-Nov-2024 09:05:06 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:05:06 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 2
+    [0] => 2
+    [usnombre] => admin
+    [1] => admin
+    [uspass] => 0192023a7bbd73250516f069df18b500
+    [2] => 0192023a7bbd73250516f069df18b500
+    [usmail] => admin@gmail.com
+    [3] => admin@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:05:06 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:05:06 Europe/Berlin] Usuario encontrado - ID: 2, Nombre: admin
+[24-Nov-2024 09:05:06 Europe/Berlin] Buscando datos de usuario
+[24-Nov-2024 09:05:06 Europe/Berlin] Usuario encontrado, ID: 2
+[24-Nov-2024 09:05:06 Europe/Berlin] === INICIO SETEAR ROL ACTIVO ===
+[24-Nov-2024 09:05:06 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:05:06 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => admin
+)
+
+[24-Nov-2024 09:05:06 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'admin'
+[24-Nov-2024 09:05:06 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'admin'
+[24-Nov-2024 09:05:06 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:05:06 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 2
+    [0] => 2
+    [usnombre] => admin
+    [1] => admin
+    [uspass] => 0192023a7bbd73250516f069df18b500
+    [2] => 0192023a7bbd73250516f069df18b500
+    [usmail] => admin@gmail.com
+    [3] => admin@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:05:06 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:05:06 Europe/Berlin] Usuario encontrado - ID: 2, Nombre: admin
+[24-Nov-2024 09:05:06 Europe/Berlin] Roles encontrados: 1
+[24-Nov-2024 09:05:06 Europe/Berlin] Rol activo descripción: admin
+[24-Nov-2024 09:05:06 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:05:06 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => admin
+)
+
+[24-Nov-2024 09:05:06 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'admin'
+[24-Nov-2024 09:05:06 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'admin'
+[24-Nov-2024 09:05:06 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:05:06 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 2
+    [0] => 2
+    [usnombre] => admin
+    [1] => admin
+    [uspass] => 0192023a7bbd73250516f069df18b500
+    [2] => 0192023a7bbd73250516f069df18b500
+    [usmail] => admin@gmail.com
+    [3] => admin@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:05:06 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:05:06 Europe/Berlin] Usuario encontrado - ID: 2, Nombre: admin
+[24-Nov-2024 09:05:06 Europe/Berlin] ID del rol: 1
+[24-Nov-2024 09:05:06 Europe/Berlin] Rol activo seteado correctamente
+[24-Nov-2024 09:05:06 Europe/Berlin] Resultado setearRolActivo: EXITOSO
+[24-Nov-2024 09:05:06 Europe/Berlin] === FIN SETEAR ROL ACTIVO ===
+[24-Nov-2024 09:05:06 Europe/Berlin] Rol activo seteado correctamente
+[24-Nov-2024 09:05:06 Europe/Berlin] Sesión iniciada correctamente
+[24-Nov-2024 09:05:06 Europe/Berlin] Resultado de iniciar(): EXITOSO
+[24-Nov-2024 09:05:06 Europe/Berlin] === FIN DE MÉTODO INICIAR ===
+[24-Nov-2024 09:05:06 Europe/Berlin] Inicio de sesión exitoso
+[24-Nov-2024 09:05:06 Europe/Berlin] Respuesta a enviar: Array
+(
+    [success] => 1
+    [message] => Inicio de sesión exitoso
+    [debug] => Array
+        (
+            [datos_recibidos] => Array
+                (
+                    [usnombre] => admin
+                    [uspass] => 0192023a7bbd73250516f069df18b500
+                )
+
+        )
+
+)
+
+[24-Nov-2024 09:05:06 Europe/Berlin] === FIN DE SOLICITUD DE LOGIN ===
+
+[24-Nov-2024 09:05:32 Europe/Berlin] === INICIO DE SOLICITUD DE LOGIN ===
+[24-Nov-2024 09:05:32 Europe/Berlin] Obteniendo datos enviados...
+[24-Nov-2024 09:05:32 Europe/Berlin] Datos recibidos: Array
+(
+    [usnombre] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+)
+
+[24-Nov-2024 09:05:32 Europe/Berlin] Datos completos recibidos para usuario: tomiCliente
+[24-Nov-2024 09:05:32 Europe/Berlin] Sesión creada
+[24-Nov-2024 09:05:32 Europe/Berlin] Estado de sesión activa: NO
+[24-Nov-2024 09:05:32 Europe/Berlin] Intentando validar usuario...
+[24-Nov-2024 09:05:32 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[24-Nov-2024 09:05:32 Europe/Berlin] Validando usuario: tomiCliente
+[24-Nov-2024 09:05:32 Europe/Berlin] Hash recibido: 10dcac146933401ccf0dd0f743b27a0d
+[24-Nov-2024 09:05:32 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:05:32 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[24-Nov-2024 09:05:32 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:05:32 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:05:32 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:05:32 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 23
+    [0] => 23
+    [usnombre] => tomiCliente
+    [1] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => tomas.acuna@est.fi.uncoma.edu.ar
+    [3] => tomas.acuna@est.fi.uncoma.edu.ar
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[24-Nov-2024 09:05:32 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:05:32 Europe/Berlin] Usuario encontrado - ID: 23, Nombre: tomiCliente
+[24-Nov-2024 09:05:32 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[24-Nov-2024 09:05:32 Europe/Berlin] Usuario encontrado: SI
+[24-Nov-2024 09:05:32 Europe/Berlin] Password almacenado: 10dcac146933401ccf0dd0f743b27a0d
+[24-Nov-2024 09:05:32 Europe/Berlin] Password recibido: 10dcac146933401ccf0dd0f743b27a0d
+[24-Nov-2024 09:05:32 Europe/Berlin] Contraseña correcta
+[24-Nov-2024 09:05:32 Europe/Berlin] Resultado de validación: EXITOSO
+[24-Nov-2024 09:05:32 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[24-Nov-2024 09:05:32 Europe/Berlin] Resultado de validación: EXITOSA
+[24-Nov-2024 09:05:32 Europe/Berlin] === INICIO DE MÉTODO INICIAR ===
+[24-Nov-2024 09:05:32 Europe/Berlin] No hay sesión activa, procediendo con la validación
+[24-Nov-2024 09:05:32 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[24-Nov-2024 09:05:32 Europe/Berlin] Validando usuario: tomiCliente
+[24-Nov-2024 09:05:32 Europe/Berlin] Hash recibido: 10dcac146933401ccf0dd0f743b27a0d
+[24-Nov-2024 09:05:32 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:05:32 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[24-Nov-2024 09:05:32 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:05:32 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:05:32 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:05:32 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 23
+    [0] => 23
+    [usnombre] => tomiCliente
+    [1] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => tomas.acuna@est.fi.uncoma.edu.ar
+    [3] => tomas.acuna@est.fi.uncoma.edu.ar
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[24-Nov-2024 09:05:32 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:05:32 Europe/Berlin] Usuario encontrado - ID: 23, Nombre: tomiCliente
+[24-Nov-2024 09:05:32 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[24-Nov-2024 09:05:32 Europe/Berlin] Usuario encontrado: SI
+[24-Nov-2024 09:05:32 Europe/Berlin] Password almacenado: 10dcac146933401ccf0dd0f743b27a0d
+[24-Nov-2024 09:05:32 Europe/Berlin] Password recibido: 10dcac146933401ccf0dd0f743b27a0d
+[24-Nov-2024 09:05:32 Europe/Berlin] Contraseña correcta
+[24-Nov-2024 09:05:32 Europe/Berlin] Resultado de validación: EXITOSO
+[24-Nov-2024 09:05:32 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[24-Nov-2024 09:05:32 Europe/Berlin] Validación exitosa, iniciando sesión
+[24-Nov-2024 09:05:32 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:05:32 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[24-Nov-2024 09:05:32 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:05:32 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:05:32 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:05:32 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 23
+    [0] => 23
+    [usnombre] => tomiCliente
+    [1] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => tomas.acuna@est.fi.uncoma.edu.ar
+    [3] => tomas.acuna@est.fi.uncoma.edu.ar
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[24-Nov-2024 09:05:32 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:05:32 Europe/Berlin] Usuario encontrado - ID: 23, Nombre: tomiCliente
+[24-Nov-2024 09:05:32 Europe/Berlin] Buscando datos de usuario
+[24-Nov-2024 09:05:32 Europe/Berlin] Usuario encontrado, ID: 23
+[24-Nov-2024 09:05:32 Europe/Berlin] === INICIO SETEAR ROL ACTIVO ===
+[24-Nov-2024 09:05:32 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:05:32 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[24-Nov-2024 09:05:32 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:05:32 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:05:32 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:05:32 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 23
+    [0] => 23
+    [usnombre] => tomiCliente
+    [1] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => tomas.acuna@est.fi.uncoma.edu.ar
+    [3] => tomas.acuna@est.fi.uncoma.edu.ar
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[24-Nov-2024 09:05:32 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:05:32 Europe/Berlin] Usuario encontrado - ID: 23, Nombre: tomiCliente
+[24-Nov-2024 09:05:32 Europe/Berlin] Roles encontrados: 1
+[24-Nov-2024 09:05:32 Europe/Berlin] Rol activo descripción: cliente
+[24-Nov-2024 09:05:32 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:05:32 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[24-Nov-2024 09:05:32 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:05:32 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:05:32 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:05:32 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 23
+    [0] => 23
+    [usnombre] => tomiCliente
+    [1] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => tomas.acuna@est.fi.uncoma.edu.ar
+    [3] => tomas.acuna@est.fi.uncoma.edu.ar
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[24-Nov-2024 09:05:32 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:05:32 Europe/Berlin] Usuario encontrado - ID: 23, Nombre: tomiCliente
+[24-Nov-2024 09:05:32 Europe/Berlin] ID del rol: 3
+[24-Nov-2024 09:05:32 Europe/Berlin] Rol activo seteado correctamente
+[24-Nov-2024 09:05:32 Europe/Berlin] Resultado setearRolActivo: EXITOSO
+[24-Nov-2024 09:05:32 Europe/Berlin] === FIN SETEAR ROL ACTIVO ===
+[24-Nov-2024 09:05:32 Europe/Berlin] Rol activo seteado correctamente
+[24-Nov-2024 09:05:32 Europe/Berlin] Sesión iniciada correctamente
+[24-Nov-2024 09:05:32 Europe/Berlin] Resultado de iniciar(): EXITOSO
+[24-Nov-2024 09:05:32 Europe/Berlin] === FIN DE MÉTODO INICIAR ===
+[24-Nov-2024 09:05:32 Europe/Berlin] Inicio de sesión exitoso
+[24-Nov-2024 09:05:32 Europe/Berlin] Respuesta a enviar: Array
+(
+    [success] => 1
+    [message] => Inicio de sesión exitoso
+    [debug] => Array
+        (
+            [datos_recibidos] => Array
+                (
+                    [usnombre] => tomiCliente
+                    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+                )
+
+        )
+
+)
+
+[24-Nov-2024 09:05:32 Europe/Berlin] === FIN DE SOLICITUD DE LOGIN ===
+
+[24-Nov-2024 09:06:08 Europe/Berlin] === INICIO DE SOLICITUD DE LOGIN ===
+[24-Nov-2024 09:06:08 Europe/Berlin] Obteniendo datos enviados...
+[24-Nov-2024 09:06:08 Europe/Berlin] Datos recibidos: Array
+(
+    [usnombre] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+)
+
+[24-Nov-2024 09:06:08 Europe/Berlin] Datos completos recibidos para usuario: deposito
+[24-Nov-2024 09:06:08 Europe/Berlin] Sesión creada
+[24-Nov-2024 09:06:08 Europe/Berlin] Estado de sesión activa: NO
+[24-Nov-2024 09:06:08 Europe/Berlin] Intentando validar usuario...
+[24-Nov-2024 09:06:08 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[24-Nov-2024 09:06:08 Europe/Berlin] Validando usuario: deposito
+[24-Nov-2024 09:06:08 Europe/Berlin] Hash recibido: caaf856169610904e4f188e6ee23e88c
+[24-Nov-2024 09:06:08 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:06:08 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:06:08 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:06:08 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:06:08 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:06:08 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:06:08 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:06:08 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[24-Nov-2024 09:06:08 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:06:08 Europe/Berlin] Usuario encontrado: SI
+[24-Nov-2024 09:06:08 Europe/Berlin] Password almacenado: caaf856169610904e4f188e6ee23e88c
+[24-Nov-2024 09:06:08 Europe/Berlin] Password recibido: caaf856169610904e4f188e6ee23e88c
+[24-Nov-2024 09:06:08 Europe/Berlin] Contraseña correcta
+[24-Nov-2024 09:06:08 Europe/Berlin] Resultado de validación: EXITOSO
+[24-Nov-2024 09:06:08 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[24-Nov-2024 09:06:08 Europe/Berlin] Resultado de validación: EXITOSA
+[24-Nov-2024 09:06:08 Europe/Berlin] === INICIO DE MÉTODO INICIAR ===
+[24-Nov-2024 09:06:08 Europe/Berlin] No hay sesión activa, procediendo con la validación
+[24-Nov-2024 09:06:08 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[24-Nov-2024 09:06:08 Europe/Berlin] Validando usuario: deposito
+[24-Nov-2024 09:06:08 Europe/Berlin] Hash recibido: caaf856169610904e4f188e6ee23e88c
+[24-Nov-2024 09:06:08 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:06:08 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:06:08 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:06:08 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:06:08 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:06:08 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:06:08 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:06:08 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[24-Nov-2024 09:06:08 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:06:08 Europe/Berlin] Usuario encontrado: SI
+[24-Nov-2024 09:06:08 Europe/Berlin] Password almacenado: caaf856169610904e4f188e6ee23e88c
+[24-Nov-2024 09:06:08 Europe/Berlin] Password recibido: caaf856169610904e4f188e6ee23e88c
+[24-Nov-2024 09:06:08 Europe/Berlin] Contraseña correcta
+[24-Nov-2024 09:06:08 Europe/Berlin] Resultado de validación: EXITOSO
+[24-Nov-2024 09:06:08 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[24-Nov-2024 09:06:08 Europe/Berlin] Validación exitosa, iniciando sesión
+[24-Nov-2024 09:06:08 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:06:08 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:06:08 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:06:08 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:06:08 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:06:08 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:06:08 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:06:08 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[24-Nov-2024 09:06:08 Europe/Berlin] Buscando datos de usuario
+[24-Nov-2024 09:06:08 Europe/Berlin] Usuario encontrado, ID: 3
+[24-Nov-2024 09:06:08 Europe/Berlin] === INICIO SETEAR ROL ACTIVO ===
+[24-Nov-2024 09:06:08 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:06:08 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:06:08 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:06:08 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:06:08 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:06:08 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:06:08 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:06:08 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[24-Nov-2024 09:06:09 Europe/Berlin] Roles encontrados: 1
+[24-Nov-2024 09:06:09 Europe/Berlin] Rol activo descripción: deposito
+[24-Nov-2024 09:06:09 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:06:09 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:06:09 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:06:09 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:06:09 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:06:09 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:06:09 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:06:09 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[24-Nov-2024 09:06:09 Europe/Berlin] ID del rol: 2
+[24-Nov-2024 09:06:09 Europe/Berlin] Rol activo seteado correctamente
+[24-Nov-2024 09:06:09 Europe/Berlin] Resultado setearRolActivo: EXITOSO
+[24-Nov-2024 09:06:09 Europe/Berlin] === FIN SETEAR ROL ACTIVO ===
+[24-Nov-2024 09:06:09 Europe/Berlin] Rol activo seteado correctamente
+[24-Nov-2024 09:06:09 Europe/Berlin] Sesión iniciada correctamente
+[24-Nov-2024 09:06:09 Europe/Berlin] Resultado de iniciar(): EXITOSO
+[24-Nov-2024 09:06:09 Europe/Berlin] === FIN DE MÉTODO INICIAR ===
+[24-Nov-2024 09:06:09 Europe/Berlin] Inicio de sesión exitoso
+[24-Nov-2024 09:06:09 Europe/Berlin] Respuesta a enviar: Array
+(
+    [success] => 1
+    [message] => Inicio de sesión exitoso
+    [debug] => Array
+        (
+            [datos_recibidos] => Array
+                (
+                    [usnombre] => deposito
+                    [uspass] => caaf856169610904e4f188e6ee23e88c
+                )
+
+        )
+
+)
+
+[24-Nov-2024 09:06:09 Europe/Berlin] === FIN DE SOLICITUD DE LOGIN ===
+
+[24-Nov-2024 09:10:51 Europe/Berlin] === INICIO DE SOLICITUD DE LOGIN ===
+[24-Nov-2024 09:10:51 Europe/Berlin] Obteniendo datos enviados...
+[24-Nov-2024 09:10:51 Europe/Berlin] Datos recibidos: Array
+(
+    [usnombre] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+)
+
+[24-Nov-2024 09:10:51 Europe/Berlin] Datos completos recibidos para usuario: tomiCliente
+[24-Nov-2024 09:10:51 Europe/Berlin] Sesión creada
+[24-Nov-2024 09:10:51 Europe/Berlin] Estado de sesión activa: NO
+[24-Nov-2024 09:10:51 Europe/Berlin] Intentando validar usuario...
+[24-Nov-2024 09:10:51 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[24-Nov-2024 09:10:51 Europe/Berlin] Validando usuario: tomiCliente
+[24-Nov-2024 09:10:51 Europe/Berlin] Hash recibido: 10dcac146933401ccf0dd0f743b27a0d
+[24-Nov-2024 09:10:51 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:10:51 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[24-Nov-2024 09:10:51 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:10:51 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:10:51 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:10:51 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 23
+    [0] => 23
+    [usnombre] => tomiCliente
+    [1] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => tomas.acuna@est.fi.uncoma.edu.ar
+    [3] => tomas.acuna@est.fi.uncoma.edu.ar
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[24-Nov-2024 09:10:51 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:10:51 Europe/Berlin] Usuario encontrado - ID: 23, Nombre: tomiCliente
+[24-Nov-2024 09:10:51 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[24-Nov-2024 09:10:51 Europe/Berlin] Usuario encontrado: SI
+[24-Nov-2024 09:10:51 Europe/Berlin] Password almacenado: 10dcac146933401ccf0dd0f743b27a0d
+[24-Nov-2024 09:10:51 Europe/Berlin] Password recibido: 10dcac146933401ccf0dd0f743b27a0d
+[24-Nov-2024 09:10:51 Europe/Berlin] Contraseña correcta
+[24-Nov-2024 09:10:51 Europe/Berlin] Resultado de validación: EXITOSO
+[24-Nov-2024 09:10:51 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[24-Nov-2024 09:10:51 Europe/Berlin] Resultado de validación: EXITOSA
+[24-Nov-2024 09:10:51 Europe/Berlin] === INICIO DE MÉTODO INICIAR ===
+[24-Nov-2024 09:10:51 Europe/Berlin] No hay sesión activa, procediendo con la validación
+[24-Nov-2024 09:10:51 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[24-Nov-2024 09:10:51 Europe/Berlin] Validando usuario: tomiCliente
+[24-Nov-2024 09:10:51 Europe/Berlin] Hash recibido: 10dcac146933401ccf0dd0f743b27a0d
+[24-Nov-2024 09:10:51 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:10:51 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[24-Nov-2024 09:10:51 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:10:51 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:10:51 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:10:51 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 23
+    [0] => 23
+    [usnombre] => tomiCliente
+    [1] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => tomas.acuna@est.fi.uncoma.edu.ar
+    [3] => tomas.acuna@est.fi.uncoma.edu.ar
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[24-Nov-2024 09:10:51 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:10:51 Europe/Berlin] Usuario encontrado - ID: 23, Nombre: tomiCliente
+[24-Nov-2024 09:10:51 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[24-Nov-2024 09:10:51 Europe/Berlin] Usuario encontrado: SI
+[24-Nov-2024 09:10:51 Europe/Berlin] Password almacenado: 10dcac146933401ccf0dd0f743b27a0d
+[24-Nov-2024 09:10:51 Europe/Berlin] Password recibido: 10dcac146933401ccf0dd0f743b27a0d
+[24-Nov-2024 09:10:51 Europe/Berlin] Contraseña correcta
+[24-Nov-2024 09:10:51 Europe/Berlin] Resultado de validación: EXITOSO
+[24-Nov-2024 09:10:51 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[24-Nov-2024 09:10:51 Europe/Berlin] Validación exitosa, iniciando sesión
+[24-Nov-2024 09:10:51 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:10:51 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[24-Nov-2024 09:10:51 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:10:51 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:10:51 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:10:51 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 23
+    [0] => 23
+    [usnombre] => tomiCliente
+    [1] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => tomas.acuna@est.fi.uncoma.edu.ar
+    [3] => tomas.acuna@est.fi.uncoma.edu.ar
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[24-Nov-2024 09:10:51 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:10:51 Europe/Berlin] Usuario encontrado - ID: 23, Nombre: tomiCliente
+[24-Nov-2024 09:10:51 Europe/Berlin] Buscando datos de usuario
+[24-Nov-2024 09:10:51 Europe/Berlin] Usuario encontrado, ID: 23
+[24-Nov-2024 09:10:51 Europe/Berlin] === INICIO SETEAR ROL ACTIVO ===
+[24-Nov-2024 09:10:51 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:10:51 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[24-Nov-2024 09:10:51 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:10:51 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:10:51 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:10:51 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 23
+    [0] => 23
+    [usnombre] => tomiCliente
+    [1] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => tomas.acuna@est.fi.uncoma.edu.ar
+    [3] => tomas.acuna@est.fi.uncoma.edu.ar
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[24-Nov-2024 09:10:51 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:10:51 Europe/Berlin] Usuario encontrado - ID: 23, Nombre: tomiCliente
+[24-Nov-2024 09:10:52 Europe/Berlin] Roles encontrados: 1
+[24-Nov-2024 09:10:52 Europe/Berlin] Rol activo descripción: cliente
+[24-Nov-2024 09:10:52 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:10:52 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[24-Nov-2024 09:10:52 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:10:52 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:10:52 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:10:52 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 23
+    [0] => 23
+    [usnombre] => tomiCliente
+    [1] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => tomas.acuna@est.fi.uncoma.edu.ar
+    [3] => tomas.acuna@est.fi.uncoma.edu.ar
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[24-Nov-2024 09:10:52 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:10:52 Europe/Berlin] Usuario encontrado - ID: 23, Nombre: tomiCliente
+[24-Nov-2024 09:10:52 Europe/Berlin] ID del rol: 3
+[24-Nov-2024 09:10:52 Europe/Berlin] Rol activo seteado correctamente
+[24-Nov-2024 09:10:52 Europe/Berlin] Resultado setearRolActivo: EXITOSO
+[24-Nov-2024 09:10:52 Europe/Berlin] === FIN SETEAR ROL ACTIVO ===
+[24-Nov-2024 09:10:52 Europe/Berlin] Rol activo seteado correctamente
+[24-Nov-2024 09:10:52 Europe/Berlin] Sesión iniciada correctamente
+[24-Nov-2024 09:10:52 Europe/Berlin] Resultado de iniciar(): EXITOSO
+[24-Nov-2024 09:10:52 Europe/Berlin] === FIN DE MÉTODO INICIAR ===
+[24-Nov-2024 09:10:52 Europe/Berlin] Inicio de sesión exitoso
+[24-Nov-2024 09:10:52 Europe/Berlin] Respuesta a enviar: Array
+(
+    [success] => 1
+    [message] => Inicio de sesión exitoso
+    [debug] => Array
+        (
+            [datos_recibidos] => Array
+                (
+                    [usnombre] => tomiCliente
+                    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+                )
+
+        )
+
+)
+
+[24-Nov-2024 09:10:52 Europe/Berlin] === FIN DE SOLICITUD DE LOGIN ===
+
+[24-Nov-2024 09:11:22 Europe/Berlin] === INICIO DE SOLICITUD DE LOGIN ===
+[24-Nov-2024 09:11:22 Europe/Berlin] Obteniendo datos enviados...
+[24-Nov-2024 09:11:22 Europe/Berlin] Datos recibidos: Array
+(
+    [usnombre] => cliente
+    [uspass] => 7159bbe0c8ca2a67230a26b72dea7557
+)
+
+[24-Nov-2024 09:11:22 Europe/Berlin] Datos completos recibidos para usuario: cliente
+[24-Nov-2024 09:11:22 Europe/Berlin] Sesión creada
+[24-Nov-2024 09:11:22 Europe/Berlin] Estado de sesión activa: NO
+[24-Nov-2024 09:11:22 Europe/Berlin] Intentando validar usuario...
+[24-Nov-2024 09:11:22 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[24-Nov-2024 09:11:22 Europe/Berlin] Validando usuario: cliente
+[24-Nov-2024 09:11:22 Europe/Berlin] Hash recibido: 7159bbe0c8ca2a67230a26b72dea7557
+[24-Nov-2024 09:11:22 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:11:22 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => cliente
+)
+
+[24-Nov-2024 09:11:22 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'cliente'
+[24-Nov-2024 09:11:22 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'cliente'
+[24-Nov-2024 09:11:22 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:11:22 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 4
+    [0] => 4
+    [usnombre] => cliente
+    [1] => cliente
+    [uspass] => 7159bbe0c8ca2a67230a26b72dea7557
+    [2] => 7159bbe0c8ca2a67230a26b72dea7557
+    [usmail] => cliente@gmail.com
+    [3] => cliente@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:11:22 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:11:22 Europe/Berlin] Usuario encontrado - ID: 4, Nombre: cliente
+[24-Nov-2024 09:11:22 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => cliente
+)
+
+[24-Nov-2024 09:11:22 Europe/Berlin] Usuario encontrado: SI
+[24-Nov-2024 09:11:22 Europe/Berlin] Password almacenado: 7159bbe0c8ca2a67230a26b72dea7557
+[24-Nov-2024 09:11:22 Europe/Berlin] Password recibido: 7159bbe0c8ca2a67230a26b72dea7557
+[24-Nov-2024 09:11:22 Europe/Berlin] Contraseña correcta
+[24-Nov-2024 09:11:22 Europe/Berlin] Resultado de validación: EXITOSO
+[24-Nov-2024 09:11:22 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[24-Nov-2024 09:11:22 Europe/Berlin] Resultado de validación: EXITOSA
+[24-Nov-2024 09:11:22 Europe/Berlin] === INICIO DE MÉTODO INICIAR ===
+[24-Nov-2024 09:11:22 Europe/Berlin] No hay sesión activa, procediendo con la validación
+[24-Nov-2024 09:11:22 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[24-Nov-2024 09:11:22 Europe/Berlin] Validando usuario: cliente
+[24-Nov-2024 09:11:22 Europe/Berlin] Hash recibido: 7159bbe0c8ca2a67230a26b72dea7557
+[24-Nov-2024 09:11:22 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:11:22 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => cliente
+)
+
+[24-Nov-2024 09:11:22 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'cliente'
+[24-Nov-2024 09:11:22 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'cliente'
+[24-Nov-2024 09:11:22 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:11:22 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 4
+    [0] => 4
+    [usnombre] => cliente
+    [1] => cliente
+    [uspass] => 7159bbe0c8ca2a67230a26b72dea7557
+    [2] => 7159bbe0c8ca2a67230a26b72dea7557
+    [usmail] => cliente@gmail.com
+    [3] => cliente@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:11:22 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:11:22 Europe/Berlin] Usuario encontrado - ID: 4, Nombre: cliente
+[24-Nov-2024 09:11:22 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => cliente
+)
+
+[24-Nov-2024 09:11:22 Europe/Berlin] Usuario encontrado: SI
+[24-Nov-2024 09:11:22 Europe/Berlin] Password almacenado: 7159bbe0c8ca2a67230a26b72dea7557
+[24-Nov-2024 09:11:22 Europe/Berlin] Password recibido: 7159bbe0c8ca2a67230a26b72dea7557
+[24-Nov-2024 09:11:22 Europe/Berlin] Contraseña correcta
+[24-Nov-2024 09:11:22 Europe/Berlin] Resultado de validación: EXITOSO
+[24-Nov-2024 09:11:22 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[24-Nov-2024 09:11:22 Europe/Berlin] Validación exitosa, iniciando sesión
+[24-Nov-2024 09:11:22 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:11:22 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => cliente
+)
+
+[24-Nov-2024 09:11:22 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'cliente'
+[24-Nov-2024 09:11:22 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'cliente'
+[24-Nov-2024 09:11:22 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:11:22 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 4
+    [0] => 4
+    [usnombre] => cliente
+    [1] => cliente
+    [uspass] => 7159bbe0c8ca2a67230a26b72dea7557
+    [2] => 7159bbe0c8ca2a67230a26b72dea7557
+    [usmail] => cliente@gmail.com
+    [3] => cliente@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:11:22 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:11:22 Europe/Berlin] Usuario encontrado - ID: 4, Nombre: cliente
+[24-Nov-2024 09:11:22 Europe/Berlin] Buscando datos de usuario
+[24-Nov-2024 09:11:22 Europe/Berlin] Usuario encontrado, ID: 4
+[24-Nov-2024 09:11:22 Europe/Berlin] === INICIO SETEAR ROL ACTIVO ===
+[24-Nov-2024 09:11:22 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:11:22 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => cliente
+)
+
+[24-Nov-2024 09:11:22 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'cliente'
+[24-Nov-2024 09:11:22 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'cliente'
+[24-Nov-2024 09:11:22 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:11:22 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 4
+    [0] => 4
+    [usnombre] => cliente
+    [1] => cliente
+    [uspass] => 7159bbe0c8ca2a67230a26b72dea7557
+    [2] => 7159bbe0c8ca2a67230a26b72dea7557
+    [usmail] => cliente@gmail.com
+    [3] => cliente@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:11:22 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:11:22 Europe/Berlin] Usuario encontrado - ID: 4, Nombre: cliente
+[24-Nov-2024 09:11:22 Europe/Berlin] Roles encontrados: 1
+[24-Nov-2024 09:11:22 Europe/Berlin] Rol activo descripción: cliente
+[24-Nov-2024 09:11:22 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:11:22 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => cliente
+)
+
+[24-Nov-2024 09:11:22 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'cliente'
+[24-Nov-2024 09:11:22 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'cliente'
+[24-Nov-2024 09:11:22 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:11:22 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 4
+    [0] => 4
+    [usnombre] => cliente
+    [1] => cliente
+    [uspass] => 7159bbe0c8ca2a67230a26b72dea7557
+    [2] => 7159bbe0c8ca2a67230a26b72dea7557
+    [usmail] => cliente@gmail.com
+    [3] => cliente@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:11:22 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:11:22 Europe/Berlin] Usuario encontrado - ID: 4, Nombre: cliente
+[24-Nov-2024 09:11:22 Europe/Berlin] ID del rol: 3
+[24-Nov-2024 09:11:22 Europe/Berlin] Rol activo seteado correctamente
+[24-Nov-2024 09:11:22 Europe/Berlin] Resultado setearRolActivo: EXITOSO
+[24-Nov-2024 09:11:22 Europe/Berlin] === FIN SETEAR ROL ACTIVO ===
+[24-Nov-2024 09:11:22 Europe/Berlin] Rol activo seteado correctamente
+[24-Nov-2024 09:11:22 Europe/Berlin] Sesión iniciada correctamente
+[24-Nov-2024 09:11:22 Europe/Berlin] Resultado de iniciar(): EXITOSO
+[24-Nov-2024 09:11:22 Europe/Berlin] === FIN DE MÉTODO INICIAR ===
+[24-Nov-2024 09:11:22 Europe/Berlin] Inicio de sesión exitoso
+[24-Nov-2024 09:11:22 Europe/Berlin] Respuesta a enviar: Array
+(
+    [success] => 1
+    [message] => Inicio de sesión exitoso
+    [debug] => Array
+        (
+            [datos_recibidos] => Array
+                (
+                    [usnombre] => cliente
+                    [uspass] => 7159bbe0c8ca2a67230a26b72dea7557
+                )
+
+        )
+
+)
+
+[24-Nov-2024 09:11:22 Europe/Berlin] === FIN DE SOLICITUD DE LOGIN ===
+
+[24-Nov-2024 09:11:41 Europe/Berlin] === INICIO DE SOLICITUD DE LOGIN ===
+[24-Nov-2024 09:11:41 Europe/Berlin] Obteniendo datos enviados...
+[24-Nov-2024 09:11:41 Europe/Berlin] Datos recibidos: Array
+(
+    [usnombre] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+)
+
+[24-Nov-2024 09:11:41 Europe/Berlin] Datos completos recibidos para usuario: deposito
+[24-Nov-2024 09:11:41 Europe/Berlin] Sesión creada
+[24-Nov-2024 09:11:41 Europe/Berlin] Estado de sesión activa: NO
+[24-Nov-2024 09:11:41 Europe/Berlin] Intentando validar usuario...
+[24-Nov-2024 09:11:41 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[24-Nov-2024 09:11:41 Europe/Berlin] Validando usuario: deposito
+[24-Nov-2024 09:11:41 Europe/Berlin] Hash recibido: caaf856169610904e4f188e6ee23e88c
+[24-Nov-2024 09:11:41 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:11:41 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:11:41 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:11:41 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:11:41 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:11:41 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:11:41 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:11:41 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[24-Nov-2024 09:11:41 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:11:41 Europe/Berlin] Usuario encontrado: SI
+[24-Nov-2024 09:11:41 Europe/Berlin] Password almacenado: caaf856169610904e4f188e6ee23e88c
+[24-Nov-2024 09:11:41 Europe/Berlin] Password recibido: caaf856169610904e4f188e6ee23e88c
+[24-Nov-2024 09:11:41 Europe/Berlin] Contraseña correcta
+[24-Nov-2024 09:11:41 Europe/Berlin] Resultado de validación: EXITOSO
+[24-Nov-2024 09:11:41 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[24-Nov-2024 09:11:41 Europe/Berlin] Resultado de validación: EXITOSA
+[24-Nov-2024 09:11:41 Europe/Berlin] === INICIO DE MÉTODO INICIAR ===
+[24-Nov-2024 09:11:41 Europe/Berlin] No hay sesión activa, procediendo con la validación
+[24-Nov-2024 09:11:41 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[24-Nov-2024 09:11:41 Europe/Berlin] Validando usuario: deposito
+[24-Nov-2024 09:11:41 Europe/Berlin] Hash recibido: caaf856169610904e4f188e6ee23e88c
+[24-Nov-2024 09:11:41 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:11:41 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:11:41 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:11:41 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:11:41 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:11:41 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:11:41 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:11:41 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[24-Nov-2024 09:11:41 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:11:41 Europe/Berlin] Usuario encontrado: SI
+[24-Nov-2024 09:11:41 Europe/Berlin] Password almacenado: caaf856169610904e4f188e6ee23e88c
+[24-Nov-2024 09:11:41 Europe/Berlin] Password recibido: caaf856169610904e4f188e6ee23e88c
+[24-Nov-2024 09:11:41 Europe/Berlin] Contraseña correcta
+[24-Nov-2024 09:11:41 Europe/Berlin] Resultado de validación: EXITOSO
+[24-Nov-2024 09:11:41 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[24-Nov-2024 09:11:41 Europe/Berlin] Validación exitosa, iniciando sesión
+[24-Nov-2024 09:11:41 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:11:41 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:11:41 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:11:41 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:11:41 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:11:41 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:11:41 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:11:41 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[24-Nov-2024 09:11:41 Europe/Berlin] Buscando datos de usuario
+[24-Nov-2024 09:11:41 Europe/Berlin] Usuario encontrado, ID: 3
+[24-Nov-2024 09:11:41 Europe/Berlin] === INICIO SETEAR ROL ACTIVO ===
+[24-Nov-2024 09:11:41 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:11:41 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:11:41 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:11:41 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:11:41 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:11:41 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:11:41 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:11:41 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[24-Nov-2024 09:11:41 Europe/Berlin] Roles encontrados: 1
+[24-Nov-2024 09:11:41 Europe/Berlin] Rol activo descripción: deposito
+[24-Nov-2024 09:11:41 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:11:41 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:11:41 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:11:41 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:11:41 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:11:41 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:11:41 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:11:41 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[24-Nov-2024 09:11:41 Europe/Berlin] ID del rol: 2
+[24-Nov-2024 09:11:41 Europe/Berlin] Rol activo seteado correctamente
+[24-Nov-2024 09:11:41 Europe/Berlin] Resultado setearRolActivo: EXITOSO
+[24-Nov-2024 09:11:41 Europe/Berlin] === FIN SETEAR ROL ACTIVO ===
+[24-Nov-2024 09:11:41 Europe/Berlin] Rol activo seteado correctamente
+[24-Nov-2024 09:11:41 Europe/Berlin] Sesión iniciada correctamente
+[24-Nov-2024 09:11:41 Europe/Berlin] Resultado de iniciar(): EXITOSO
+[24-Nov-2024 09:11:41 Europe/Berlin] === FIN DE MÉTODO INICIAR ===
+[24-Nov-2024 09:11:41 Europe/Berlin] Inicio de sesión exitoso
+[24-Nov-2024 09:11:41 Europe/Berlin] Respuesta a enviar: Array
+(
+    [success] => 1
+    [message] => Inicio de sesión exitoso
+    [debug] => Array
+        (
+            [datos_recibidos] => Array
+                (
+                    [usnombre] => deposito
+                    [uspass] => caaf856169610904e4f188e6ee23e88c
+                )
+
+        )
+
+)
+
+[24-Nov-2024 09:11:41 Europe/Berlin] === FIN DE SOLICITUD DE LOGIN ===
+
+[24-Nov-2024 09:36:16 Europe/Berlin] === INICIO DE SOLICITUD DE LOGIN ===
+[24-Nov-2024 09:36:16 Europe/Berlin] Obteniendo datos enviados...
+[24-Nov-2024 09:36:16 Europe/Berlin] Datos recibidos: Array
+(
+    [usnombre] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+)
+
+[24-Nov-2024 09:36:16 Europe/Berlin] Datos completos recibidos para usuario: tomiCliente
+[24-Nov-2024 09:36:16 Europe/Berlin] Sesión creada
+[24-Nov-2024 09:36:16 Europe/Berlin] Estado de sesión activa: NO
+[24-Nov-2024 09:36:16 Europe/Berlin] Intentando validar usuario...
+[24-Nov-2024 09:36:16 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[24-Nov-2024 09:36:16 Europe/Berlin] Validando usuario: tomiCliente
+[24-Nov-2024 09:36:16 Europe/Berlin] Hash recibido: 10dcac146933401ccf0dd0f743b27a0d
+[24-Nov-2024 09:36:16 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:36:16 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[24-Nov-2024 09:36:16 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:36:16 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:36:16 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:36:16 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 23
+    [0] => 23
+    [usnombre] => tomiCliente
+    [1] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => tomas.acuna@est.fi.uncoma.edu.ar
+    [3] => tomas.acuna@est.fi.uncoma.edu.ar
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[24-Nov-2024 09:36:16 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:36:16 Europe/Berlin] Usuario encontrado - ID: 23, Nombre: tomiCliente
+[24-Nov-2024 09:36:16 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[24-Nov-2024 09:36:16 Europe/Berlin] Usuario encontrado: SI
+[24-Nov-2024 09:36:16 Europe/Berlin] Password almacenado: 10dcac146933401ccf0dd0f743b27a0d
+[24-Nov-2024 09:36:16 Europe/Berlin] Password recibido: 10dcac146933401ccf0dd0f743b27a0d
+[24-Nov-2024 09:36:16 Europe/Berlin] Contraseña correcta
+[24-Nov-2024 09:36:16 Europe/Berlin] Resultado de validación: EXITOSO
+[24-Nov-2024 09:36:16 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[24-Nov-2024 09:36:16 Europe/Berlin] Resultado de validación: EXITOSA
+[24-Nov-2024 09:36:16 Europe/Berlin] === INICIO DE MÉTODO INICIAR ===
+[24-Nov-2024 09:36:16 Europe/Berlin] No hay sesión activa, procediendo con la validación
+[24-Nov-2024 09:36:16 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[24-Nov-2024 09:36:16 Europe/Berlin] Validando usuario: tomiCliente
+[24-Nov-2024 09:36:16 Europe/Berlin] Hash recibido: 10dcac146933401ccf0dd0f743b27a0d
+[24-Nov-2024 09:36:16 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:36:16 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[24-Nov-2024 09:36:16 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:36:16 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:36:16 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:36:16 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 23
+    [0] => 23
+    [usnombre] => tomiCliente
+    [1] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => tomas.acuna@est.fi.uncoma.edu.ar
+    [3] => tomas.acuna@est.fi.uncoma.edu.ar
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[24-Nov-2024 09:36:16 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:36:16 Europe/Berlin] Usuario encontrado - ID: 23, Nombre: tomiCliente
+[24-Nov-2024 09:36:16 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[24-Nov-2024 09:36:16 Europe/Berlin] Usuario encontrado: SI
+[24-Nov-2024 09:36:16 Europe/Berlin] Password almacenado: 10dcac146933401ccf0dd0f743b27a0d
+[24-Nov-2024 09:36:16 Europe/Berlin] Password recibido: 10dcac146933401ccf0dd0f743b27a0d
+[24-Nov-2024 09:36:16 Europe/Berlin] Contraseña correcta
+[24-Nov-2024 09:36:16 Europe/Berlin] Resultado de validación: EXITOSO
+[24-Nov-2024 09:36:16 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[24-Nov-2024 09:36:16 Europe/Berlin] Validación exitosa, iniciando sesión
+[24-Nov-2024 09:36:16 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:36:16 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[24-Nov-2024 09:36:16 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:36:16 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:36:16 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:36:16 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 23
+    [0] => 23
+    [usnombre] => tomiCliente
+    [1] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => tomas.acuna@est.fi.uncoma.edu.ar
+    [3] => tomas.acuna@est.fi.uncoma.edu.ar
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[24-Nov-2024 09:36:16 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:36:16 Europe/Berlin] Usuario encontrado - ID: 23, Nombre: tomiCliente
+[24-Nov-2024 09:36:16 Europe/Berlin] Buscando datos de usuario
+[24-Nov-2024 09:36:16 Europe/Berlin] Usuario encontrado, ID: 23
+[24-Nov-2024 09:36:16 Europe/Berlin] === INICIO SETEAR ROL ACTIVO ===
+[24-Nov-2024 09:36:16 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:36:16 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[24-Nov-2024 09:36:16 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:36:16 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:36:16 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:36:16 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 23
+    [0] => 23
+    [usnombre] => tomiCliente
+    [1] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => tomas.acuna@est.fi.uncoma.edu.ar
+    [3] => tomas.acuna@est.fi.uncoma.edu.ar
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[24-Nov-2024 09:36:16 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:36:16 Europe/Berlin] Usuario encontrado - ID: 23, Nombre: tomiCliente
+[24-Nov-2024 09:36:16 Europe/Berlin] Roles encontrados: 1
+[24-Nov-2024 09:36:16 Europe/Berlin] Rol activo descripción: cliente
+[24-Nov-2024 09:36:16 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:36:16 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[24-Nov-2024 09:36:16 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:36:16 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomiCliente'
+[24-Nov-2024 09:36:16 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:36:16 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 23
+    [0] => 23
+    [usnombre] => tomiCliente
+    [1] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => tomas.acuna@est.fi.uncoma.edu.ar
+    [3] => tomas.acuna@est.fi.uncoma.edu.ar
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[24-Nov-2024 09:36:16 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:36:16 Europe/Berlin] Usuario encontrado - ID: 23, Nombre: tomiCliente
+[24-Nov-2024 09:36:16 Europe/Berlin] ID del rol: 3
+[24-Nov-2024 09:36:16 Europe/Berlin] Rol activo seteado correctamente
+[24-Nov-2024 09:36:16 Europe/Berlin] Resultado setearRolActivo: EXITOSO
+[24-Nov-2024 09:36:16 Europe/Berlin] === FIN SETEAR ROL ACTIVO ===
+[24-Nov-2024 09:36:16 Europe/Berlin] Rol activo seteado correctamente
+[24-Nov-2024 09:36:16 Europe/Berlin] Sesión iniciada correctamente
+[24-Nov-2024 09:36:16 Europe/Berlin] Resultado de iniciar(): EXITOSO
+[24-Nov-2024 09:36:16 Europe/Berlin] === FIN DE MÉTODO INICIAR ===
+[24-Nov-2024 09:36:16 Europe/Berlin] Inicio de sesión exitoso
+[24-Nov-2024 09:36:16 Europe/Berlin] Respuesta a enviar: Array
+(
+    [success] => 1
+    [message] => Inicio de sesión exitoso
+    [debug] => Array
+        (
+            [datos_recibidos] => Array
+                (
+                    [usnombre] => tomiCliente
+                    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+                )
+
+        )
+
+)
+
+[24-Nov-2024 09:36:16 Europe/Berlin] === FIN DE SOLICITUD DE LOGIN ===
+
+[24-Nov-2024 09:36:51 Europe/Berlin] === INICIO DE SOLICITUD DE LOGIN ===
+[24-Nov-2024 09:36:51 Europe/Berlin] Obteniendo datos enviados...
+[24-Nov-2024 09:36:51 Europe/Berlin] Datos recibidos: Array
+(
+    [usnombre] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+)
+
+[24-Nov-2024 09:36:51 Europe/Berlin] Datos completos recibidos para usuario: deposito
+[24-Nov-2024 09:36:51 Europe/Berlin] Sesión creada
+[24-Nov-2024 09:36:51 Europe/Berlin] Estado de sesión activa: NO
+[24-Nov-2024 09:36:51 Europe/Berlin] Intentando validar usuario...
+[24-Nov-2024 09:36:51 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[24-Nov-2024 09:36:51 Europe/Berlin] Validando usuario: deposito
+[24-Nov-2024 09:36:51 Europe/Berlin] Hash recibido: caaf856169610904e4f188e6ee23e88c
+[24-Nov-2024 09:36:51 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:36:51 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:36:51 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:36:51 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:36:51 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:36:51 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:36:51 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:36:51 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[24-Nov-2024 09:36:51 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:36:51 Europe/Berlin] Usuario encontrado: SI
+[24-Nov-2024 09:36:51 Europe/Berlin] Password almacenado: caaf856169610904e4f188e6ee23e88c
+[24-Nov-2024 09:36:51 Europe/Berlin] Password recibido: caaf856169610904e4f188e6ee23e88c
+[24-Nov-2024 09:36:51 Europe/Berlin] Contraseña correcta
+[24-Nov-2024 09:36:51 Europe/Berlin] Resultado de validación: EXITOSO
+[24-Nov-2024 09:36:51 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[24-Nov-2024 09:36:51 Europe/Berlin] Resultado de validación: EXITOSA
+[24-Nov-2024 09:36:51 Europe/Berlin] === INICIO DE MÉTODO INICIAR ===
+[24-Nov-2024 09:36:51 Europe/Berlin] No hay sesión activa, procediendo con la validación
+[24-Nov-2024 09:36:51 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[24-Nov-2024 09:36:51 Europe/Berlin] Validando usuario: deposito
+[24-Nov-2024 09:36:51 Europe/Berlin] Hash recibido: caaf856169610904e4f188e6ee23e88c
+[24-Nov-2024 09:36:51 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:36:51 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:36:51 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:36:51 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:36:51 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:36:51 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:36:51 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:36:51 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[24-Nov-2024 09:36:51 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:36:51 Europe/Berlin] Usuario encontrado: SI
+[24-Nov-2024 09:36:51 Europe/Berlin] Password almacenado: caaf856169610904e4f188e6ee23e88c
+[24-Nov-2024 09:36:51 Europe/Berlin] Password recibido: caaf856169610904e4f188e6ee23e88c
+[24-Nov-2024 09:36:51 Europe/Berlin] Contraseña correcta
+[24-Nov-2024 09:36:51 Europe/Berlin] Resultado de validación: EXITOSO
+[24-Nov-2024 09:36:51 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[24-Nov-2024 09:36:51 Europe/Berlin] Validación exitosa, iniciando sesión
+[24-Nov-2024 09:36:51 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:36:51 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:36:51 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:36:51 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:36:51 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:36:51 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:36:51 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:36:51 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[24-Nov-2024 09:36:51 Europe/Berlin] Buscando datos de usuario
+[24-Nov-2024 09:36:51 Europe/Berlin] Usuario encontrado, ID: 3
+[24-Nov-2024 09:36:51 Europe/Berlin] === INICIO SETEAR ROL ACTIVO ===
+[24-Nov-2024 09:36:51 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:36:51 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:36:51 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:36:51 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:36:51 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:36:51 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:36:51 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:36:51 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[24-Nov-2024 09:36:51 Europe/Berlin] Roles encontrados: 1
+[24-Nov-2024 09:36:51 Europe/Berlin] Rol activo descripción: deposito
+[24-Nov-2024 09:36:51 Europe/Berlin] === Inicio búsqueda de usuario ===
+[24-Nov-2024 09:36:51 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[24-Nov-2024 09:36:51 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:36:51 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[24-Nov-2024 09:36:51 Europe/Berlin] Resultado de la ejecución: 1
+[24-Nov-2024 09:36:51 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[24-Nov-2024 09:36:51 Europe/Berlin] Resultados encontrados: 1
+[24-Nov-2024 09:36:51 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[24-Nov-2024 09:36:51 Europe/Berlin] ID del rol: 2
+[24-Nov-2024 09:36:51 Europe/Berlin] Rol activo seteado correctamente
+[24-Nov-2024 09:36:51 Europe/Berlin] Resultado setearRolActivo: EXITOSO
+[24-Nov-2024 09:36:51 Europe/Berlin] === FIN SETEAR ROL ACTIVO ===
+[24-Nov-2024 09:36:51 Europe/Berlin] Rol activo seteado correctamente
+[24-Nov-2024 09:36:51 Europe/Berlin] Sesión iniciada correctamente
+[24-Nov-2024 09:36:51 Europe/Berlin] Resultado de iniciar(): EXITOSO
+[24-Nov-2024 09:36:51 Europe/Berlin] === FIN DE MÉTODO INICIAR ===
+[24-Nov-2024 09:36:51 Europe/Berlin] Inicio de sesión exitoso
+[24-Nov-2024 09:36:51 Europe/Berlin] Respuesta a enviar: Array
+(
+    [success] => 1
+    [message] => Inicio de sesión exitoso
+    [debug] => Array
+        (
+            [datos_recibidos] => Array
+                (
+                    [usnombre] => deposito
+                    [uspass] => caaf856169610904e4f188e6ee23e88c
+                )
+
+        )
+
+)
+
+[24-Nov-2024 09:36:51 Europe/Berlin] === FIN DE SOLICITUD DE LOGIN ===
+
+[27-Nov-2024 15:33:13 Europe/Berlin] === INICIO DE SOLICITUD DE LOGIN ===
+[27-Nov-2024 15:33:13 Europe/Berlin] Obteniendo datos enviados...
+[27-Nov-2024 15:33:13 Europe/Berlin] Datos recibidos: Array
+(
+    [usnombre] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+)
+
+[27-Nov-2024 15:33:13 Europe/Berlin] Datos completos recibidos para usuario: tomiCliente
+[27-Nov-2024 15:33:13 Europe/Berlin] Sesión creada
+[27-Nov-2024 15:33:13 Europe/Berlin] Estado de sesión activa: NO
+[27-Nov-2024 15:33:13 Europe/Berlin] Intentando validar usuario...
+[27-Nov-2024 15:33:13 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[27-Nov-2024 15:33:13 Europe/Berlin] Validando usuario: tomiCliente
+[27-Nov-2024 15:33:13 Europe/Berlin] Hash recibido: 10dcac146933401ccf0dd0f743b27a0d
+[27-Nov-2024 15:33:13 Europe/Berlin] === Inicio búsqueda de usuario ===
+[27-Nov-2024 15:33:13 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[27-Nov-2024 15:33:13 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomiCliente'
+[27-Nov-2024 15:33:13 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomiCliente'
+[27-Nov-2024 15:33:13 Europe/Berlin] Resultado de la ejecución: 1
+[27-Nov-2024 15:33:13 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 23
+    [0] => 23
+    [usnombre] => tomiCliente
+    [1] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => tomas.acuna@est.fi.uncoma.edu.ar
+    [3] => tomas.acuna@est.fi.uncoma.edu.ar
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[27-Nov-2024 15:33:13 Europe/Berlin] Resultados encontrados: 1
+[27-Nov-2024 15:33:13 Europe/Berlin] Usuario encontrado - ID: 23, Nombre: tomiCliente
+[27-Nov-2024 15:33:13 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[27-Nov-2024 15:33:13 Europe/Berlin] Usuario encontrado: SI
+[27-Nov-2024 15:33:13 Europe/Berlin] Password almacenado: 10dcac146933401ccf0dd0f743b27a0d
+[27-Nov-2024 15:33:13 Europe/Berlin] Password recibido: 10dcac146933401ccf0dd0f743b27a0d
+[27-Nov-2024 15:33:13 Europe/Berlin] Contraseña correcta
+[27-Nov-2024 15:33:13 Europe/Berlin] Resultado de validación: EXITOSO
+[27-Nov-2024 15:33:13 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[27-Nov-2024 15:33:13 Europe/Berlin] Resultado de validación: EXITOSA
+[27-Nov-2024 15:33:13 Europe/Berlin] === INICIO DE MÉTODO INICIAR ===
+[27-Nov-2024 15:33:13 Europe/Berlin] No hay sesión activa, procediendo con la validación
+[27-Nov-2024 15:33:13 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[27-Nov-2024 15:33:13 Europe/Berlin] Validando usuario: tomiCliente
+[27-Nov-2024 15:33:13 Europe/Berlin] Hash recibido: 10dcac146933401ccf0dd0f743b27a0d
+[27-Nov-2024 15:33:13 Europe/Berlin] === Inicio búsqueda de usuario ===
+[27-Nov-2024 15:33:13 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[27-Nov-2024 15:33:13 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomiCliente'
+[27-Nov-2024 15:33:13 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomiCliente'
+[27-Nov-2024 15:33:13 Europe/Berlin] Resultado de la ejecución: 1
+[27-Nov-2024 15:33:13 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 23
+    [0] => 23
+    [usnombre] => tomiCliente
+    [1] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => tomas.acuna@est.fi.uncoma.edu.ar
+    [3] => tomas.acuna@est.fi.uncoma.edu.ar
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[27-Nov-2024 15:33:13 Europe/Berlin] Resultados encontrados: 1
+[27-Nov-2024 15:33:13 Europe/Berlin] Usuario encontrado - ID: 23, Nombre: tomiCliente
+[27-Nov-2024 15:33:13 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[27-Nov-2024 15:33:13 Europe/Berlin] Usuario encontrado: SI
+[27-Nov-2024 15:33:13 Europe/Berlin] Password almacenado: 10dcac146933401ccf0dd0f743b27a0d
+[27-Nov-2024 15:33:13 Europe/Berlin] Password recibido: 10dcac146933401ccf0dd0f743b27a0d
+[27-Nov-2024 15:33:13 Europe/Berlin] Contraseña correcta
+[27-Nov-2024 15:33:13 Europe/Berlin] Resultado de validación: EXITOSO
+[27-Nov-2024 15:33:13 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[27-Nov-2024 15:33:13 Europe/Berlin] Validación exitosa, iniciando sesión
+[27-Nov-2024 15:33:13 Europe/Berlin] === Inicio búsqueda de usuario ===
+[27-Nov-2024 15:33:13 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[27-Nov-2024 15:33:13 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomiCliente'
+[27-Nov-2024 15:33:13 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomiCliente'
+[27-Nov-2024 15:33:13 Europe/Berlin] Resultado de la ejecución: 1
+[27-Nov-2024 15:33:13 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 23
+    [0] => 23
+    [usnombre] => tomiCliente
+    [1] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => tomas.acuna@est.fi.uncoma.edu.ar
+    [3] => tomas.acuna@est.fi.uncoma.edu.ar
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[27-Nov-2024 15:33:13 Europe/Berlin] Resultados encontrados: 1
+[27-Nov-2024 15:33:13 Europe/Berlin] Usuario encontrado - ID: 23, Nombre: tomiCliente
+[27-Nov-2024 15:33:13 Europe/Berlin] Buscando datos de usuario
+[27-Nov-2024 15:33:13 Europe/Berlin] Usuario encontrado, ID: 23
+[27-Nov-2024 15:33:13 Europe/Berlin] === INICIO SETEAR ROL ACTIVO ===
+[27-Nov-2024 15:33:13 Europe/Berlin] === Inicio búsqueda de usuario ===
+[27-Nov-2024 15:33:13 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[27-Nov-2024 15:33:13 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomiCliente'
+[27-Nov-2024 15:33:13 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomiCliente'
+[27-Nov-2024 15:33:13 Europe/Berlin] Resultado de la ejecución: 1
+[27-Nov-2024 15:33:13 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 23
+    [0] => 23
+    [usnombre] => tomiCliente
+    [1] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => tomas.acuna@est.fi.uncoma.edu.ar
+    [3] => tomas.acuna@est.fi.uncoma.edu.ar
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[27-Nov-2024 15:33:13 Europe/Berlin] Resultados encontrados: 1
+[27-Nov-2024 15:33:13 Europe/Berlin] Usuario encontrado - ID: 23, Nombre: tomiCliente
+[27-Nov-2024 15:33:13 Europe/Berlin] Roles encontrados: 1
+[27-Nov-2024 15:33:13 Europe/Berlin] Rol activo descripción: cliente
+[27-Nov-2024 15:33:13 Europe/Berlin] === Inicio búsqueda de usuario ===
+[27-Nov-2024 15:33:13 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[27-Nov-2024 15:33:13 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomiCliente'
+[27-Nov-2024 15:33:13 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomiCliente'
+[27-Nov-2024 15:33:13 Europe/Berlin] Resultado de la ejecución: 1
+[27-Nov-2024 15:33:13 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 23
+    [0] => 23
+    [usnombre] => tomiCliente
+    [1] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => tomas.acuna@est.fi.uncoma.edu.ar
+    [3] => tomas.acuna@est.fi.uncoma.edu.ar
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[27-Nov-2024 15:33:13 Europe/Berlin] Resultados encontrados: 1
+[27-Nov-2024 15:33:13 Europe/Berlin] Usuario encontrado - ID: 23, Nombre: tomiCliente
+[27-Nov-2024 15:33:13 Europe/Berlin] ID del rol: 3
+[27-Nov-2024 15:33:13 Europe/Berlin] Rol activo seteado correctamente
+[27-Nov-2024 15:33:13 Europe/Berlin] Resultado setearRolActivo: EXITOSO
+[27-Nov-2024 15:33:13 Europe/Berlin] === FIN SETEAR ROL ACTIVO ===
+[27-Nov-2024 15:33:13 Europe/Berlin] Rol activo seteado correctamente
+[27-Nov-2024 15:33:13 Europe/Berlin] Sesión iniciada correctamente
+[27-Nov-2024 15:33:13 Europe/Berlin] Resultado de iniciar(): EXITOSO
+[27-Nov-2024 15:33:13 Europe/Berlin] === FIN DE MÉTODO INICIAR ===
+[27-Nov-2024 15:33:13 Europe/Berlin] Inicio de sesión exitoso
+[27-Nov-2024 15:33:13 Europe/Berlin] Respuesta a enviar: Array
+(
+    [success] => 1
+    [message] => Inicio de sesión exitoso
+    [debug] => Array
+        (
+            [datos_recibidos] => Array
+                (
+                    [usnombre] => tomiCliente
+                    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+                )
+
+        )
+
+)
+
+[27-Nov-2024 15:33:13 Europe/Berlin] === FIN DE SOLICITUD DE LOGIN ===
+
+[27-Nov-2024 15:34:24 Europe/Berlin] === INICIO DE SOLICITUD DE LOGIN ===
+[27-Nov-2024 15:34:24 Europe/Berlin] Obteniendo datos enviados...
+[27-Nov-2024 15:34:24 Europe/Berlin] Datos recibidos: Array
+(
+    [usnombre] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+)
+
+[27-Nov-2024 15:34:24 Europe/Berlin] Datos completos recibidos para usuario: deposito
+[27-Nov-2024 15:34:24 Europe/Berlin] Sesión creada
+[27-Nov-2024 15:34:24 Europe/Berlin] Estado de sesión activa: NO
+[27-Nov-2024 15:34:24 Europe/Berlin] Intentando validar usuario...
+[27-Nov-2024 15:34:24 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[27-Nov-2024 15:34:24 Europe/Berlin] Validando usuario: deposito
+[27-Nov-2024 15:34:24 Europe/Berlin] Hash recibido: caaf856169610904e4f188e6ee23e88c
+[27-Nov-2024 15:34:24 Europe/Berlin] === Inicio búsqueda de usuario ===
+[27-Nov-2024 15:34:24 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[27-Nov-2024 15:34:24 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[27-Nov-2024 15:34:24 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[27-Nov-2024 15:34:24 Europe/Berlin] Resultado de la ejecución: 1
+[27-Nov-2024 15:34:24 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[27-Nov-2024 15:34:24 Europe/Berlin] Resultados encontrados: 1
+[27-Nov-2024 15:34:24 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[27-Nov-2024 15:34:24 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => deposito
+)
+
+[27-Nov-2024 15:34:24 Europe/Berlin] Usuario encontrado: SI
+[27-Nov-2024 15:34:24 Europe/Berlin] Password almacenado: caaf856169610904e4f188e6ee23e88c
+[27-Nov-2024 15:34:24 Europe/Berlin] Password recibido: caaf856169610904e4f188e6ee23e88c
+[27-Nov-2024 15:34:24 Europe/Berlin] Contraseña correcta
+[27-Nov-2024 15:34:24 Europe/Berlin] Resultado de validación: EXITOSO
+[27-Nov-2024 15:34:24 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[27-Nov-2024 15:34:24 Europe/Berlin] Resultado de validación: EXITOSA
+[27-Nov-2024 15:34:24 Europe/Berlin] === INICIO DE MÉTODO INICIAR ===
+[27-Nov-2024 15:34:24 Europe/Berlin] No hay sesión activa, procediendo con la validación
+[27-Nov-2024 15:34:24 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[27-Nov-2024 15:34:24 Europe/Berlin] Validando usuario: deposito
+[27-Nov-2024 15:34:24 Europe/Berlin] Hash recibido: caaf856169610904e4f188e6ee23e88c
+[27-Nov-2024 15:34:24 Europe/Berlin] === Inicio búsqueda de usuario ===
+[27-Nov-2024 15:34:24 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[27-Nov-2024 15:34:24 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[27-Nov-2024 15:34:24 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[27-Nov-2024 15:34:24 Europe/Berlin] Resultado de la ejecución: 1
+[27-Nov-2024 15:34:24 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[27-Nov-2024 15:34:24 Europe/Berlin] Resultados encontrados: 1
+[27-Nov-2024 15:34:24 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[27-Nov-2024 15:34:24 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => deposito
+)
+
+[27-Nov-2024 15:34:24 Europe/Berlin] Usuario encontrado: SI
+[27-Nov-2024 15:34:24 Europe/Berlin] Password almacenado: caaf856169610904e4f188e6ee23e88c
+[27-Nov-2024 15:34:24 Europe/Berlin] Password recibido: caaf856169610904e4f188e6ee23e88c
+[27-Nov-2024 15:34:24 Europe/Berlin] Contraseña correcta
+[27-Nov-2024 15:34:24 Europe/Berlin] Resultado de validación: EXITOSO
+[27-Nov-2024 15:34:24 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[27-Nov-2024 15:34:24 Europe/Berlin] Validación exitosa, iniciando sesión
+[27-Nov-2024 15:34:24 Europe/Berlin] === Inicio búsqueda de usuario ===
+[27-Nov-2024 15:34:24 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[27-Nov-2024 15:34:24 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[27-Nov-2024 15:34:24 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[27-Nov-2024 15:34:24 Europe/Berlin] Resultado de la ejecución: 1
+[27-Nov-2024 15:34:24 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[27-Nov-2024 15:34:24 Europe/Berlin] Resultados encontrados: 1
+[27-Nov-2024 15:34:24 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[27-Nov-2024 15:34:24 Europe/Berlin] Buscando datos de usuario
+[27-Nov-2024 15:34:24 Europe/Berlin] Usuario encontrado, ID: 3
+[27-Nov-2024 15:34:24 Europe/Berlin] === INICIO SETEAR ROL ACTIVO ===
+[27-Nov-2024 15:34:24 Europe/Berlin] === Inicio búsqueda de usuario ===
+[27-Nov-2024 15:34:24 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[27-Nov-2024 15:34:24 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[27-Nov-2024 15:34:24 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[27-Nov-2024 15:34:24 Europe/Berlin] Resultado de la ejecución: 1
+[27-Nov-2024 15:34:24 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[27-Nov-2024 15:34:24 Europe/Berlin] Resultados encontrados: 1
+[27-Nov-2024 15:34:24 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[27-Nov-2024 15:34:24 Europe/Berlin] Roles encontrados: 1
+[27-Nov-2024 15:34:24 Europe/Berlin] Rol activo descripción: deposito
+[27-Nov-2024 15:34:24 Europe/Berlin] === Inicio búsqueda de usuario ===
+[27-Nov-2024 15:34:24 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[27-Nov-2024 15:34:24 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[27-Nov-2024 15:34:24 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[27-Nov-2024 15:34:24 Europe/Berlin] Resultado de la ejecución: 1
+[27-Nov-2024 15:34:24 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[27-Nov-2024 15:34:24 Europe/Berlin] Resultados encontrados: 1
+[27-Nov-2024 15:34:24 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[27-Nov-2024 15:34:24 Europe/Berlin] ID del rol: 2
+[27-Nov-2024 15:34:24 Europe/Berlin] Rol activo seteado correctamente
+[27-Nov-2024 15:34:24 Europe/Berlin] Resultado setearRolActivo: EXITOSO
+[27-Nov-2024 15:34:24 Europe/Berlin] === FIN SETEAR ROL ACTIVO ===
+[27-Nov-2024 15:34:24 Europe/Berlin] Rol activo seteado correctamente
+[27-Nov-2024 15:34:24 Europe/Berlin] Sesión iniciada correctamente
+[27-Nov-2024 15:34:24 Europe/Berlin] Resultado de iniciar(): EXITOSO
+[27-Nov-2024 15:34:24 Europe/Berlin] === FIN DE MÉTODO INICIAR ===
+[27-Nov-2024 15:34:24 Europe/Berlin] Inicio de sesión exitoso
+[27-Nov-2024 15:34:24 Europe/Berlin] Respuesta a enviar: Array
+(
+    [success] => 1
+    [message] => Inicio de sesión exitoso
+    [debug] => Array
+        (
+            [datos_recibidos] => Array
+                (
+                    [usnombre] => deposito
+                    [uspass] => caaf856169610904e4f188e6ee23e88c
+                )
+
+        )
+
+)
+
+[27-Nov-2024 15:34:24 Europe/Berlin] === FIN DE SOLICITUD DE LOGIN ===
+
+[27-Nov-2024 15:45:30 Europe/Berlin] === INICIO DE SOLICITUD DE LOGIN ===
+[27-Nov-2024 15:45:30 Europe/Berlin] Obteniendo datos enviados...
+[27-Nov-2024 15:45:30 Europe/Berlin] Datos recibidos: Array
+(
+    [usnombre] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+)
+
+[27-Nov-2024 15:45:30 Europe/Berlin] Datos completos recibidos para usuario: tomiCliente
+[27-Nov-2024 15:45:30 Europe/Berlin] Sesión creada
+[27-Nov-2024 15:45:30 Europe/Berlin] Estado de sesión activa: NO
+[27-Nov-2024 15:45:30 Europe/Berlin] Intentando validar usuario...
+[27-Nov-2024 15:45:30 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[27-Nov-2024 15:45:30 Europe/Berlin] Validando usuario: tomiCliente
+[27-Nov-2024 15:45:30 Europe/Berlin] Hash recibido: 10dcac146933401ccf0dd0f743b27a0d
+[27-Nov-2024 15:45:30 Europe/Berlin] === Inicio búsqueda de usuario ===
+[27-Nov-2024 15:45:30 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[27-Nov-2024 15:45:30 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomiCliente'
+[27-Nov-2024 15:45:30 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomiCliente'
+[27-Nov-2024 15:45:30 Europe/Berlin] Resultado de la ejecución: 1
+[27-Nov-2024 15:45:30 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 23
+    [0] => 23
+    [usnombre] => tomiCliente
+    [1] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => tomas.acuna@est.fi.uncoma.edu.ar
+    [3] => tomas.acuna@est.fi.uncoma.edu.ar
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[27-Nov-2024 15:45:30 Europe/Berlin] Resultados encontrados: 1
+[27-Nov-2024 15:45:30 Europe/Berlin] Usuario encontrado - ID: 23, Nombre: tomiCliente
+[27-Nov-2024 15:45:30 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[27-Nov-2024 15:45:30 Europe/Berlin] Usuario encontrado: SI
+[27-Nov-2024 15:45:30 Europe/Berlin] Password almacenado: 10dcac146933401ccf0dd0f743b27a0d
+[27-Nov-2024 15:45:30 Europe/Berlin] Password recibido: 10dcac146933401ccf0dd0f743b27a0d
+[27-Nov-2024 15:45:30 Europe/Berlin] Contraseña correcta
+[27-Nov-2024 15:45:30 Europe/Berlin] Resultado de validación: EXITOSO
+[27-Nov-2024 15:45:30 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[27-Nov-2024 15:45:30 Europe/Berlin] Resultado de validación: EXITOSA
+[27-Nov-2024 15:45:30 Europe/Berlin] === INICIO DE MÉTODO INICIAR ===
+[27-Nov-2024 15:45:30 Europe/Berlin] No hay sesión activa, procediendo con la validación
+[27-Nov-2024 15:45:30 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[27-Nov-2024 15:45:30 Europe/Berlin] Validando usuario: tomiCliente
+[27-Nov-2024 15:45:30 Europe/Berlin] Hash recibido: 10dcac146933401ccf0dd0f743b27a0d
+[27-Nov-2024 15:45:30 Europe/Berlin] === Inicio búsqueda de usuario ===
+[27-Nov-2024 15:45:30 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[27-Nov-2024 15:45:30 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomiCliente'
+[27-Nov-2024 15:45:30 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomiCliente'
+[27-Nov-2024 15:45:30 Europe/Berlin] Resultado de la ejecución: 1
+[27-Nov-2024 15:45:30 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 23
+    [0] => 23
+    [usnombre] => tomiCliente
+    [1] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => tomas.acuna@est.fi.uncoma.edu.ar
+    [3] => tomas.acuna@est.fi.uncoma.edu.ar
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[27-Nov-2024 15:45:30 Europe/Berlin] Resultados encontrados: 1
+[27-Nov-2024 15:45:30 Europe/Berlin] Usuario encontrado - ID: 23, Nombre: tomiCliente
+[27-Nov-2024 15:45:30 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[27-Nov-2024 15:45:30 Europe/Berlin] Usuario encontrado: SI
+[27-Nov-2024 15:45:30 Europe/Berlin] Password almacenado: 10dcac146933401ccf0dd0f743b27a0d
+[27-Nov-2024 15:45:30 Europe/Berlin] Password recibido: 10dcac146933401ccf0dd0f743b27a0d
+[27-Nov-2024 15:45:30 Europe/Berlin] Contraseña correcta
+[27-Nov-2024 15:45:30 Europe/Berlin] Resultado de validación: EXITOSO
+[27-Nov-2024 15:45:30 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[27-Nov-2024 15:45:30 Europe/Berlin] Validación exitosa, iniciando sesión
+[27-Nov-2024 15:45:30 Europe/Berlin] === Inicio búsqueda de usuario ===
+[27-Nov-2024 15:45:30 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[27-Nov-2024 15:45:30 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomiCliente'
+[27-Nov-2024 15:45:30 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomiCliente'
+[27-Nov-2024 15:45:30 Europe/Berlin] Resultado de la ejecución: 1
+[27-Nov-2024 15:45:30 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 23
+    [0] => 23
+    [usnombre] => tomiCliente
+    [1] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => tomas.acuna@est.fi.uncoma.edu.ar
+    [3] => tomas.acuna@est.fi.uncoma.edu.ar
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[27-Nov-2024 15:45:30 Europe/Berlin] Resultados encontrados: 1
+[27-Nov-2024 15:45:30 Europe/Berlin] Usuario encontrado - ID: 23, Nombre: tomiCliente
+[27-Nov-2024 15:45:30 Europe/Berlin] Buscando datos de usuario
+[27-Nov-2024 15:45:30 Europe/Berlin] Usuario encontrado, ID: 23
+[27-Nov-2024 15:45:30 Europe/Berlin] === INICIO SETEAR ROL ACTIVO ===
+[27-Nov-2024 15:45:30 Europe/Berlin] === Inicio búsqueda de usuario ===
+[27-Nov-2024 15:45:30 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[27-Nov-2024 15:45:30 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomiCliente'
+[27-Nov-2024 15:45:30 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomiCliente'
+[27-Nov-2024 15:45:30 Europe/Berlin] Resultado de la ejecución: 1
+[27-Nov-2024 15:45:30 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 23
+    [0] => 23
+    [usnombre] => tomiCliente
+    [1] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => tomas.acuna@est.fi.uncoma.edu.ar
+    [3] => tomas.acuna@est.fi.uncoma.edu.ar
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[27-Nov-2024 15:45:30 Europe/Berlin] Resultados encontrados: 1
+[27-Nov-2024 15:45:30 Europe/Berlin] Usuario encontrado - ID: 23, Nombre: tomiCliente
+[27-Nov-2024 15:45:30 Europe/Berlin] Roles encontrados: 1
+[27-Nov-2024 15:45:30 Europe/Berlin] Rol activo descripción: cliente
+[27-Nov-2024 15:45:30 Europe/Berlin] === Inicio búsqueda de usuario ===
+[27-Nov-2024 15:45:30 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => tomiCliente
+)
+
+[27-Nov-2024 15:45:30 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'tomiCliente'
+[27-Nov-2024 15:45:30 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'tomiCliente'
+[27-Nov-2024 15:45:30 Europe/Berlin] Resultado de la ejecución: 1
+[27-Nov-2024 15:45:30 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 23
+    [0] => 23
+    [usnombre] => tomiCliente
+    [1] => tomiCliente
+    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+    [2] => 10dcac146933401ccf0dd0f743b27a0d
+    [usmail] => tomas.acuna@est.fi.uncoma.edu.ar
+    [3] => tomas.acuna@est.fi.uncoma.edu.ar
+    [usdeshabilitado] => 0000-00-00 00:00:00
+    [4] => 0000-00-00 00:00:00
+)
+
+[27-Nov-2024 15:45:30 Europe/Berlin] Resultados encontrados: 1
+[27-Nov-2024 15:45:30 Europe/Berlin] Usuario encontrado - ID: 23, Nombre: tomiCliente
+[27-Nov-2024 15:45:30 Europe/Berlin] ID del rol: 3
+[27-Nov-2024 15:45:30 Europe/Berlin] Rol activo seteado correctamente
+[27-Nov-2024 15:45:30 Europe/Berlin] Resultado setearRolActivo: EXITOSO
+[27-Nov-2024 15:45:30 Europe/Berlin] === FIN SETEAR ROL ACTIVO ===
+[27-Nov-2024 15:45:30 Europe/Berlin] Rol activo seteado correctamente
+[27-Nov-2024 15:45:30 Europe/Berlin] Sesión iniciada correctamente
+[27-Nov-2024 15:45:30 Europe/Berlin] Resultado de iniciar(): EXITOSO
+[27-Nov-2024 15:45:30 Europe/Berlin] === FIN DE MÉTODO INICIAR ===
+[27-Nov-2024 15:45:30 Europe/Berlin] Inicio de sesión exitoso
+[27-Nov-2024 15:45:30 Europe/Berlin] Respuesta a enviar: Array
+(
+    [success] => 1
+    [message] => Inicio de sesión exitoso
+    [debug] => Array
+        (
+            [datos_recibidos] => Array
+                (
+                    [usnombre] => tomiCliente
+                    [uspass] => 10dcac146933401ccf0dd0f743b27a0d
+                )
+
+        )
+
+)
+
+[27-Nov-2024 15:45:30 Europe/Berlin] === FIN DE SOLICITUD DE LOGIN ===
+
+[27-Nov-2024 15:46:03 Europe/Berlin] === INICIO DE SOLICITUD DE LOGIN ===
+[27-Nov-2024 15:46:03 Europe/Berlin] Obteniendo datos enviados...
+[27-Nov-2024 15:46:03 Europe/Berlin] Datos recibidos: Array
+(
+    [usnombre] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+)
+
+[27-Nov-2024 15:46:03 Europe/Berlin] Datos completos recibidos para usuario: deposito
+[27-Nov-2024 15:46:03 Europe/Berlin] Sesión creada
+[27-Nov-2024 15:46:03 Europe/Berlin] Estado de sesión activa: NO
+[27-Nov-2024 15:46:03 Europe/Berlin] Intentando validar usuario...
+[27-Nov-2024 15:46:03 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[27-Nov-2024 15:46:03 Europe/Berlin] Validando usuario: deposito
+[27-Nov-2024 15:46:03 Europe/Berlin] Hash recibido: caaf856169610904e4f188e6ee23e88c
+[27-Nov-2024 15:46:03 Europe/Berlin] === Inicio búsqueda de usuario ===
+[27-Nov-2024 15:46:03 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[27-Nov-2024 15:46:03 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[27-Nov-2024 15:46:03 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[27-Nov-2024 15:46:03 Europe/Berlin] Resultado de la ejecución: 1
+[27-Nov-2024 15:46:03 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[27-Nov-2024 15:46:03 Europe/Berlin] Resultados encontrados: 1
+[27-Nov-2024 15:46:03 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[27-Nov-2024 15:46:03 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => deposito
+)
+
+[27-Nov-2024 15:46:03 Europe/Berlin] Usuario encontrado: SI
+[27-Nov-2024 15:46:03 Europe/Berlin] Password almacenado: caaf856169610904e4f188e6ee23e88c
+[27-Nov-2024 15:46:03 Europe/Berlin] Password recibido: caaf856169610904e4f188e6ee23e88c
+[27-Nov-2024 15:46:03 Europe/Berlin] Contraseña correcta
+[27-Nov-2024 15:46:03 Europe/Berlin] Resultado de validación: EXITOSO
+[27-Nov-2024 15:46:03 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[27-Nov-2024 15:46:03 Europe/Berlin] Resultado de validación: EXITOSA
+[27-Nov-2024 15:46:03 Europe/Berlin] === INICIO DE MÉTODO INICIAR ===
+[27-Nov-2024 15:46:03 Europe/Berlin] No hay sesión activa, procediendo con la validación
+[27-Nov-2024 15:46:03 Europe/Berlin] === INICIO DE VALIDACIÓN ===
+[27-Nov-2024 15:46:03 Europe/Berlin] Validando usuario: deposito
+[27-Nov-2024 15:46:03 Europe/Berlin] Hash recibido: caaf856169610904e4f188e6ee23e88c
+[27-Nov-2024 15:46:03 Europe/Berlin] === Inicio búsqueda de usuario ===
+[27-Nov-2024 15:46:03 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[27-Nov-2024 15:46:03 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[27-Nov-2024 15:46:03 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[27-Nov-2024 15:46:03 Europe/Berlin] Resultado de la ejecución: 1
+[27-Nov-2024 15:46:03 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[27-Nov-2024 15:46:03 Europe/Berlin] Resultados encontrados: 1
+[27-Nov-2024 15:46:03 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[27-Nov-2024 15:46:03 Europe/Berlin] Búsqueda de usuario - Parámetros: Array
+(
+    [usnombre] => deposito
+)
+
+[27-Nov-2024 15:46:03 Europe/Berlin] Usuario encontrado: SI
+[27-Nov-2024 15:46:03 Europe/Berlin] Password almacenado: caaf856169610904e4f188e6ee23e88c
+[27-Nov-2024 15:46:03 Europe/Berlin] Password recibido: caaf856169610904e4f188e6ee23e88c
+[27-Nov-2024 15:46:03 Europe/Berlin] Contraseña correcta
+[27-Nov-2024 15:46:03 Europe/Berlin] Resultado de validación: EXITOSO
+[27-Nov-2024 15:46:03 Europe/Berlin] === FIN DE VALIDACIÓN ===
+
+[27-Nov-2024 15:46:03 Europe/Berlin] Validación exitosa, iniciando sesión
+[27-Nov-2024 15:46:03 Europe/Berlin] === Inicio búsqueda de usuario ===
+[27-Nov-2024 15:46:03 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[27-Nov-2024 15:46:03 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[27-Nov-2024 15:46:03 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[27-Nov-2024 15:46:03 Europe/Berlin] Resultado de la ejecución: 1
+[27-Nov-2024 15:46:03 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[27-Nov-2024 15:46:03 Europe/Berlin] Resultados encontrados: 1
+[27-Nov-2024 15:46:03 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[27-Nov-2024 15:46:03 Europe/Berlin] Buscando datos de usuario
+[27-Nov-2024 15:46:03 Europe/Berlin] Usuario encontrado, ID: 3
+[27-Nov-2024 15:46:03 Europe/Berlin] === INICIO SETEAR ROL ACTIVO ===
+[27-Nov-2024 15:46:03 Europe/Berlin] === Inicio búsqueda de usuario ===
+[27-Nov-2024 15:46:03 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[27-Nov-2024 15:46:03 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[27-Nov-2024 15:46:03 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[27-Nov-2024 15:46:03 Europe/Berlin] Resultado de la ejecución: 1
+[27-Nov-2024 15:46:03 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[27-Nov-2024 15:46:03 Europe/Berlin] Resultados encontrados: 1
+[27-Nov-2024 15:46:03 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[27-Nov-2024 15:46:03 Europe/Berlin] Roles encontrados: 1
+[27-Nov-2024 15:46:03 Europe/Berlin] Rol activo descripción: deposito
+[27-Nov-2024 15:46:03 Europe/Berlin] === Inicio búsqueda de usuario ===
+[27-Nov-2024 15:46:03 Europe/Berlin] Parámetros de búsqueda: Array
+(
+    [usnombre] => deposito
+)
+
+[27-Nov-2024 15:46:03 Europe/Berlin] Condición WHERE:  true  AND usnombre = 'deposito'
+[27-Nov-2024 15:46:03 Europe/Berlin] Ejecutando SQL: SELECT * FROM usuario  WHERE  true  AND usnombre = 'deposito'
+[27-Nov-2024 15:46:03 Europe/Berlin] Resultado de la ejecución: 1
+[27-Nov-2024 15:46:03 Europe/Berlin] Registro encontrado: Array
+(
+    [idusuario] => 3
+    [0] => 3
+    [usnombre] => deposito
+    [1] => deposito
+    [uspass] => caaf856169610904e4f188e6ee23e88c
+    [2] => caaf856169610904e4f188e6ee23e88c
+    [usmail] => deposito@gmail.com
+    [3] => deposito@gmail.com
+    [usdeshabilitado] => 
+    [4] => 
+)
+
+[27-Nov-2024 15:46:03 Europe/Berlin] Resultados encontrados: 1
+[27-Nov-2024 15:46:03 Europe/Berlin] Usuario encontrado - ID: 3, Nombre: deposito
+[27-Nov-2024 15:46:03 Europe/Berlin] ID del rol: 2
+[27-Nov-2024 15:46:03 Europe/Berlin] Rol activo seteado correctamente
+[27-Nov-2024 15:46:03 Europe/Berlin] Resultado setearRolActivo: EXITOSO
+[27-Nov-2024 15:46:03 Europe/Berlin] === FIN SETEAR ROL ACTIVO ===
+[27-Nov-2024 15:46:03 Europe/Berlin] Rol activo seteado correctamente
+[27-Nov-2024 15:46:03 Europe/Berlin] Sesión iniciada correctamente
+[27-Nov-2024 15:46:03 Europe/Berlin] Resultado de iniciar(): EXITOSO
+[27-Nov-2024 15:46:03 Europe/Berlin] === FIN DE MÉTODO INICIAR ===
+[27-Nov-2024 15:46:03 Europe/Berlin] Inicio de sesión exitoso
+[27-Nov-2024 15:46:03 Europe/Berlin] Respuesta a enviar: Array
+(
+    [success] => 1
+    [message] => Inicio de sesión exitoso
+    [debug] => Array
+        (
+            [datos_recibidos] => Array
+                (
+                    [usnombre] => deposito
+                    [uspass] => caaf856169610904e4f188e6ee23e88c
+                )
+
+        )
+
+)
+
+[27-Nov-2024 15:46:03 Europe/Berlin] === FIN DE SOLICITUD DE LOGIN ===
+

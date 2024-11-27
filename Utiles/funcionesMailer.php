@@ -12,30 +12,32 @@ function enviarMail($user, $idcompra, $idcompraestadotipo) {
     $bodyMail = devolverBody($idcompra, $idcompraestadotipo);
     $mail = new PHPMailer(true);
     try {
+        $mail->SMTPDebug = 2;
         $mail->isSMTP();
-        $mail->SMTPDebug = 0;
-
+        
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'acunacode@gmail.com';
-        $mail->Password = 'pcilpoomhtuyoeel';
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-        $mail->Port = 465;
+        $mail->Username = 'brandoncult45@gmail.com';
+        $mail->Password = 'neat yvrk srit wvjb';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
 
-        $mail->setFrom('acunacode@gmail.com', 'Administrador');
+        $mail->setFrom('brandoncult45@gmail.com', 'Administrador');
         $mail->addAddress($user['usmail'], $user['usname']);
 
         $mail->isHTML(true);
         $mail->Subject = 'Estado de tu pedido';
+        $mail->CharSet = 'UTF-8';
 
         $mail->Body = $bodyMail;
 
         $mail->send();
-        $exito = true;
+        error_log("Email enviado correctamente");
+        return true;
     } catch (Exception $e) {
-        $exito = false;
+        error_log("Error al enviar email: " . $mail->ErrorInfo);
+        return false;
     }
-    return $exito;
 }
 
 // Funcion que se encarga de buscar los datos del usuario necesarios con el idcompra
